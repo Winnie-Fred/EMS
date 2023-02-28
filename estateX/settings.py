@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-# import dj_database_url
+
 import os
 from pathlib import Path
 
@@ -35,22 +35,54 @@ TENANT_MODEL = "customers.Client"
 
 # Application definition
 
-SHARED_APPS = ["tenant_schemas", "customers"]
+SHARED_APPS = (
+    'tenant_schemas',  # mandatory, should always be before any django app
+    'customers', # you must list the app where your tenant model resides in
 
-TENANT_APPS = [
-    # Make sure django.contrib.sites is not included, else DoesNotExist error will be raised
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+    'django.contrib.contenttypes',
+
+    # everything below here is optional
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
+    'django.contrib.staticfiles',
+
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+)
+
+TENANT_APPS = (
+    'django.contrib.contenttypes',
 
     # your tenant-specific apps
-    # "polls",
-]
+    # 'myapp.hotels',
+    # 'myapp.houses',
+)
 
-INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+INSTALLED_APPS = (
+    'tenant_schemas',  # mandatory, should always be before any django app
+
+    'customers',
+    'django.contrib.contenttypes',
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
+    'django.contrib.staticfiles',
+
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # 'myapp.hotels',
+    # 'myapp.houses',
+)
 
 PUBLIC_SCHEMA_NAME = 'public'
 
@@ -63,6 +95,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -70,6 +103,7 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'estateX.urls'
+
 
 TEMPLATES = [
     {
@@ -89,8 +123,21 @@ TEMPLATES = [
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
-    #...
+    'django.template.context_processors.debug',
+    'django.template.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
 )
+
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
 
 WSGI_APPLICATION = 'estateX.wsgi.application'
 
@@ -112,11 +159,6 @@ DATABASES = {
 
 DATABASE_ROUTERS = ("tenant_schemas.routers.TenantSyncRouter",)
 DEFAULT_FILE_STORAGE = 'tenant_schemas.storage.TenantFileSystemStorage'
-
-# DATABASES['default'] = dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/NAME',
-#                                               conn_max_age=600,
-#                                             conn_health_checks=True,)
-# DATABASES["default"]["ENGINE"] = "tenant_schemas.postgresql_backend"
 
 
 # Password validation
