@@ -1,0 +1,14 @@
+{% load static %}
+{% load custom_filters %}
+
+<!-- JS Vendor, Plugins & Activation Script Files -->
+
+<!-- Vendors JS -->
+<script src="{% static 'main-site/assets/js/vendor/modernizr-3.11.7.min.js' %}"></script>
+<script src="{% static 'main-site/assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'main-site/assets/js/vendor/jquery-migrate-3.3.2.min.js' %}"></script>
+<!-- Plugins JS -->
+{% for loop_409260 in plugins %}<script src="{% static 'main-site/assets/js/plugins/' %}{{ loop_409260 }}.js"></script>{% endfor %}
+
+<!-- Activation JS -->
+<script src="{% static 'main-site/assets/js/main.js' %}"></script>

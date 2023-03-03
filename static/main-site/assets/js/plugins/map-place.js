@@ -4,7 +4,7 @@ if ($("#hero-map").length) {
       {
         lat: 40.740178,
         lon: -74.190194,
-        imageUrl: "assets/images/properties/properties1.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg",
         title: "Friuli-Venezia Giulia",
         address: "568 E 1st Ave, Miami",
         html: [
@@ -13,11 +13,11 @@ if ($("#hero-map").length) {
             <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -67,7 +67,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -100,13 +100,13 @@ if ($("#hero-map").length) {
             
             `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.733617,
         lon: -74.17115,
-        imageUrl: "assets/images/properties/properties2.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties2.jpg",
         title: "Marvel de Villa",
         address: "450 E 1st Ave, New Jersey",
         html: [
@@ -115,11 +115,11 @@ if ($("#hero-map").length) {
            <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -169,7 +169,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -201,14 +201,14 @@ if ($("#hero-map").length) {
            
            `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.743011,
         lon: -74.2471,
         title: "Ruposi Bangla Cottage",
-        imageUrl: "assets/images/properties/properties3.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties3.jpg",
         address: "215 L AH Rod, California",
         html: [
           `
@@ -216,11 +216,11 @@ if ($("#hero-map").length) {
            <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -270,7 +270,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -303,25 +303,25 @@ if ($("#hero-map").length) {
            
            `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.71115,
         lon: -74.214998,
         title: "MayaKanon de Villa",
-        imageUrl: "assets/images/properties/properties4.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties4.jpg",
         address: "12 EA 1st Ave, Washington",
         html: [
           `
             <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -371,7 +371,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -404,25 +404,25 @@ if ($("#hero-map").length) {
             
             `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.69001,
         lon: -74.151753,
         title: "668 L 2nd Ave, Boston",
-        imageUrl: "assets/images/properties/properties5.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties5.jpg",
         address: "568 E 1st Ave, Miami",
         html: [
           `
             <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -472,7 +472,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -505,14 +505,14 @@ if ($("#hero-map").length) {
             
             `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.69759,
         lon: -74.263164,
         title: "Radison de Villa",
-        imageUrl: "assets/images/properties/properties4.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties4.jpg",
         address: "12 1st Ave, New Yourk",
         html: [
           `
@@ -520,11 +520,11 @@ if ($("#hero-map").length) {
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -574,7 +574,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -607,25 +607,25 @@ if ($("#hero-map").length) {
           
           `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.729979,
         lon: -74.271992,
         title: "Marvel de Villa",
-        imageUrl: "assets/images/properties/properties1.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg",
         address: "450 E 1st Ave, New Jersey",
         html: [
           `
          <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -675,7 +675,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -707,14 +707,14 @@ if ($("#hero-map").length) {
          
          `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.749702,
         lon: -74.163631,
         title: "MayaKanon de Villa",
-        imageUrl: "assets/images/properties/properties2.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties2.jpg",
         address: "12 EA 1st Ave, Washington",
         html: [
           `
@@ -722,11 +722,11 @@ if ($("#hero-map").length) {
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -776,7 +776,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -808,25 +808,25 @@ if ($("#hero-map").length) {
           
           `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.718971,
         lon: -74.323219,
         title: "Azorex de South Villa",
-        imageUrl: "assets/images/properties/properties4.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties4.jpg",
         address: "668 L 2nd Ave, Boston",
         html: [
           `
          <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -876,7 +876,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -908,14 +908,14 @@ if ($("#hero-map").length) {
          
          `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.74835,
         lon: -74.323219,
         title: "Radison de Villa",
-        imageUrl: "assets/images/properties/properties2.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties2.jpg",
         address: "12 1st Ave, New Yourk",
         html: [
           `
@@ -923,11 +923,11 @@ if ($("#hero-map").length) {
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -977,7 +977,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -1009,25 +1009,25 @@ if ($("#hero-map").length) {
           
           `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.717911,
         lon: -74.360123,
         title: "Radison de Villa",
-        imageUrl: "assets/images/properties/properties4.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties4.jpg",
         address: "12 1st Ave, New Yourk",
         html: [
           `
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -1077,7 +1077,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -1109,25 +1109,25 @@ if ($("#hero-map").length) {
           
           `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.759258,
         lon: -74.41581,
         title: "Radison de Villa",
-        imageUrl: "assets/images/properties/properties4.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties4.jpg",
         address: "12 1st Ave, New Yourk",
         html: [
           `
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -1177,7 +1177,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -1209,25 +1209,25 @@ if ($("#hero-map").length) {
           
           `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.73341,
         lon: -74.395126,
         title: "Radison de Villa",
-        imageUrl: "assets/images/properties/properties4.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties4.jpg",
         address: "12 1st Ave, New Yourk",
         html: [
           `
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -1277,7 +1277,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -1309,14 +1309,14 @@ if ($("#hero-map").length) {
           
           `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
       {
         lat: 40.69793,
         lon: -74.40529,
         title: "Radison de Villa",
-        imageUrl: "assets/images/properties/properties1.jpg",
+        imageUrl: "{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg",
         address: "12 1st Ave, New Yourk",
         html: [
           `
@@ -1324,11 +1324,11 @@ if ($("#hero-map").length) {
          <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
                             <a href="properties-details.html" class="block">
-                                <img src="assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
+                                <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.jpg" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
-                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/camera.png" loading="lazy" alt="camera icon" width="13" height="10">07</button>
+                                <button class="flex flex-wrap items-center bg-[rgb(1,97,78,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{ STATIC_URL }}main-site/assets/images/icon/video.png" loading="lazy" alt="camera icon" width="14" height="10">08</button>
                             </div>
                             <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-secondary leading-none text-[14px] font-normal capitalize">for
             Sale</span>
@@ -1378,7 +1378,7 @@ if ($("#hero-map").length) {
 
                             <ul>
                                 <li class="flex flex-wrap items-center justify-between">
-                                    <span class="font-lora text-base text-primary leading-none">Price: $255300</span>
+                                    <span class="font-lora text-base text-primary leading-none">Price: ₦255300</span>
 
                                     <span class="flex flex-wrap items-center">
                     <button class="mr-[15px] text-[#B1AEAE] hover:text-secondary">
@@ -1410,7 +1410,7 @@ if ($("#hero-map").length) {
          
          `,
         ].join(""),
-        icon: "assets/images/icon/map-marker.png",
+        icon: "{{ STATIC_URL }}main-site/assets/images/icon/map-marker.png",
         animation: google.maps.Animation.BOUNCE,
       },
     ];
