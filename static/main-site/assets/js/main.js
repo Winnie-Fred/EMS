@@ -678,3 +678,17 @@
       });
   });
 })(jQuery);
+
+
+// Custom JS starts here, these did not ship with template
+
+// Remove django message on click
+const cancelBtns = document.querySelectorAll('.cancel-message-btn');
+cancelBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const messageId = btn.dataset.messageId;
+    const messageDiv = document.querySelector(`#django-message-${messageId}`);
+    messageDiv.remove();
+  });
+});
+

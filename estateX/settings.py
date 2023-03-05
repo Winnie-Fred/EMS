@@ -14,7 +14,12 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
+
+
 load_dotenv()
+
+LIVE = False
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +32,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not LIVE
+
 
 ALLOWED_HOSTS = ['estateX.local', '.estateX.local']
 
@@ -43,10 +49,10 @@ SHARED_APPS = (
 
     # everything below here is optional
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.admin',
     'django.contrib.staticfiles',
 
     # allauth
@@ -56,26 +62,20 @@ SHARED_APPS = (
 
     # Local
     'helper',
+    'authentication',
 )
 
 TENANT_APPS = (
     'django.contrib.contenttypes',
 
     # your tenant-specific apps
-    # 'myapp.hotels',
-    # 'myapp.houses',
-)
 
-INSTALLED_APPS = (
-    'tenant_schemas',  # mandatory, should always be before any django app
-
-    'customers',
-    'django.contrib.contenttypes',
+    # everything below here is optional
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.admin',
     'django.contrib.staticfiles',
 
     # allauth
@@ -84,10 +84,11 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
 
     # Local
-    'helper',
-    # 'myapp.hotels',
-    # 'myapp.houses',
+    'authentication',
 )
+
+INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
+
 
 PUBLIC_SCHEMA_NAME = 'public'
 
@@ -101,10 +102,20 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    'customers.dynamic_site.DynamicSiteMiddleware',
 ]
 
 MIDDLEWARE_CLASSES = [
     'tenant_schemas.middleware.TenantMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    'customers.dynamic_site.DynamicSiteMiddleware',
 ]
 
 ROOT_URLCONF = 'estateX.urls'
@@ -121,6 +132,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -132,6 +144,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.template.context_processors.request',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.static',
 )
 
 AUTHENTICATION_BACKENDS = [
@@ -211,4 +224,35 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/home/'
+LOGIN_URL = 'auth/login/'
+
+# allauth
+ACCOUNT_FORMS = {
+    'signup': 'authentication.forms.CustomSignupForm',
+    'login': 'authentication.forms.CustomLoginForm',
+}
+
+ACCOUNT_LOGOUT_REDIRECT_URL = '/home/'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED= True
+ACCOUNT_ADAPTER = 'authentication.custom_adapters.tenant_account_adapter.TenantAccountAdapter'
+
+if not LIVE:
+    # Console Email Backend, which outputs the emails to the console instead of sending them
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+    # Email settings for development, using the console backend
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 1025
+
+else:
+    # SMTP Email Backend, which sends emails using SMTP
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+    # Email settings for production, using SMTP
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = os.getenv('EMAIL_PORT', 587)
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'myemail@gmail.com')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'yourpassword')
+    EMAIL_USE_TLS = True

@@ -124,10 +124,10 @@
                                 agency</a>
                         </li>
                         <li>
-                            <a href="login.html" class="text-sm pt-3 px-10 pb-1 text-black font-light block transition-all hover:text-secondary">login</a>
+                            <a href="{% if user.is_authenticated %}{% url 'authentication:logout' %}{% else %}{% url 'authentication:login' %}{% endif %}" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-secondary hover:text-white text-center my-[-1px]">{% if user.is_authenticated %}Log out{% else %}Log in{% endif %}</a>
                         </li>
                         <li>
-                            <a href="register.html" class="text-sm pt-3 px-10 pb-1 text-black font-light block transition-all hover:text-secondary">register</a>
+                            <a href="{% url 'authentication:signup' %}" class="text-sm pt-3 px-10 pb-1 text-black font-light block transition-all hover:text-secondary">Sign up</a>
                         </li>
                     </ul>
                 </li>

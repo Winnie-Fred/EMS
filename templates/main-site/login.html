@@ -29,14 +29,13 @@
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
                         <div class="max-w-[700px]  mx-auto text-center text-white relative z-[1]">
-                            <div class="mb-5"><span class="text-base block">Login</span></div>
+                            <div class="mb-5"><span class="text-base block">Log in</span></div>
                             <h1 class="font-lora text-[32px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl font-medium">
-                                Login now!
+                                Welcome back!
                             </h1>
 
                             <p class="text-base mt-5 max-w-[500px] mx-auto text-center">
-                                Huge number of propreties availabe here for buy and sell
-                                also you can find here co-living property as you like
+                                We're happy to see you! Log in now to keep exploring and discovering new properties that fit your preferences.
                             </p>
                         </div>
                     </div>
@@ -47,33 +46,44 @@
 
         <!-- contact form start -->
         <div class="py-[80px] lg:py-[120px]">
-            <div class="container">
-                <form action="#">
+            <div class="container">            
+                <form method="post" action="{% url 'authentication:login' %}">
+                    {% csrf_token %}
                     <div class="grid grid-cols-12 gap-x-[30px] mb-[-30px]">
                         <div class="col-span-12 lg:col-span-6 mb-[30px]">
                             <h2 class="font-lora text-primary text-[24px] sm:text-[30px] leading-[1.277] xl:text-xl mb-[15px] font-medium">
                                 Login to Bary<span class="text-secondary">.</span></h2>
 
                             <p class="max-w-[465px] mb-[50px]">
-                                Huge number of propreties availabe here for buy, sell and Rent.
-                                Also you find here co-living property, lots opportunity you have to
-                                choose here and enjoy huge discount you can get.
+                                Welcome back! Please enter your login details below to access your account and take advantage of all the great features our website has to offer. If you're new to our site, be sure to sign up for an account to start saving your favorite properties, setting up alerts, and accessing exclusive content. If you need any assistance, our friendly and knowledgeable team is here to help. Thank you for choosing us as your trusted partner in the world of real estate!
                             </p>
+                            {% for error in non_field_errors %}
+                                <p style="color: #f71735; padding: 5px; margin-bottom: 15px;"><strong>{{ error }}</strong></p>
+                            {% endfor %}
                             <div class="grid grid-cols-12 gap-x-[20px] gap-y-[35px]">
-
                                 <div class="col-span-12">
-                                    <input class="font-light w-full sm:w-[400px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="Usename">
+                                    <input class="font-light w-full sm:w-[400px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="Username or Email" name="login" value="{{ form.login.value|default:'' }}">
+                                    {% for error in errors.login %}
+                                        <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+                                    {% endfor %}
                                 </div>
 
 
                                 <div class="col-span-12">
-                                    <input class="font-light w-full sm:w-[400px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="password" placeholder="Password">
+                                    <input class="font-light w-full sm:w-[400px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="password" placeholder="Password"  name="password" value="{{ form.password.value|default:'' }}">
+                                    {% for error in errors.password %}
+                                        <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+                                    {% endfor %}
+
 
                                     <div class="flex flex-wrap items-center justify-between w-full sm:w-[400px] mt-[15px]">
                                         <div class="flex flex-wrap items-center">
-                                            <input type="checkbox" id="checkbox1" name="Remember me">
+                                            <input type="checkbox" id="checkbox1" name="remember" {% if form.remember.value %}checked{% endif %}>                                            
                                             <label for="checkbox1" class="ml-[5px] cursor-pointer text-[14px]"> Remember
                                                 me</label><br>
+                                            {% for error in errors.remember %}
+                                                <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+                                            {% endfor %}
                                         </div>
                                         <a href="#" class="hover:text-secondary text-[14px] block">Forgot Password</a>
                                     </div>
@@ -84,7 +94,7 @@
                                 <div class="col-span-12">
                                     <div class="flex flex-wrap items-center">
                                         <button type="submit" class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[40px] py-[15px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all">Login</button>
-                                        <a href="register.html" class="font-medium text-primary hover:text-secondary ml-[40px]">Register</a>
+                                        <a href="{% url 'authentication:signup' %}" class="font-medium text-primary hover:text-secondary ml-[40px]">Sign up</a>
                                     </div>
                                 </div>
                             </div>

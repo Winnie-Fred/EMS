@@ -6251,3 +6251,27 @@ input:focus {
     max-width: 830px;
   }
 }
+
+
+/* Custom CSS begins here, not from Template */
+.django-message {
+  color: white;
+  padding: 7px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-text {
+ margin-left: 50px;
+ font-size: 17px;
+}
+
+.cancel-message-btn {
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: auto;
+}
