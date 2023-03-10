@@ -63,6 +63,7 @@ SHARED_APPS = (
     # Local
     'helper',
     'authentication',
+    'estate_manager',
 )
 
 TENANT_APPS = (
@@ -85,6 +86,7 @@ TENANT_APPS = (
 
     # Local
     'authentication',
+    'estate_manager',
 )
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]

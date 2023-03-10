@@ -1,0 +1,360 @@
+{% load static %}
+{% load custom_filters %}
+
+<aside class="sidebar" id="leftsidebar">
+ <div class="menu">
+  <ul class="list">
+   <li>
+    <div class="user-info">
+     <div class="image">
+      <a href="profile.html">
+       <img alt="User" src="{% static 'admin/assets/images/profile_av.jpg' %}"/>
+      </a>
+     </div>
+     <div class="detail">
+      <h4>
+       Michael
+      </h4>
+      <small>
+       Agent
+      </small>
+     </div>
+     <a href="events.html" title="Events">
+      <i class="zmdi zmdi-calendar">
+      </i>
+     </a>
+     <a href="mail-inbox.html" title="Inbox">
+      <i class="zmdi zmdi-email">
+      </i>
+     </a>
+     <a href="contact.html" title="Contact List">
+      <i class="zmdi zmdi-account-box-phone">
+      </i>
+     </a>
+     <a href="chat.html" title="Chat App">
+      <i class="zmdi zmdi-comments">
+      </i>
+     </a>
+     <a href="sign-in.html" title="Sign out">
+      <i class="zmdi zmdi-power">
+      </i>
+     </a>
+    </div>
+   </li>
+   <li class="header">
+    MAIN
+   </li>
+   <li {% if index_class %} class="{{ index_class }}" {% endif %}>
+    <a href="index.html">
+     <i class="zmdi zmdi-home">
+     </i>
+     <span>
+      Dashboard
+     </span>
+    </a>
+   </li>
+   <li {% if li_2_class %} class="{{ li_2_class }}" {% endif %}>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-city">
+     </i>
+     <span>
+      Property
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li {% if property_list_class %} class="{{ property_list_class }}" {% endif %}>
+      <a href="property-list.html">
+       Property List
+      </a>
+     </li>
+     <li {% if property_list3_class %} class="{{ property_list3_class }}" {% endif %}>
+      <a href="property-list3.html">
+       3 Column
+      </a>
+     </li>
+     <li {% if property_list4_class %} class="{{ property_list4_class }}" {% endif %}>
+      <a href="property-list4.html">
+       4 Column
+      </a>
+     </li>
+     <li {% if add_property_class %} class="{{ add_property_class }}" {% endif %}>
+      <a href="add-property.html">
+       Add Property
+      </a>
+     </li>
+     <li {% if property_detail_class %} class="{{ property_detail_class }}" {% endif %}>
+      <a href="property-detail.html">
+       Property Detail
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li {% if li_3_class %} class="{{ li_3_class }}" {% endif %}>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-city">
+     </i>
+     <span>
+      Types
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li {% if apartment_class %} class="{{ apartment_class }}" {% endif %}>
+      <a href="apartment.html">
+       Apartment
+      </a>
+     </li>
+     <li {% if office_class %} class="{{ office_class }}" {% endif %}>
+      <a href="office.html">
+       Office
+      </a>
+     </li>
+     <li {% if shop_class %} class="{{ shop_class }}" {% endif %}>
+      <a href="shop.html">
+       Shop
+      </a>
+     </li>
+     <li {% if villa_class %} class="{{ villa_class }}" {% endif %}>
+      <a href="villa.html">
+       Villa
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li {% if li_4_class %} class="{{ li_4_class }}" {% endif %}>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-accounts-outline">
+     </i>
+     <span>
+      Agents
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li {% if agent_class %} class="{{ agent_class }}" {% endif %}>
+      <a href="agent.html">
+       All Agents
+      </a>
+     </li>
+     <li {% if add_agent_class %} class="{{ add_agent_class }}" {% endif %}>
+      <a href="add-agent.html">
+       Add Agent
+      </a>
+     </li>
+     <li {% if profile_class %} class="{{ profile_class }}" {% endif %}>
+      <a href="profile.html">
+       Agent Profile
+      </a>
+     </li>
+     <li {% if invoices_class %} class="{{ invoices_class }}" {% endif %}>
+      <a href="invoices.html">
+       Agent Invoice
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li {% if map_class %} class="{{ map_class }}" {% endif %}>
+    <a href="map.html">
+     <i class="zmdi zmdi-pin">
+     </i>
+     <span>
+      Map
+     </span>
+    </a>
+   </li>
+   <li {% if reports_class %} class="{{ reports_class }}" {% endif %}>
+    <a href="reports.html">
+     <i class="zmdi zmdi-file-text">
+     </i>
+     <span>
+      Reports
+     </span>
+    </a>
+   </li>
+   <li {% if li_5_class %} class="{{ li_5_class }}" {% endif %}>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-apps">
+     </i>
+     <span>
+      App
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li>
+      <a href="mail-inbox.html">
+       Inbox
+      </a>
+     </li>
+     <li {% if chat_class %} class="{{ chat_class }}" {% endif %}>
+      <a href="chat.html">
+       Chat
+      </a>
+     </li>
+     <li {% if events_class %} class="{{ events_class }}" {% endif %}>
+      <a href="events.html">
+       Calendar
+      </a>
+     </li>
+     <li>
+      <a href="file-dashboard.html">
+       File Manager
+      </a>
+     </li>
+     <li {% if contact_class %} class="{{ contact_class }}" {% endif %}>
+      <a href="contact.html">
+       Contact list
+      </a>
+     </li>
+     <li>
+      <a href="blog-dashboard.html">
+       Blog
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="header">
+    EXTRA COMPONENTS
+   </li>
+   <li {% if li_6_class %} class="{{ li_6_class }}" {% endif %}>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-delicious">
+     </i>
+     <span>
+      Widgets
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li {% if widgets_app_class %} class="{{ widgets_app_class }}" {% endif %}>
+      <a href="widgets-app.html">
+       Apps Widgetse
+      </a>
+     </li>
+     <li {% if widgets_data_class %} class="{{ widgets_data_class }}" {% endif %}>
+      <a href="widgets-data.html">
+       Data Widgetse
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-lock">
+     </i>
+     <span>
+      Authentication
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li>
+      <a href="sign-in.html">
+       Sign In
+      </a>
+     </li>
+     <li>
+      <a href="sign-up.html">
+       Sign Up
+      </a>
+     </li>
+     <li>
+      <a href="forgot-password.html">
+       Forgot Password
+      </a>
+     </li>
+     <li>
+      <a href="404.html">
+       Page 404
+      </a>
+     </li>
+     <li>
+      <a href="500.html">
+       Page 500
+      </a>
+     </li>
+     <li>
+      <a href="page-offline.html">
+       Page Offline
+      </a>
+     </li>
+     <li>
+      <a href="locked.html">
+       Locked Screen
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li {% if li_7_class %} class="{{ li_7_class }}" {% endif %}>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-copy">
+     </i>
+     <span>
+      Sample Pages
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li {% if blank_class %} class="{{ blank_class }}" {% endif %}>
+      <a href="blank.html">
+       Blank Page
+      </a>
+     </li>
+     <li {% if image_gallery_class %} class="{{ image_gallery_class }}" {% endif %}>
+      <a href="image-gallery.html">
+       Image Gallery
+      </a>
+     </li>
+     <li>
+      <a href="profile.html">
+       Profile
+      </a>
+     </li>
+     <li {% if timeline_class %} class="{{ timeline_class }}" {% endif %}>
+      <a href="timeline.html">
+       Timeline
+      </a>
+     </li>
+     <li {% if pricing_class %} class="{{ pricing_class }}" {% endif %}>
+      <a href="pricing.html">
+       Pricing
+      </a>
+     </li>
+     <li>
+      <a href="invoices.html">
+       Invoices
+      </a>
+     </li>
+     <li {% if search_results_class %} class="{{ search_results_class }}" {% endif %}>
+      <a href="search-results.html">
+       Search Results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="header">
+    Extra
+   </li>
+   <li>
+    <div class="progress-container progress-primary m-t-10">
+     <span class="progress-badge">
+      Traffic this Month
+     </span>
+     <div class="progress">
+      <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="67" class="progress-bar progress-bar-warning" role="progressbar" style="width: 67%;">
+       <span class="progress-value">
+        67%
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="progress-container progress-info">
+     <span class="progress-badge">
+      Server Load
+     </span>
+     <div class="progress">
+      <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="86" class="progress-bar progress-bar-warning" role="progressbar" style="width: 86%;">
+       <span class="progress-value">
+        86%
+       </span>
+      </div>
+     </div>
+    </div>
+   </li>
+  </ul>
+ </div>
+</aside>

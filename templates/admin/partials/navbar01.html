@@ -1,0 +1,68 @@
+{% load static %}
+{% load custom_filters %}
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
+ <div class="container">
+  <div class="navbar-translate n_logo">
+   <a class="navbar-brand" href="#" target="_blank" title="">
+    <h4 class="text-light mt-0">
+     COMPASS
+    </h4>
+   </a>
+   <button class="navbar-toggler" type="button">
+    <span class="navbar-toggler-bar bar1">
+    </span>
+    <span class="navbar-toggler-bar bar2">
+    </span>
+    <span class="navbar-toggler-bar bar3">
+    </span>
+   </button>
+  </div>
+  <div class="navbar-collapse">
+   <ul class="navbar-nav">
+    <li class="nav-item">
+     <a class="nav-link" href="index.html">
+      Home
+     </a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" href="#">
+      Search Result
+     </a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" href="#" target="_blank" title="Follow us on Twitter">
+      <i class="zmdi zmdi-twitter">
+      </i>
+      <p class="d-lg-none d-xl-none">
+       Twitter
+      </p>
+     </a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" href="#" target="_blank" title="Like us on Facebook">
+      <i class="zmdi zmdi-facebook">
+      </i>
+      <p class="d-lg-none d-xl-none">
+       Facebook
+      </p>
+     </a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" href="#" target="_blank" title="Follow us on Instagram">
+      <i class="zmdi zmdi-instagram">
+      </i>
+      <p class="d-lg-none d-xl-none">
+       Instagram
+      </p>
+     </a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link btn btn-primary btn-round" href="sign-{{ up_or_in|lower }}.html">
+      SIGN {{ up_or_in|upper }}
+     </a>
+    </li>
+   </ul>
+  </div>
+ </div>
+</nav>

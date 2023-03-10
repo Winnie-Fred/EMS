@@ -1,0 +1,462 @@
+{% load static %}
+{% load custom_filters %}
+
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="Responsive Bootstrap 4 and web Application ui kit." name="description"/>
+  <title>
+   :: Compass RealEstate Bootstrap4 Admin ::
+  </title>
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <!-- Favicon-->
+  <link href="{% static 'admin/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <!-- Custom Css -->
+  <link href="{% static 'admin/assets/css/main.css' %}" rel="stylesheet"/>
+  <link href="{% static 'admin/assets/css/color_skins.css' %}" rel="stylesheet"/>
+ </head>
+ <body class="theme-blue">
+  <!-- Page Loader -->
+  {% include "admin/partials/page_loader_wrapper02.html" %}
+  <!-- Overlay For Sidebars -->
+  <div class="overlay">
+  </div>
+  <!-- Top Bar -->
+  {% include "admin/partials/navbar02.html" %}
+  <!-- Left Sidebar -->
+  {% include "admin/partials/agent_sidebar.html" with index_class="" li_2_class="" property_list_class="" property_list3_class="" property_list4_class="" add_property_class="" property_detail_class="" li_3_class="active open" apartment_class="" office_class="" shop_class="" villa_class="active" li_4_class="" agent_class="" add_agent_class="" profile_class="" invoices_class="" map_class="" reports_class="" li_5_class="" chat_class="" events_class="" contact_class="" li_6_class="" widgets_app_class="" widgets_data_class="" li_7_class="" blank_class="" image_gallery_class="" timeline_class="" pricing_class="" search_results_class="" %}
+  <!-- Right Sidebar -->
+  {% include "admin/partials/right_sidebar.html" with purple_theme_active=False blush_theme_active=False %}
+  <!-- Chat-launcher -->
+  <div class="chat-launcher">
+  </div>
+  {% include "admin/partials/chat_wrapper.html" with hash_or_void="#" %}
+  <!-- Main Content -->
+  <section class="content home">
+   <div class="block-header">
+    <div class="row">
+     <div class="col-lg-7 col-md-6 col-sm-12">
+      <h2>
+       Villa
+       <small class="text-muted">
+        Welcome to Compass
+       </small>
+      </h2>
+     </div>
+     <div class="col-lg-5 col-md-6 col-sm-12">
+      <button class="btn btn-primary btn-icon btn-round hidden-sm-down float-right m-l-10" type="button">
+       <i class="zmdi zmdi-plus">
+       </i>
+      </button>
+      <ul class="breadcrumb float-md-right">
+       <li class="breadcrumb-item">
+        <a href="index.html">
+         <i class="zmdi zmdi-home">
+         </i>
+         Compass
+        </a>
+       </li>
+       <li class="breadcrumb-item">
+        <a href="javascript:void(0);">
+         Types
+        </a>
+       </li>
+       <li class="breadcrumb-item active">
+        Villa
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="container-fluid">
+    <div class="row clearfix">
+     <div class="col-lg-4 col-md-12">
+      <div class="card property_list">
+       <div class="property_image">
+        <img alt="img" class="img-thumbnail img-fluid" src="{% static 'admin/assets/images/image-gallery/11.jpg' %}"/>
+        <span class="badge badge-danger">
+         For Sale
+        </span>
+       </div>
+       <div class="body">
+        <div class="property-content">
+         <div class="detail">
+          <h5 class="text-success m-t-0 m-b-0">
+           $390,000 - $430,000
+          </h5>
+          <h4 class="m-t-0">
+           <a class="col-blue-grey" href="#">
+            4BHK Alexander Court,New York
+           </a>
+          </h4>
+          <p class="text-muted">
+           <i class="zmdi zmdi-pin m-r-5">
+           </i>
+           245 E 20th St, New York, NY 201609
+          </p>
+          <p class="text-muted m-b-0">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit Aliquam gravida magna et fringilla convallis. Pellentesque habitant morb
+          </p>
+         </div>
+         <div class="property-action m-t-15">
+          <a href="#" title="Square Feet">
+           <i class="zmdi zmdi-view-dashboard">
+           </i>
+           <span>
+            280
+           </span>
+          </a>
+          <a href="#" title="Bedroom">
+           <i class="zmdi zmdi-hotel">
+           </i>
+           <span>
+            4
+           </span>
+          </a>
+          <a href="#" title="Parking space">
+           <i class="zmdi zmdi-car-taxi">
+           </i>
+           <span>
+            2
+           </span>
+          </a>
+          <a href="#" title="Garages">
+           <i class="zmdi zmdi-home">
+           </i>
+           <span>
+            24H
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-12">
+      <div class="card property_list">
+       <div class="property_image">
+        <img alt="img" class="img-thumbnail img-fluid" src="{% static 'admin/assets/images/image-gallery/12.jpg' %}"/>
+        <span class="badge badge-warning">
+         For Rent
+        </span>
+       </div>
+       <div class="body">
+        <div class="property-content">
+         <div class="detail">
+          <h5 class="text-success m-t-0 m-b-0">
+           $390,000 - $430,000
+          </h5>
+          <h4 class="m-t-0">
+           <a class="col-blue-grey" href="#">
+            4BHK Alexander Court,New York
+           </a>
+          </h4>
+          <p class="text-muted">
+           <i class="zmdi zmdi-pin m-r-5">
+           </i>
+           245 E 20th St, New York, NY 201609
+          </p>
+          <p class="text-muted m-b-0">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit Aliquam gravida magna et fringilla convallis. Pellentesque habitant morb
+          </p>
+         </div>
+         <div class="property-action m-t-15">
+          <a href="#" title="Square Feet">
+           <i class="zmdi zmdi-view-dashboard">
+           </i>
+           <span>
+            280
+           </span>
+          </a>
+          <a href="#" title="Bedroom">
+           <i class="zmdi zmdi-hotel">
+           </i>
+           <span>
+            4
+           </span>
+          </a>
+          <a href="#" title="Parking space">
+           <i class="zmdi zmdi-car-taxi">
+           </i>
+           <span>
+            2
+           </span>
+          </a>
+          <a href="#" title="Garages">
+           <i class="zmdi zmdi-home">
+           </i>
+           <span>
+            24H
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-12">
+      <div class="card property_list">
+       <div class="property_image">
+        <img alt="img" class="img-thumbnail img-fluid" src="{% static 'admin/assets/images/image-gallery/10.jpg' %}"/>
+        <span class="badge badge-danger">
+         For Sale
+        </span>
+       </div>
+       <div class="body">
+        <div class="property-content">
+         <div class="detail">
+          <h5 class="text-success m-t-0 m-b-0">
+           $390,000 - $430,000
+          </h5>
+          <h4 class="m-t-0">
+           <a class="col-blue-grey" href="#">
+            4BHK Alexander Court,New York
+           </a>
+          </h4>
+          <p class="text-muted">
+           <i class="zmdi zmdi-pin m-r-5">
+           </i>
+           245 E 20th St, New York, NY 201609
+          </p>
+          <p class="text-muted m-b-0">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit Aliquam gravida magna et fringilla convallis. Pellentesque habitant morb
+          </p>
+         </div>
+         <div class="property-action m-t-15">
+          <a href="#" title="Square Feet">
+           <i class="zmdi zmdi-view-dashboard">
+           </i>
+           <span>
+            280
+           </span>
+          </a>
+          <a href="#" title="Bedroom">
+           <i class="zmdi zmdi-hotel">
+           </i>
+           <span>
+            4
+           </span>
+          </a>
+          <a href="#" title="Parking space">
+           <i class="zmdi zmdi-car-taxi">
+           </i>
+           <span>
+            2
+           </span>
+          </a>
+          <a href="#" title="Garages">
+           <i class="zmdi zmdi-home">
+           </i>
+           <span>
+            24H
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-12">
+      <div class="card property_list">
+       <div class="property_image">
+        <img alt="img" class="img-thumbnail img-fluid" src="{% static 'admin/assets/images/image-gallery/3.jpg' %}"/>
+        <span class="badge badge-danger">
+         For Sale
+        </span>
+       </div>
+       <div class="body">
+        <div class="property-content">
+         <div class="detail">
+          <h5 class="text-success m-t-0 m-b-0">
+           $390,000 - $430,000
+          </h5>
+          <h4 class="m-t-0">
+           <a class="col-blue-grey" href="#">
+            4BHK Alexander Court,New York
+           </a>
+          </h4>
+          <p class="text-muted">
+           <i class="zmdi zmdi-pin m-r-5">
+           </i>
+           245 E 20th St, New York, NY 201609
+          </p>
+          <p class="text-muted m-b-0">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit Aliquam gravida magna et fringilla convallis. Pellentesque habitant morb
+          </p>
+         </div>
+         <div class="property-action m-t-15">
+          <a href="#" title="Square Feet">
+           <i class="zmdi zmdi-view-dashboard">
+           </i>
+           <span>
+            280
+           </span>
+          </a>
+          <a href="#" title="Bedroom">
+           <i class="zmdi zmdi-hotel">
+           </i>
+           <span>
+            4
+           </span>
+          </a>
+          <a href="#" title="Parking space">
+           <i class="zmdi zmdi-car-taxi">
+           </i>
+           <span>
+            2
+           </span>
+          </a>
+          <a href="#" title="Garages">
+           <i class="zmdi zmdi-home">
+           </i>
+           <span>
+            24H
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-12">
+      <div class="card property_list">
+       <div class="property_image">
+        <img alt="img" class="img-thumbnail img-fluid" src="{% static 'admin/assets/images/image-gallery/9.jpg' %}"/>
+        <span class="badge badge-danger">
+         For Sale
+        </span>
+       </div>
+       <div class="body">
+        <div class="property-content">
+         <div class="detail">
+          <h5 class="text-success m-t-0 m-b-0">
+           $390,000 - $430,000
+          </h5>
+          <h4 class="m-t-0">
+           <a class="col-blue-grey" href="#">
+            4BHK Alexander Court,New York
+           </a>
+          </h4>
+          <p class="text-muted">
+           <i class="zmdi zmdi-pin m-r-5">
+           </i>
+           245 E 20th St, New York, NY 201609
+          </p>
+          <p class="text-muted m-b-0">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit Aliquam gravida magna et fringilla convallis. Pellentesque habitant morb
+          </p>
+         </div>
+         <div class="property-action m-t-15">
+          <a href="#" title="Square Feet">
+           <i class="zmdi zmdi-view-dashboard">
+           </i>
+           <span>
+            280
+           </span>
+          </a>
+          <a href="#" title="Bedroom">
+           <i class="zmdi zmdi-hotel">
+           </i>
+           <span>
+            4
+           </span>
+          </a>
+          <a href="#" title="Parking space">
+           <i class="zmdi zmdi-car-taxi">
+           </i>
+           <span>
+            2
+           </span>
+          </a>
+          <a href="#" title="Garages">
+           <i class="zmdi zmdi-home">
+           </i>
+           <span>
+            24H
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-12">
+      <div class="card property_list">
+       <div class="property_image">
+        <img alt="img" class="img-thumbnail img-fluid" src="{% static 'admin/assets/images/image-gallery/5.jpg' %}"/>
+        <span class="badge badge-danger">
+         For Sale
+        </span>
+       </div>
+       <div class="body">
+        <div class="property-content">
+         <div class="detail">
+          <h5 class="text-success m-t-0 m-b-0">
+           $390,000 - $430,000
+          </h5>
+          <h4 class="m-t-0">
+           <a class="col-blue-grey" href="#">
+            4BHK Alexander Court,New York
+           </a>
+          </h4>
+          <p class="text-muted">
+           <i class="zmdi zmdi-pin m-r-5">
+           </i>
+           245 E 20th St, New York, NY 201609
+          </p>
+          <p class="text-muted m-b-0">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit Aliquam gravida magna et fringilla convallis. Pellentesque habitant morb
+          </p>
+         </div>
+         <div class="property-action m-t-15">
+          <a href="#" title="Square Feet">
+           <i class="zmdi zmdi-view-dashboard">
+           </i>
+           <span>
+            280
+           </span>
+          </a>
+          <a href="#" title="Bedroom">
+           <i class="zmdi zmdi-hotel">
+           </i>
+           <span>
+            4
+           </span>
+          </a>
+          <a href="#" title="Parking space">
+           <i class="zmdi zmdi-car-taxi">
+           </i>
+           <span>
+            2
+           </span>
+          </a>
+          <a href="#" title="Garages">
+           <i class="zmdi zmdi-home">
+           </i>
+           <span>
+            24H
+           </span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Jquery Core Js -->
+  <script src="{% static 'admin/assets/bundles/libscripts.bundle.js' %}">
+  </script>
+  <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
+  <script src="{% static 'admin/assets/bundles/vendorscripts.bundle.js' %}">
+  </script>
+  <!-- slimscroll, waves Scripts Plugin Js -->
+  <script src="{% static 'admin/assets/bundles/mainscripts.bundle.js' %}">
+  </script>
+ </body>
+</html>

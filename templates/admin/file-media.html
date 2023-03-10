@@ -1,0 +1,343 @@
+{% load static %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="Responsive Bootstrap 4 and web Application ui kit." name="description"/>
+  <title>
+   :: Compass RealEstate Bootstrap4 Admin ::
+  </title>
+  <!-- Favicon-->
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <!-- Font Icon -->
+  <link href="{% static 'admin/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <!-- Custom Css -->
+  <link href="{% static 'admin/assets/css/main.css' %}" rel="stylesheet"/>
+  <link href="{% static 'admin/assets/css/color_skins.css' %}" rel="stylesheet"/>
+ </head>
+ <body class="theme-blue">
+  <!-- Page Loader -->
+  {% include "admin/partials/page_loader_wrapper02.html" %}
+  <!-- Overlay For Sidebars -->
+  <div class="overlay">
+  </div>
+  <!-- Top Bar -->
+  {% include "admin/partials/navbar02.html" %}
+  <!-- Left Sidebar -->
+  {% include "admin/partials/ui_ux_sidebar_178.html" with file_dashboard_class="" file_documents_class="" file_media_class="active open" file_images_class="" tags_or_labels="LABELS" %}
+  <!-- Right Sidebar -->
+  {% include "admin/partials/right_sidebar.html" with purple_theme_active=True blush_theme_active=False %}
+  <!-- Chat-launcher -->
+  <div class="chat-launcher">
+  </div>
+  {% include "admin/partials/chat_wrapper.html" with hash_or_void="#" %}
+  <section class="content file_manager">
+   <div class="block-header">
+    <div class="row">
+     <div class="col-lg-7 col-md-5 col-sm-12">
+      <h2>
+       Media
+       <small class="text-muted">
+        Welcome to Compass
+       </small>
+      </h2>
+     </div>
+     <div class="col-lg-5 col-md-7 col-sm-12">
+      <button class="btn btn-primary btn-icon btn-round hidden-sm-down float-right m-l-10" type="button">
+       <i class="zmdi zmdi-upload">
+       </i>
+      </button>
+      <ul class="breadcrumb float-md-right">
+       <li class="breadcrumb-item">
+        <a href="index.html">
+         <i class="zmdi zmdi-home">
+         </i>
+         Compass
+        </a>
+       </li>
+       <li class="breadcrumb-item">
+        File Manager
+       </li>
+       <li class="breadcrumb-item active">
+        Media
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="container-fluid">
+    <div class="row clearfix">
+     <div class="col-lg-12">
+      <div class="card">
+       <ul class="nav nav-tabs">
+        <li class="nav-item">
+         <a class="nav-link active" data-toggle="tab" href="#2017">
+          2017
+         </a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link" data-toggle="tab" href="#2016">
+          2016
+         </a>
+        </li>
+       </ul>
+      </div>
+      <div class="tab-content">
+       <div class="tab-pane active" id="2017">
+        <div class="row clearfix">
+         <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card">
+           <div class="file">
+            <a href="#">
+             <div class="hover">
+              <button class="btn btn-icon btn-icon-mini btn-round btn-danger" type="button">
+               <i class="zmdi zmdi-delete">
+               </i>
+              </button>
+             </div>
+             <div class="icon">
+              <i class="zmdi zmdi-collection-folder-image">
+              </i>
+             </div>
+             <div class="file-name">
+              <p class="m-b-5 text-muted">
+               hellonew.mkv
+              </p>
+              <small>
+               Size: 720MB
+               <span class="date text-muted">
+                Dec 08, 2017
+               </span>
+              </small>
+             </div>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card">
+           <div class="file">
+            <a href="#">
+             <div class="hover">
+              <button class="btn btn-icon btn-icon-mini btn-round btn-danger" type="button">
+               <i class="zmdi zmdi-delete">
+               </i>
+              </button>
+             </div>
+             <div class="icon">
+              <i class="zmdi zmdi-collection-video">
+              </i>
+             </div>
+             <div class="file-name">
+              <p class="m-b-5 text-muted">
+               Jee Le Zara Song.mpg4
+              </p>
+              <small>
+               Size: 32MB
+               <span class="date text-muted">
+                Oct 11, 2016
+               </span>
+              </small>
+             </div>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card">
+           <div class="file">
+            <a href="#">
+             <div class="hover">
+              <button class="btn btn-icon btn-icon-mini btn-round btn-danger" type="button">
+               <i class="zmdi zmdi-delete">
+               </i>
+              </button>
+             </div>
+             <div class="icon">
+              <i class="zmdi zmdi-collection-folder-image">
+              </i>
+             </div>
+             <div class="file-name">
+              <p class="m-b-5 text-muted">
+               hellonew.mkv
+              </p>
+              <small>
+               Size: 720MB
+               <span class="date text-muted">
+                Dec 08, 2017
+               </span>
+              </small>
+             </div>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card">
+           <div class="file">
+            <a href="#">
+             <div class="hover">
+              <button class="btn btn-icon btn-icon-mini btn-round btn-danger" type="button">
+               <i class="zmdi zmdi-delete">
+               </i>
+              </button>
+             </div>
+             <div class="icon">
+              <i class="zmdi zmdi-collection-video">
+              </i>
+             </div>
+             <div class="file-name">
+              <p class="m-b-5 text-muted">
+               Jee Le Zara Song.mpg4
+              </p>
+              <small>
+               Size: 32MB
+               <span class="date text-muted">
+                Oct 11, 2016
+               </span>
+              </small>
+             </div>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card">
+           <div class="file">
+            <a href="#">
+             <div class="hover">
+              <button class="btn btn-icon btn-icon-mini btn-round btn-danger" type="button">
+               <i class="zmdi zmdi-delete">
+               </i>
+              </button>
+             </div>
+             <div class="icon">
+              <i class="zmdi zmdi-collection-folder-image">
+              </i>
+             </div>
+             <div class="file-name">
+              <p class="m-b-5 text-muted">
+               hellonew.mkv
+              </p>
+              <small>
+               Size: 720MB
+               <span class="date text-muted">
+                Dec 08, 2017
+               </span>
+              </small>
+             </div>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card">
+           <div class="file">
+            <a href="#">
+             <div class="hover">
+              <button class="btn btn-icon btn-icon-mini btn-round btn-danger" type="button">
+               <i class="zmdi zmdi-delete">
+               </i>
+              </button>
+             </div>
+             <div class="icon">
+              <i class="zmdi zmdi-collection-video">
+              </i>
+             </div>
+             <div class="file-name">
+              <p class="m-b-5 text-muted">
+               Jee Le Zara Song.mpg4
+              </p>
+              <small>
+               Size: 32MB
+               <span class="date text-muted">
+                Oct 11, 2016
+               </span>
+              </small>
+             </div>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card">
+           <div class="file">
+            <a href="#">
+             <div class="hover">
+              <button class="btn btn-icon btn-icon-mini btn-round btn-danger" type="button">
+               <i class="zmdi zmdi-delete">
+               </i>
+              </button>
+             </div>
+             <div class="icon">
+              <i class="zmdi zmdi-collection-folder-image">
+              </i>
+             </div>
+             <div class="file-name">
+              <p class="m-b-5 text-muted">
+               hellonew.mkv
+              </p>
+              <small>
+               Size: 720MB
+               <span class="date text-muted">
+                Dec 08, 2017
+               </span>
+              </small>
+             </div>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card">
+           <div class="file">
+            <a href="#">
+             <div class="hover">
+              <button class="btn btn-icon btn-icon-mini btn-round btn-danger" type="button">
+               <i class="zmdi zmdi-delete">
+               </i>
+              </button>
+             </div>
+             <div class="icon">
+              <i class="zmdi zmdi-collection-video">
+              </i>
+             </div>
+             <div class="file-name">
+              <p class="m-b-5 text-muted">
+               Jee Le Zara Song.mpg4
+              </p>
+              <small>
+               Size: 32MB
+               <span class="date text-muted">
+                Oct 11, 2016
+               </span>
+              </small>
+             </div>
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="tab-pane" id="2016">
+        <div class="row clearfix">
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Jquery Core Js -->
+  <script src="{% static 'admin/assets/bundles/libscripts.bundle.js' %}">
+  </script>
+  <script src="{% static 'admin/assets/bundles/vendorscripts.bundle.js' %}">
+  </script>
+  <script src="{% static 'admin/assets/bundles/mainscripts.bundle.js' %}">
+  </script>
+ </body>
+</html>
