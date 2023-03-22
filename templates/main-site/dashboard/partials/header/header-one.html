@@ -1,0 +1,15 @@
+{% load static %}
+{% load custom_filters %}
+
+<div class="container">
+    <div class="grid grid-cols-12">
+        <div class="col-span-12">
+            <div class="flex flex-wrap items-center justify-between">
+                <a href="{% url 'pages:home' %}" class="block">
+                    <img class="w-full h-full" src="{% static 'main-site/assets/images/logo/logo.svg' %}" loading="lazy" width="99" height="46" alt="brand logo">
+                </a>
+                {% include 'main-site/dashboard/partials/nav/index.html' %}
+            </div>
+        </div>
+    </div>
+</div>

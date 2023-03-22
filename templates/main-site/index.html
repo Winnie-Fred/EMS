@@ -15,7 +15,7 @@
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
                         <div class="flex flex-wrap items-center justify-between">
-                            <a href="index.html" class="block">
+                            <a href="{% url 'pages:home' %}" class="block">
                                 <img class="w-full h-full white-logo" src="{% static 'main-site/assets/images/logo/logo-white.png' %}" loading="lazy" width="99" height="46" alt="brand logo">
                                 <img class="w-full h-full hidden dark-logo" src="{% static 'main-site/assets/images/logo/logo.svg' %}" loading="lazy" width="99" height="46" alt="brand logo">
                             </a>
@@ -250,7 +250,7 @@
                             here for buy, sell and Rent, you a
                             find here co-living property lots
                             to choose here and enjoy huge. </p>
-                        <a href="blog-grid.html" class="flex flex-wrap items-center text-secondary text-tiny mt-[20px]">View all
+                        <a href="{% url 'pages:blog_grid' %}" class="flex flex-wrap items-center text-secondary text-tiny mt-[20px]">View all
                             Post
                             <svg class="ml-[10px]" width="26" height="11" viewBox="0 0 26 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M20.0877 0.69303L24.2075 5.00849H0V5.99151H24.2075L20.0877 10.307L20.7493 11L26 5.5L20.7493 0L20.0877 0.69303Z" fill="currentColor"></path>

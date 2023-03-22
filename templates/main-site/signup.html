@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-{% include 'main-site/partials/head.html' with page="home" plugins="swiper-bundle.min,magnific-popup"|split %}
+{% include 'main-site/partials/head.html' with page="home" plugins="swiper-bundle.min,magnific-popup,nice-select"|split %}
 
 <body class="font-karla text-body text-tiny">
     <div class="overflow-hidden">
@@ -56,12 +56,26 @@
                                 Create Account<span class="text-secondary">.</span></h2>
 
                             <p class="max-w-[465px] mb-[50px]">
-                                With a personalized account, you'll be able to save your favorite properties, set up alerts for new listings that meet your criteria, and easily schedule viewings with one of our experienced agents. Plus, you'll gain access to exclusive content, such as detailed property reports and market insights, that will help you make informed decisions about buying or selling a home. Don't wait - create an account today and start exploring all that our website has to offer!
+                                With a personalized account, you'll be able to save your favorite properties, set up alerts for new listings that meet your criteria, and easily schedule viewings with one of our experienced agents. Plus, you'll gain access to exclusive content, such as detailed property reports and market insights. Don't wait - create an account today and start exploring all that our website has to offer!
                                 {% for error in non_field_errors %}
                                     <p style="color: #f71735; padding: 5px; margin-bottom: 15px;"><strong>{{ error }}</strong></p>
                                 {% endfor %}
                             </p>
                             <div class="grid grid-cols-12 gap-x-[20px] gap-y-[35px]">
+                                <div class="col-span-12">
+                                    <input class="font-light w-full sm:w-[400px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="First name" name="first_name" value="{{ form.first_name.value|default:'' }}">
+                                    {% for error in errors.first_name %}
+                                        <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-span-12">
+                                    <input class="font-light w-full sm:w-[400px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="Last name" name="last_name" value="{{ form.last_name.value|default:'' }}">
+                                    {% for error in errors.last_name %}
+                                        <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+                                    {% endfor %}
+                                </div>
+
                                 <div class="col-span-12">
                                     <input class="font-light w-full sm:w-[400px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="Username" name="username" value="{{ form.username.value|default:'' }}">
                                     {% for error in errors.username %}
@@ -76,6 +90,31 @@
                                     {% endfor %}
                                 </div>
 
+                                <div class="col-span-12">
+                                    <div class="sm:w-[400px]" style="display: grid; grid-template-columns: repeat(12, 1fr); grid-column: span 12/span 12; align-items: center;">
+                                        <div style="grid-column: 1/span 2; padding-left: 10px;">+234</div>
+                                        <div style="grid-column: 3/span 11;">
+                                            <input class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text" placeholder="Phone number" name="phone_number" value="{{ form.phone_number.value|default:'' }}">
+                                        </div>
+                                    </div>
+                                    {% for error in errors.phone_number %}
+                                        <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-span-12">
+                                    <label class="mb-[20px] font-lora text-[15px] font-small leading-none block text-primary" for="{{ form.user_type.id_for_label }}">What type of user are you?</label>
+                                    <div class="relative w-full sm:w-[400px]">                                
+                                        <select class="nice-select form-select" id="{{ form.user_type.id_for_label }}" name="{{ form.user_type.name }}">
+                                            {% for value, label in form.user_type.field.choices %}
+                                                <option value="{{ value }}" {% if form.user_type.initial == value %}selected{% endif %}>{{ label }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% for error in errors.user_type %}
+                                            <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
 
                                 <div class="col-span-12">
                                     <input class="font-light w-full sm:w-[400px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="password" placeholder="Password" name="password1" value="{{ form.password1.value|default:'' }}">
@@ -181,7 +220,7 @@
     </div>
 
 
-    {% include 'main-site/partials/scripts.html' with page="home" plugins="swiper-bundle.min,popper.min,jquery.magnific-popup.min,jquery.ajaxchimp.min,parallax.min,jquery.waypoints,jquery.counterup.min"|split %}
+    {% include 'main-site/partials/scripts.html' with page="home" plugins="swiper-bundle.min,popper.min,jquery.magnific-popup.min,jquery.ajaxchimp.min,parallax.min,jquery.waypoints,jquery.counterup.min,jquery.nice-select.min"|split %}
 
 </body>
 

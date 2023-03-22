@@ -1,0 +1,138 @@
+{% load static %}
+{% load custom_filters %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Bery-Real Estate Listing Template</title>
+    <meta name="AdsBot-Google" content="noindex follow" />
+    <meta name="description" content="Bery-Real Estate Listing Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="{% static 'estate-manager/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'main-site/assets/images/favicon.png' %}" />
+
+    <!-- ***IMPORTANT*** -->
+    <!-- ***The order of these css files is very important and changing them could lead to unexpected styling behaviours *** -->
+    <!-- ***IMPORTANT*** -->
+
+    <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
+
+    <!-- Font CSS -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=karla:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet"> -->
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    {% for loop_198822 in plugins %}
+    <link rel="stylesheet" href="{% static 'main-site/assets/css/plugins/' %}{{ loop_198822 }}.css" />{% endfor %}
+
+    <!-- Main site CSS -->
+    <link href="{% static 'estate-manager/assets/css/main-site.css' %}" rel="stylesheet" />
+
+    <!-- Dashboard CSS -->
+    {% for plugin in dashboard_plugins %}
+      <link rel="stylesheet" href="{% static 'estate-manager/assets/plugins/' %}{{ plugin }}.css" />
+    {% endfor %}
+
+    {% for plugin in custom_css %}
+      <link href="{% static 'estate-manager/assets/css/' %}{{ plugin }}.css" rel="stylesheet" />
+    {% endfor %}   
+
+    <!-- Custom Css that did not ship with template -->
+    <link href="{% static 'estate-manager/assets/css/index.css' %}" rel="stylesheet" /> 
+
+
+    <!-- This is included because of bootstrap css overwriting some custom css-->
+    <style>      
+      .group:hover .group-hover\:visible {
+        visibility: visible !important;
+      }
+
+      .group:hover .group-hover\:bottom-\[25px\] {
+        bottom: 25px !important;
+      }
+
+      .group:hover .group-hover\:top-\[100\%\] {
+        top: 100% !important;
+      }
+
+      .group:hover .group-hover\:top-\[60px\] {
+        top: 60px !important;
+      }
+
+      .group:hover .group-hover\:translate-x-\[30px\] {
+        --tw-translate-x: 30px !important;
+        transform: var(--tw-transform) !important;
+      }
+
+      .group:hover .group-hover\:border-secondary {
+        --tw-border-opacity: 1 !important;
+        border-color: rgb(179 147 89/var(--tw-border-opacity)) !important;
+      }
+
+      .group:hover .group-hover\:stroke-white {
+        stroke: #fff !important;
+      }
+
+      .group:hover .group-hover\:text-secondary {
+        --tw-text-opacity: 1 !important;
+        color: rgb(179 147 89/var(--tw-text-opacity)) !important;
+      }
+
+      .group:hover .group-hover\:text-primary {
+        --tw-text-opacity: 1 !important;
+        color: rgb(11 44 61/var(--tw-text-opacity)) !important;
+      }
+
+      .group:hover .group-hover\:text-body {
+        --tw-text-opacity: 1 !important;
+        color: rgb(73 73 73/var(--tw-text-opacity)) !important;
+      }
+
+      .group:hover .group-hover\:opacity-100 {
+        opacity: 1 !important;
+      }
+
+      .group:hover .group-hover\:shadow-\[0_10px_15px_0px_rgba\(0\,0\,0\,0\.1\)\] {
+        --tw-shadow: 0 10px 15px 0px rgba(0,0,0,0.1) !important;
+        --tw-shadow-colored: 0 10px 15px 0px var(--tw-shadow-color) !important;
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+        --tw-shadow: 0 0 #0000;
+      }
+
+      .group:hover .group-hover\:transition-all {
+        transition-property: all !important;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transition-duration: 150ms !important;
+      }
+    </style>
+
+</head>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+      <div id="django-message-{{ forloop.counter }}" class="django-message" style="background-color: {% if message.tags == 'error' %}#FA6A7D{% elif message.tags == 'success' %}#8BCC8D{% else %}#30B3FF{% endif %};">
+        <p class="message-text">{{ message }}</p>
+        <button class="cancel-message-btn" data-message-id="{{ forloop.counter }}">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            width="30" height="30"
+            viewBox="0,0,256,256"
+            style="fill:#000000;">
+            <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M7,4c-0.25587,0 -0.51203,0.09747 -0.70703,0.29297l-2,2c-0.391,0.391 -0.391,1.02406 0,1.41406l7.29297,7.29297l-7.29297,7.29297c-0.391,0.391 -0.391,1.02406 0,1.41406l2,2c0.391,0.391 1.02406,0.391 1.41406,0l7.29297,-7.29297l7.29297,7.29297c0.39,0.391 1.02406,0.391 1.41406,0l2,-2c0.391,-0.391 0.391,-1.02406 0,-1.41406l-7.29297,-7.29297l7.29297,-7.29297c0.391,-0.39 0.391,-1.02406 0,-1.41406l-2,-2c-0.391,-0.391 -1.02406,-0.391 -1.41406,0l-7.29297,7.29297l-7.29297,-7.29297c-0.1955,-0.1955 -0.45116,-0.29297 -0.70703,-0.29297z"></path></g></g>
+          </svg>
+        </button>
+      </div>
+    {% endfor %}
+
+</ul>
+{% endif %}

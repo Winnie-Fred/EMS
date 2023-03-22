@@ -21,7 +21,6 @@ from .views import CustomSignupView, CustomLoginView, CustomLogoutView
 app_name = 'authentication'
 
 urlpatterns = [
-    path('map_place_js/', views.map_place_js_view, name='map_place_js'),
     path('signup/', CustomSignupView.as_view(), name='signup'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),

@@ -3,7 +3,7 @@
 
 <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
     <div class="relative">
-        <a href="properties-details.html" class="block">
+        <a href="{% url 'pages:properties_details' %}" class="block">
             <img src="{% static 'main-site/assets/images/properties/properties' %}{{ image }}.png" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ title }}">
         </a>
         <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -14,8 +14,8 @@
     </div>
 
     <div class="py-[20px] px-[20px]">
-        <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary font-medium">{{ title }}</a></h3>
-        <h4><a href="properties-details.html" class="font-light text-[14px] leading-[1.75] underline">{{ address }}</a></h4>
+        <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary font-medium">{{ title }}</a></h3>
+        <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-[14px] leading-[1.75] underline">{{ address }}</a></h4>
         <span class="font-light text-sm">Added: 25 November, 2021</span>
         <div class="before:block before:absolute before:top-1/2 before:-translate-y-1/2 before:h-[1px] before:w-full before:z-[-1] before:bg-[#E0E0E0] relative"><span class="font-lora text-base text-primary px-[15px] bg-white font-medium">Price: {{ price }}</span></div>
         <p class="font-light">{{ info }}</p>

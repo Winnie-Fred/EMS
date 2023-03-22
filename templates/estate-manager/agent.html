@@ -1,0 +1,549 @@
+{% load static %}
+{% load custom_filters %}
+
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="Responsive Bootstrap 4 and web Application ui kit." name="description"/>
+  <title>
+   :: Compass RE :: Agent
+  </title>
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <!-- Favicon-->
+  <link href="{% static 'estate-manager/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <!-- Custom Css -->
+  <link href="{% static 'estate-manager/assets/css/main.css' %}" rel="stylesheet"/>
+  <link href="{% static 'estate-manager/assets/css/color_skins.css' %}" rel="stylesheet"/>
+ </head>
+ <body class="theme-blue">
+  <!-- Page Loader -->
+  {% include "estate-manager/partials/page_loader_wrapper02.html" %}
+  <!-- Overlay For Sidebars -->
+  <div class="overlay">
+  </div>
+  <!-- Top Bar -->
+  {% include "estate-manager/partials/navbar02.html" %}
+  <!-- Left Sidebar -->
+  {% include "estate-manager/partials/agent_sidebar.html" with index_class="" li_2_class="" property_list_class="" property_list3_class="" property_list4_class="" add_property_class="" property_detail_class="" li_3_class="" apartment_class="" office_class="" shop_class="" villa_class="" li_4_class="active open" agent_class="active" add_agent_class="" profile_class="" invoices_class="" map_class="" reports_class="" li_5_class="" chat_class="" events_class="" contact_class="" li_6_class="" widgets_app_class="" widgets_data_class="" li_7_class="" blank_class="" image_gallery_class="" timeline_class="" pricing_class="" search_results_class="" %}
+  <!-- Right Sidebar -->
+  {% include "estate-manager/partials/right_sidebar.html" with purple_theme_active=False blush_theme_active=False %}
+  <!-- Chat-launcher -->
+  <div class="chat-launcher">
+  </div>
+  {% include "estate-manager/partials/chat_wrapper.html" with hash_or_void="#" %}
+  <!-- Main Content -->
+  <section class="content agent">
+   <div class="block-header">
+    <div class="row">
+     <div class="col-lg-7 col-md-6 col-sm-12">
+      <h2>
+       All Agents
+       <small class="text-muted">
+        Welcome to Compass
+       </small>
+      </h2>
+     </div>
+     <div class="col-lg-5 col-md-6 col-sm-12">
+      <button class="btn btn-primary btn-icon btn-round hidden-sm-down float-right m-l-10" type="button">
+       <i class="zmdi zmdi-plus">
+       </i>
+      </button>
+      <ul class="breadcrumb float-md-right">
+       <li class="breadcrumb-item">
+        <a href="index.html">
+         <i class="zmdi zmdi-home">
+         </i>
+         Compass
+        </a>
+       </li>
+       <li class="breadcrumb-item">
+        <a href="javascript:void(0);">
+         Agents
+        </a>
+       </li>
+       <li class="breadcrumb-item active">
+        All Agents
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="container-fluid">
+    <div class="row clearfix">
+     <div class="col-lg-4 col-md-6">
+      <div class="card agent">
+       <div class="agent-avatar">
+        <a href="profile.html">
+         <img alt="" class="img-fluid" src="{% static 'estate-manager/assets/images/lg/avatar1.jpg' %}"/>
+        </a>
+       </div>
+       <div class="agent-content">
+        <div class="agent-name">
+         <h4>
+          <a href="profile.html">
+           Tim Hank
+          </a>
+         </h4>
+         <span>
+          Fairview, Texas
+         </span>
+         <ul class="list-unstyled team-info m-b-0">
+          <li class="m-r-15">
+           <small>
+            Team
+           </small>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar8.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar9.jpg' %}"/>
+          </li>
+         </ul>
+        </div>
+        <ul class="agent-contact-details">
+         <li>
+          <i class="zmdi zmdi-phone">
+          </i>
+          <span>
+           (123) 123-456
+          </span>
+         </li>
+         <li>
+          <i class="zmdi zmdi-email">
+          </i>
+          info@example.com
+         </li>
+        </ul>
+        <ul class="social-icons">
+         <li>
+          <a class="facebook" href="#">
+           <i class="zmdi zmdi-facebook">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="twitter" href="#">
+           <i class="zmdi zmdi-twitter">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="gplus" href="#">
+           <i class="zmdi zmdi-google-plus">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="linkedin" href="#">
+           <i class="zmdi zmdi-linkedin">
+           </i>
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-6">
+      <div class="card agent">
+       <div class="agent-avatar">
+        <a href="profile.html">
+         <img alt="" class="img-fluid" src="{% static 'estate-manager/assets/images/lg/avatar2.jpg' %}"/>
+        </a>
+       </div>
+       <div class="agent-content">
+        <div class="agent-name">
+         <h4>
+          <a href="profile.html">
+           Gary Camara
+          </a>
+         </h4>
+         <span>
+          Bristol, Pennsylvania
+         </span>
+         <ul class="list-unstyled team-info m-b-0">
+          <li class="m-r-15">
+           <small>
+            Team
+           </small>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar2.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar3.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar4.jpg' %}"/>
+          </li>
+         </ul>
+        </div>
+        <ul class="agent-contact-details">
+         <li>
+          <i class="zmdi zmdi-phone">
+          </i>
+          <span>
+           (123) 123-456
+          </span>
+         </li>
+         <li>
+          <i class="zmdi zmdi-email">
+          </i>
+          info@example.com
+         </li>
+        </ul>
+        <ul class="social-icons">
+         <li>
+          <a class="facebook" href="#">
+           <i class="zmdi zmdi-facebook">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="twitter" href="#">
+           <i class="zmdi zmdi-twitter">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="gplus" href="#">
+           <i class="zmdi zmdi-google-plus">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="linkedin" href="#">
+           <i class="zmdi zmdi-linkedin">
+           </i>
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-6">
+      <div class="card agent">
+       <div class="agent-avatar">
+        <a href="profile.html">
+         <img alt="" class="img-fluid" src="{% static 'estate-manager/assets/images/lg/avatar3.jpg' %}"/>
+        </a>
+       </div>
+       <div class="agent-content">
+        <div class="agent-name">
+         <h4>
+          <a href="profile.html">
+           Hossein Shams
+          </a>
+         </h4>
+         <span>
+          Springfield, Florida
+         </span>
+         <ul class="list-unstyled team-info m-b-0">
+          <li class="m-r-15">
+           <small>
+            Team
+           </small>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar5.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar6.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar7.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar2.jpg' %}"/>
+          </li>
+         </ul>
+        </div>
+        <ul class="agent-contact-details">
+         <li>
+          <i class="zmdi zmdi-phone">
+          </i>
+          <span>
+           (123) 123-456
+          </span>
+         </li>
+         <li>
+          <i class="zmdi zmdi-email">
+          </i>
+          info@example.com
+         </li>
+        </ul>
+        <ul class="social-icons">
+         <li>
+          <a class="facebook" href="#">
+           <i class="zmdi zmdi-facebook">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="twitter" href="#">
+           <i class="zmdi zmdi-twitter">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="gplus" href="#">
+           <i class="zmdi zmdi-google-plus">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="linkedin" href="#">
+           <i class="zmdi zmdi-linkedin">
+           </i>
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-6">
+      <div class="card agent">
+       <div class="agent-avatar">
+        <a href="profile.html">
+         <img alt="" class="img-fluid" src="{% static 'estate-manager/assets/images/lg/avatar4.jpg' %}"/>
+        </a>
+       </div>
+       <div class="agent-content">
+        <div class="agent-name">
+         <h4>
+          <a href="profile.html">
+           Tom Wilson
+          </a>
+         </h4>
+         <span>
+          Washington, Illinois
+         </span>
+         <ul class="list-unstyled team-info m-b-0">
+          <li class="m-r-15">
+           <small>
+            Team
+           </small>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar7.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar2.jpg' %}"/>
+          </li>
+         </ul>
+        </div>
+        <ul class="agent-contact-details">
+         <li>
+          <i class="zmdi zmdi-phone">
+          </i>
+          <span>
+           (123) 123-456
+          </span>
+         </li>
+         <li>
+          <i class="zmdi zmdi-email">
+          </i>
+          info@example.com
+         </li>
+        </ul>
+        <ul class="social-icons">
+         <li>
+          <a class="facebook" href="#">
+           <i class="zmdi zmdi-facebook">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="twitter" href="#">
+           <i class="zmdi zmdi-twitter">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="gplus" href="#">
+           <i class="zmdi zmdi-google-plus">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="linkedin" href="#">
+           <i class="zmdi zmdi-linkedin">
+           </i>
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-6">
+      <div class="card agent">
+       <div class="agent-avatar">
+        <a href="profile.html">
+         <img alt="" class="img-fluid" src="{% static 'estate-manager/assets/images/lg/avatar3.jpg' %}"/>
+        </a>
+       </div>
+       <div class="agent-content">
+        <div class="agent-name">
+         <h4>
+          <a href="profile.html">
+           Hossein Shams
+          </a>
+         </h4>
+         <span>
+          Springfield, Florida
+         </span>
+         <ul class="list-unstyled team-info m-b-0">
+          <li class="m-r-15">
+           <small>
+            Team
+           </small>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar5.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar6.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar7.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar2.jpg' %}"/>
+          </li>
+         </ul>
+        </div>
+        <ul class="agent-contact-details">
+         <li>
+          <i class="zmdi zmdi-phone">
+          </i>
+          <span>
+           (123) 123-456
+          </span>
+         </li>
+         <li>
+          <i class="zmdi zmdi-email">
+          </i>
+          info@example.com
+         </li>
+        </ul>
+        <ul class="social-icons">
+         <li>
+          <a class="facebook" href="#">
+           <i class="zmdi zmdi-facebook">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="twitter" href="#">
+           <i class="zmdi zmdi-twitter">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="gplus" href="#">
+           <i class="zmdi zmdi-google-plus">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="linkedin" href="#">
+           <i class="zmdi zmdi-linkedin">
+           </i>
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-6">
+      <div class="card agent">
+       <div class="agent-avatar">
+        <a href="profile.html">
+         <img alt="" class="img-fluid" src="{% static 'estate-manager/assets/images/lg/avatar4.jpg' %}"/>
+        </a>
+       </div>
+       <div class="agent-content">
+        <div class="agent-name">
+         <h4>
+          <a href="profile.html">
+           Tom Wilson
+          </a>
+         </h4>
+         <span>
+          Washington, Illinois
+         </span>
+         <ul class="list-unstyled team-info m-b-0">
+          <li class="m-r-15">
+           <small>
+            Team
+           </small>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar7.jpg' %}"/>
+          </li>
+          <li>
+           <img alt="Avatar" src="{% static 'estate-manager/assets/images/xs/avatar2.jpg' %}"/>
+          </li>
+         </ul>
+        </div>
+        <ul class="agent-contact-details">
+         <li>
+          <i class="zmdi zmdi-phone">
+          </i>
+          <span>
+           (123) 123-456
+          </span>
+         </li>
+         <li>
+          <i class="zmdi zmdi-email">
+          </i>
+          info@example.com
+         </li>
+        </ul>
+        <ul class="social-icons">
+         <li>
+          <a class="facebook" href="#">
+           <i class="zmdi zmdi-facebook">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="twitter" href="#">
+           <i class="zmdi zmdi-twitter">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="gplus" href="#">
+           <i class="zmdi zmdi-google-plus">
+           </i>
+          </a>
+         </li>
+         <li>
+          <a class="linkedin" href="#">
+           <i class="zmdi zmdi-linkedin">
+           </i>
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Jquery Core Js -->
+  <script src="{% static 'estate-manager/assets/bundles/libscripts.bundle.js' %}">
+  </script>
+  <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
+  <script src="{% static 'estate-manager/assets/bundles/vendorscripts.bundle.js' %}">
+  </script>
+  <!-- slimscroll, waves Scripts Plugin Js -->
+  <script src="{% static 'estate-manager/assets/bundles/mainscripts.bundle.js' %}">
+  </script>
+ </body>
+</html>

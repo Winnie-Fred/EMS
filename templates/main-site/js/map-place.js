@@ -12,7 +12,7 @@ if ($("#hero-map").length) {
             
             <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -24,8 +24,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -114,7 +114,7 @@ if ($("#hero-map").length) {
            
            <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -126,8 +126,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -215,7 +215,7 @@ if ($("#hero-map").length) {
            
            <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -227,8 +227,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -316,7 +316,7 @@ if ($("#hero-map").length) {
           `
             <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -328,8 +328,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -417,7 +417,7 @@ if ($("#hero-map").length) {
           `
             <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -429,8 +429,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -519,7 +519,7 @@ if ($("#hero-map").length) {
           
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -531,8 +531,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -620,7 +620,7 @@ if ($("#hero-map").length) {
           `
          <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -632,8 +632,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -721,7 +721,7 @@ if ($("#hero-map").length) {
           
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -733,8 +733,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -821,7 +821,7 @@ if ($("#hero-map").length) {
           `
          <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -833,8 +833,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -922,7 +922,7 @@ if ($("#hero-map").length) {
           
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -934,8 +934,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -1022,7 +1022,7 @@ if ($("#hero-map").length) {
           `
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -1034,8 +1034,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -1122,7 +1122,7 @@ if ($("#hero-map").length) {
           `
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -1134,8 +1134,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -1222,7 +1222,7 @@ if ($("#hero-map").length) {
           `
           <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -1234,8 +1234,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
@@ -1323,7 +1323,7 @@ if ($("#hero-map").length) {
          
          <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                         <div class="relative">
-                            <a href="properties-details.html" class="block">
+                            <a href="{% url 'pages:properties_details' %}" class="block">
                                 <img src="{{ STATIC_URL }}main-site/assets/images/properties/properties1.png" class="w-full h-full" loading="lazy" alt="Orchid Casel de Paradise." width="370" height="266">
                             </a>
                             <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -1335,8 +1335,8 @@ if ($("#hero-map").length) {
                         </div>
 
                         <div class="py-[20px] px-[20px] text-left">
-                            <h3><a href="properties-details.html" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
-                            <h4><a href="properties-details.html" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
+                            <h3><a href="{% url 'pages:properties_details' %}" class="font-lora leading-tight text-[22px] xl:text-lg text-primary">Orchid Casel de Paradise.</a></h3>
+                            <h4><a href="{% url 'pages:properties_details' %}" class="font-light text-tiny text-secondary underline">18B Central Street, San Francisco</a></h4>
                             <span class="font-light text-sm block">Added: 25 November, 2021 </span>
                             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">

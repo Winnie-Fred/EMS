@@ -1,9 +1,16 @@
 from django import forms
 from allauth.account.forms import SignupForm, LoginForm
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class CustomSignupForm(SignupForm):
 
     terms_accepted = forms.BooleanField()
+    phone_number = forms.CharField(max_length=15)
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
+    user_type = forms.ChoiceField(choices=User.USER_TYPE_CHOICES, initial="Prospective Tenant")
 
     def signup(self, request, user):
         pass
@@ -15,7 +22,10 @@ class CustomSignupForm(SignupForm):
         user = super(CustomSignupForm, self).save(request)
 
         # Add your own processing here.
-        
+        user.phone_number = self.cleaned_data['phone_number']
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.user_type = self.cleaned_data['user_type']
         user.save()
         # You must return the original result.
         return user

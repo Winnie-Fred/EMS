@@ -37,6 +37,7 @@ DEBUG = not LIVE
 
 ALLOWED_HOSTS = ['estateX.local', '.estateX.local']
 
+
 TENANT_MODEL = "customers.Client"
 
 # Application definition
@@ -60,10 +61,15 @@ SHARED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
 
+    # cloudinary
+    'cloudinary',
+
     # Local
+    'users',
     'helper',
     'authentication',
     'estate_manager',
+    'pages',
 )
 
 TENANT_APPS = (
@@ -84,13 +90,17 @@ TENANT_APPS = (
     'allauth.account',
     'allauth.socialaccount',
 
+    # cloudinary
+    'cloudinary',
+
     # Local
+    'users',
     'authentication',
     'estate_manager',
+    'pages',
 )
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
-
 
 PUBLIC_SCHEMA_NAME = 'public'
 
@@ -226,8 +236,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/home/'
-LOGIN_URL = 'auth/login/'
+LOGIN_REDIRECT_URL = '/home'
+LOGIN_URL = '/auth/login/'
 
 # allauth
 ACCOUNT_FORMS = {
@@ -258,3 +268,6 @@ else:
     EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'myemail@gmail.com')
     EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'yourpassword')
     EMAIL_USE_TLS = True
+
+
+AUTH_USER_MODEL = 'users.CustomUser'

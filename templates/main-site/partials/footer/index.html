@@ -3,7 +3,7 @@
 
 <div class="grid grid-cols-12 gap-x-[30px] mb-[-30px]">
     <div class="col-span-12 sm:col-span-6 lg:col-span-4 mb-[30px]">
-        <a href="index.html" class="block mb-[25px]">
+        <a href="{% url 'pages:home' %}" class="block mb-[25px]">
             <img src="{% static 'main-site/assets/images/logo/logo.svg' %}" width="99" height="46" loading=lazy alt="footer logo">
         </a>
         <p class="mb-[5px] xl:mb-[40px] max-w-[270px]">Properties are most budget friendly
@@ -15,12 +15,12 @@
         <h3 class="font-lora font-normal text-[22px] leading-[1.222] text-primary mb-[20px] lg:mb-[30px]">
             Information<span class="text-secondary">.</span></h3>
         <ul class="text-[16px] leading-none mb-[-20px]">
-            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="about.html">About
+            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="{% url 'pages:about' %}">About
                     us</a></li>
-            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="properties-v2.html">Properties</a></li>
+            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="{% url 'pages:properties_v2' %}">Properties</a></li>
             <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="#">Careers</a></li>
             <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="#">Payment</a></li>
-            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="blog-grid.html">Blog
+            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="{% url 'pages:blog_grid' %}">Blog
                     Post</a></li>
         </ul>
     </div>
@@ -28,12 +28,12 @@
         <h3 class="font-lora font-normal text-[22px] leading-[1.222] text-primary mb-[20px] lg:mb-[30px]">
             Support<span class="text-secondary">.</span></h3>
         <ul class="text-[16px] leading-none mb-[-20px]">
-            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="add-properties.html">Add Property</a></li>
+            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="{% url 'pages:add_properties' %}">Add Property</a></li>
             <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="#">Terms &
                     Conditions</a></li>
             <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="#">Help line</a>
             </li>
-            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="agent.html">Our
+            <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="{% url 'pages:agent' %}">Our
                     Agents</a></li>
             <li class="mb-[20px]"><a class="inline-block transition-all hover:text-secondary" href="#">features</a></li>
         </ul>

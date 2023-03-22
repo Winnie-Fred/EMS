@@ -852,7 +852,7 @@
     <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22">
     </script>
     {% include 'main-site/partials/scripts.html' with page="home" plugins="swiper-bundle.min,popper.min,jquery.magnific-popup.min,jquery.ajaxchimp.min,parallax.min,mapplace,jquery.nice-select.min"|split %}
-    <script src="{% url 'authentication:map_place_js' %}"></script>
+    <script src="{% url 'pages:map_place_js' %}"></script>
 </body>
 
 </html>

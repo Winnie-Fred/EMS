@@ -28,7 +28,7 @@ class Command(BaseCommand):
                 User = get_user_model()
                 User.objects.create_superuser(
                     username=tenant.name,
-                    email=tenant.name+"@gmail.com",
+                    email=schema_name+"@gmail.com",
                     password=os.getenv('TENANT_SUPERUSER_PASSWORD', 'password123')
                 )
 

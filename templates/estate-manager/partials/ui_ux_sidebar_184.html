@@ -1,0 +1,187 @@
+{% load static %}
+{% load custom_filters %}
+
+<aside class="sidebar" id="leftsidebar">
+ <!-- Menu -->
+ <div class="menu">
+  <ul class="list">
+   <li>
+    <div class="user-info">
+     <div class="image">
+      <a href="profile.html">
+       <img alt="User" src="{% static 'estate-manager/assets/images/profile_av.jpg' %}"/>
+      </a>
+     </div>
+     <div class="detail">
+      <h4>
+       Michael
+      </h4>
+      <small>
+       UI UX Designer
+      </small>
+     </div>
+     <a href="events.html" title="Events">
+      <i class="zmdi zmdi-calendar">
+      </i>
+     </a>
+     <a href="mail-inbox.html" title="Inbox">
+      <i class="zmdi zmdi-email">
+      </i>
+     </a>
+     <a href="contact.html" title="Contact List">
+      <i class="zmdi zmdi-account-box-phone">
+      </i>
+     </a>
+     <a href="chat.html" title="Chat App">
+      <i class="zmdi zmdi-comments">
+      </i>
+     </a>
+     <a href="sign-in.html" title="Sign out">
+      <i class="zmdi zmdi-power">
+      </i>
+     </a>
+    </div>
+   </li>
+   <li class="header">
+    MAIN NAVIGATION
+   </li>
+   <li>
+    <a href="index.html">
+     <i class="zmdi zmdi-home">
+     </i>
+     <span>
+      Home
+     </span>
+    </a>
+   </li>
+   <li {% if blog_dashboard_class %} class="{{ blog_dashboard_class }}" {% endif %}>
+    <a href="blog-dashboard.html">
+     <i class="zmdi zmdi-blogger">
+     </i>
+     <span>
+      Blog Dashboard
+     </span>
+    </a>
+   </li>
+   <li {% if blog_post_class %} class="{{ blog_post_class }}" {% endif %}>
+    <a href="blog-post.html">
+     <i class="zmdi zmdi-plus-circle">
+     </i>
+     <span>
+      New Post
+     </span>
+    </a>
+   </li>
+   <li {% if blog_list_class %} class="{{ blog_list_class }}" {% endif %}>
+    <a href="blog-list.html">
+     <i class="zmdi zmdi-sort-amount-desc">
+     </i>
+     <span>
+      Blog List
+     </span>
+    </a>
+   </li>
+   <li {% if blog_grid_class %} class="{{ blog_grid_class }}" {% endif %}>
+    <a href="blog-grid.html">
+     <i class="zmdi zmdi-grid">
+     </i>
+     <span>
+      Blog Grid
+     </span>
+    </a>
+   </li>
+   <li {% if blog_details_class %} class="{{ blog_details_class }}" {% endif %}>
+    <a href="blog-details.html">
+     <i class="zmdi zmdi-label-alt">
+     </i>
+     <span>
+      Blog Single
+     </span>
+    </a>
+   </li>
+   <li class="header">
+    CATEGORIES
+   </li>
+   <li>
+    <a class="waves-effect waves-block" href="javascript:void(0);">
+     <i class="zmdi zmdi-label col-green">
+     </i>
+     <span>
+      Web Design
+     </span>
+    </a>
+   </li>
+   <li>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-label col-red">
+     </i>
+     <span>
+      Photography
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li>
+      <a href="javascript:void(0);">
+       Wild
+      </a>
+     </li>
+     <li>
+      <a href="javascript:void(0);">
+       Marriage
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a class="menu-toggle" href="javascript:void(0);">
+     <i class="zmdi zmdi-label col-amber">
+     </i>
+     <span>
+      Technology
+     </span>
+    </a>
+    <ul class="ml-menu">
+     <li>
+      <a href="javascript:void(0);">
+       UI UX Design
+      </a>
+     </li>
+     <li>
+      <a href="javascript:void(0);">
+       Android
+      </a>
+     </li>
+     <li>
+      <a href="javascript:void(0);">
+       iOS
+      </a>
+     </li>
+     <li>
+      <a href="javascript:void(0);">
+       Wordpress
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a class="waves-effect waves-block" href="javascript:void(0);">
+     <i class="zmdi zmdi-label col-purple">
+     </i>
+     <span>
+      Lifestyle
+     </span>
+    </a>
+   </li>
+   <li>
+    <a class="waves-effect waves-block" href="javascript:void(0);">
+     <i class="zmdi zmdi-label col-lime">
+     </i>
+     <span>
+      Sports
+     </span>
+    </a>
+   </li>
+  </ul>
+ </div>
+ <!-- #Menu -->
+</aside>
