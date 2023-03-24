@@ -7,7 +7,7 @@ User = get_user_model()
 class CustomSignupForm(SignupForm):
 
     terms_accepted = forms.BooleanField()
-    phone_number = forms.CharField(max_length=15)
+    phone_number = forms.CharField(max_length=10)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
     user_type = forms.ChoiceField(choices=User.USER_TYPE_CHOICES, initial="Prospective Tenant")

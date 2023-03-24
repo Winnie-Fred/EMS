@@ -107,7 +107,7 @@
                                     <div class="relative w-full sm:w-[400px]">                                
                                         <select class="nice-select form-select" id="{{ form.user_type.id_for_label }}" name="{{ form.user_type.name }}">
                                             {% for value, label in form.user_type.field.choices %}
-                                                <option value="{{ value }}" {% if form.user_type.initial == value %}selected{% endif %}>{{ label }}</option>
+                                                <option value="{{ value }}" {% if form.user_type.value != "" %}{% if form.user_type.value == value %}selected{% endif %}{% else %}{% if form.user_type.initial == value %}selected{% endif %}{% endif %}>{{ label }}</option>
                                             {% endfor %}
                                         </select>
                                         {% for error in errors.user_type %}

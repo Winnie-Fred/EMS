@@ -28,7 +28,7 @@
       <h2>
        {{ request.user.user_type }} Profile
        <small class="text-muted">
-        Welcome to your Dashboard
+        Welcome to your Dashboard{% if request.user.is_staff %}, Admin {% endif %}
        </small>
       </h2>
      </div>
@@ -42,7 +42,7 @@
         <a href="index.html">
          <i class="zmdi zmdi-home">
          </i>
-         Compass
+         Dashboard
         </a>
        </li>
        <li class="breadcrumb-item">
@@ -68,7 +68,7 @@
        </div>
        <div class="member-img">
         <a class="" href="#">
-         <img alt="profile-image" class="rounded-circle" src="{% cloudinary_url request.user.userprofile.image.public_id width=150 height=150 crop='fill' gravity='faces' %}" />
+         <img alt="profile-image" class="rounded-circle" src="{% cloudinary_url request.user.userprofile.image.public_id width=150 height=150 crop='fill' gravity='faces' %}"/>
         </a>
        </div>
        <div class="body">
@@ -146,6 +146,7 @@
        </ul>
        <div class="tab-content">
         <div class="tab-pane body active" id="about">
+        {% if not request.user.is_staff %}
          <small class="text-muted">
           User Type:
          </small>
@@ -153,6 +154,7 @@
           {{ request.user.user_type }}
          </p>
          <hr/>
+         {% endif %}
          <small class="text-muted">
           Full name:
          </small>
@@ -184,19 +186,18 @@
          
         </div>
         <div class="tab-pane body" id="bio">
-            <p class="text-muted">{% if user_profile.bio %}{{ user_profile.bio }}{% else %}"Uh oh! It looks like you haven't uploaded a bio yet. Your bio is a great way to introduce yourself and let others know more about you. Don't worry, it's easy to add one. Just edit your profile on the right. From there, you can add your bio and share a little about yourself. We can't wait to get to know you better!"{% endif %}</p>
+            <p class="text-muted">{% if request.user.userprofile.bio %}{{ request.user.userprofile.bio }}{% else %}"Uh oh! It looks like you haven't uploaded a bio yet. Your bio is a great way to introduce yourself and let others know more about you. Don't worry, it's easy to add one. Just edit your profile on the right. From there, you can add your bio and share a little about yourself. We can't wait to get to know you better!"{% endif %}</p>
         </div>
         <div class="tab-pane body" id="overview">
             {% if user.user_type %}
                 {% if user.user_type == "Tenant" or user.user_type == "Prospective Tenant" or user.user_type == "Owner" %}
-                    <p class="text-muted">{% if user_profile.overview %}{{ user_profile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to give more detailed information about yourself to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about you. We can't wait to get to know you better!"{% endif %}</p>
+                    <p class="text-muted">{% if request.user.userprofile.overview %}{{ request.user.userprofile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to give more detailed information about yourself to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about you. We can't wait to get to know you better!"{% endif %}</p>
                 {% else %}
-                    <p class="text-muted">{% if user_profile.overview %}{{ user_profile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to showcase your skills and experience to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about your professional background. We can't wait to see all that you have to offer!"{% endif %}</p>
+                    <p class="text-muted">{% if request.user.userprofile.overview %}{{ request.user.userprofile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to showcase your skills and experience to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about your professional background. We can't wait to see all that you have to offer!"{% endif %}</p>
                 {% endif %}            
             {% else %}
-                <p class="text-muted">{% if user_profile.overview %}{{ user_profile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to showcase your skills and experience to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about your professional background. We can't wait to see all that you have to offer!"{% endif %}</p>
+                <p class="text-muted">{% if request.user.userprofile.overview %}{{ request.user.userprofile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to showcase your skills and experience to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about your professional background. We can't wait to see all that you have to offer!"{% endif %}</p>
             {% endif %}            
-        
         </div>
        </div>
       </div>
@@ -747,93 +748,149 @@
          </li>
         </ul>
        </div> {% endcomment %}
-       <div class="tab-pane active" id="usersettings" role="tabpanel">
-         <div class="card">
-         <div class="header">
-          <h2>
-           <strong>
-            Edit
-           </strong>
-           Your Profile Picture
-          </h2>
-         </div>
-         <div class="body">
-          <div class="form-group">
-           <input class="form-control" placeholder="Username" type="file" accept="image/*"/>
-          </div>          
-          <button class="btn btn-info btn-round">
-           Save Changes
-          </button>
-         </div>
-        </div>
-        <div class="card">
-         <div class="header">
-          <h2>
-           <strong>
-            Edit
-           </strong>
-           Your Profile Here
-          </h2>
-         </div>
-         <div class="body">
-          <div class="row clearfix">
-           <div class="col-lg-6 col-md-12">
+       <form action="{% url 'users:profile' %}" method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="tab-pane active" id="usersettings" role="tabpanel">
+            <div class="card">
+            <div class="header">
+            <h2>
+            <strong>
+                Edit
+            </strong>
+            Your Profile Picture
+            </h2>
+            </div>
+            <div class="body">
             <div class="form-group">
-             <input class="form-control" placeholder="First Name" type="text" name="first_name"/>
-            </div>
-           </div>
-           <div class="col-lg-6 col-md-12">
-            <div class="form-group">
-             <input class="form-control" placeholder="Last Name" type="text" name="last_name"/>
-            </div>
-           </div>          
-           <div class="col-lg-4 col-md-12">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                <span class="input-group-text">+234</span>
-                </div>
-                <input class="form-control" placeholder="Phone number" type="text" name="phone_number"/>
-            </div>
-            </div>
-           <div class="col-md-12">
-            <div class="form-group">
-             <textarea class="form-control no-resize" placeholder="Bio (Short description of yourself)" rows="4" name="bio"></textarea>
-            </div>
-           </div>
-           <div class="col-md-12">
-            <div class="form-group">
-             <textarea class="form-control no-resize" placeholder="Overview (Longer description of yourself)" rows="4" name="overview"></textarea>
-            </div>
-           </div>
-           {% comment %} <div class="col-md-12">
-            <div class="checkbox">
-             <input id="procheck1" type="checkbox"/>
-             <label for="procheck1">
-              Profile Visibility For Everyone
-             </label>
-            </div>
-            <div class="checkbox">
-             <input id="procheck2" type="checkbox"/>
-             <label for="procheck2">
-              New task notifications
-             </label>
-            </div>
-            <div class="checkbox">
-             <input id="procheck3" type="checkbox"/>
-             <label for="procheck3">
-              New friend request notifications
-             </label>
-            </div>
-           </div> {% endcomment %}
-           <div class="col-md-12">
-            <button class="btn btn-primary btn-round">
-             Save Changes
+                <input class="form-control {% if p_form.image.errors %}is-invalid{% endif %}" type="file" accept="image/*" name="image" style="background-image: none;"/>
+                {% if p_form.image.errors %}
+                    <div class="invalid-feedback">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="close-icon" onclick="clearError(this)" width="16" height="16" fill="currentColor" class="bi bi-x" style="cursor: pointer;" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                        {% for error in p_form.image.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>          
+            <button class="btn btn-info btn-round" type="submit" name="profile_pic_edit_btn">
+            Save Changes
             </button>
-           </div>
-          </div>
-         </div>
+            </div>
+            </div>
+            <div class="card">
+            <div class="header">
+            <h2>
+            <strong>
+                Edit
+            </strong>
+            Your Profile Here
+            </h2>
+            </div>
+            <div class="body">
+            <div class="row clearfix">
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" class="form-control {% if u_form.first_name.errors %}is-invalid{% endif %}" placeholder="First Name" type="text" name="first_name" value="{{ u_form.first_name.value|default:'' }}" style="background-image: none;"/>
+                    {% if u_form.first_name.errors %}
+                        <div class="invalid-feedback">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="close-icon" onclick="clearError(this)" width="16" height="16" fill="currentColor" class="bi bi-x" style="cursor: pointer;" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                            {% for error in u_form.first_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" class="form-control {% if u_form.last_name.errors %}is-invalid{% endif %}" placeholder="Last Name" type="text" name="last_name" value="{{ u_form.last_name.value|default:'' }}" style="background-image: none;"/>
+                    {% if u_form.last_name.errors %}
+                        <div class="invalid-feedback">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="close-icon" onclick="clearError(this)" width="16" height="16" fill="currentColor" class="bi bi-x" style="cursor: pointer;" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                            {% for error in u_form.last_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>          
+            <div class="col-lg-4 col-md-12">
+                <label for="phoneNumber">Phone number</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">+234</span>
+                    </div>
+                    <input id="phoneNumber" class="form-control {% if u_form.phone_number.errors %}is-invalid{% endif %}" placeholder="Phone number" type="text" name="phone_number" value="{{ u_form.phone_number.value|slice:'1:'|default:'' }}" style="background-image: none; border-top-right-radius: 30px; border-bottom-right-radius: 30px;"/>
+                    {% if u_form.phone_number.errors %}
+                        <div class="invalid-feedback">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="close-icon" onclick="clearError(this)" width="16" height="16" fill="currentColor" class="bi bi-x" style="cursor: pointer;" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                            {% for error in u_form.phone_number.errors %}
+                                {{ error }}
+                            {% endfor %}                            
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="bioField">Bio: A short description of yourself</label>
+                    <textarea id="bioField" class="form-control {% if p_form.bio.errors %}is-invalid{% endif %} no-resize" placeholder="Bio (Short description of yourself)" rows="4" name="bio" style="background-image: none;">{{ p_form.bio.value|default:'' }}</textarea>
+                    {% if p_form.bio.errors %}
+                        <div class="invalid-feedback">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="close-icon" onclick="clearError(this)" width="16" height="16" fill="currentColor" class="bi bi-x" style="cursor: pointer;" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                            {% for error in p_form.bio.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="overviewField">Overview: A longer description of yourself</label>
+                    <textarea id="overviewField" class="form-control {% if p_form.overview.errors %}is-invalid{% endif %} no-resize" placeholder="Overview (Longer description of yourself)" rows="4" name="overview" style="background-image: none;">{{ p_form.overview.value|default:'' }}</textarea>
+                        {% if p_form.overview.errors %}
+                        <div class="invalid-feedback">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="close-icon" onclick="clearError(this)" width="16" height="16" fill="currentColor" class="bi bi-x" style="cursor: pointer;" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                            {% for error in p_form.overview.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                </div>
+            </div>
+            {% comment %} <div class="col-md-12">
+                <div class="checkbox">
+                <input id="procheck1" type="checkbox"/>
+                <label for="procheck1">
+                Profile Visibility For Everyone
+                </label>
+                </div>
+                <div class="checkbox">
+                <input id="procheck2" type="checkbox"/>
+                <label for="procheck2">
+                New task notifications
+                </label>
+                </div>
+                <div class="checkbox">
+                <input id="procheck3" type="checkbox"/>
+                <label for="procheck3">
+                New friend request notifications
+                </label>
+                </div>
+            </div> {% endcomment %}
+            <div class="col-md-12">
+                <button class="btn btn-primary btn-round" type="submit" name="profile_edit_btn">
+                    Save Changes
+                </button>
+            </div>
+            </div>
+            </div>
+            </div>
         </div>
-       </div>
+        </form>
       </div>
      </div>
     </div>
@@ -855,5 +912,14 @@
   <!-- Custom Js -->
   <script src="{% static 'estate-manager/assets/js/pages/charts/jquery-knob.js' %}">
   </script>
+  <script>
+    function clearError(element) {
+        var parentDiv = element.parentElement;
+        var inputField = parentDiv.previousElementSibling;
+        parentDiv.remove();
+        inputField.classList.remove("is-invalid");
+    }
+    </script>
  </body>
 </html>
+

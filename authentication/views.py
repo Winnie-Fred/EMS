@@ -7,6 +7,7 @@ from allauth.account.views import SignupView, LoginView, LogoutView
 
 
 from .forms import CustomSignupForm, CustomLoginForm
+from helper.configurations import ERROR_IN_FORM_MESSAGE
 
 # Create your views here.
 
@@ -24,7 +25,7 @@ class CustomSignupView(SignupView):
         return context
     
     def form_invalid(self, form):
-        messages.error(self.request, 'Please correct the errors in the form')
+        messages.error(self.request, ERROR_IN_FORM_MESSAGE)
         return self.render_to_response(self.get_context_data(form=form, errors=form.errors, non_field_errors=form.non_field_errors))
 
 class CustomLoginView(LoginView):
@@ -44,7 +45,7 @@ class CustomLoginView(LoginView):
         return context
     
     def form_invalid(self, form):
-        messages.error(self.request, 'Please correct the errors in the form')
+        messages.error(self.request, ERROR_IN_FORM_MESSAGE)
         return self.render_to_response(self.get_context_data(form=form, errors=form.errors, non_field_errors=form.non_field_errors))
     
 

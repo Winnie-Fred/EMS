@@ -47,11 +47,11 @@
     MAIN
    </li>
    <li {% if index_class %} class="{{ index_class }}" {% endif %}>
-    <a href="index.html">
+    <a href="{% url 'pages:dashboard' %}">
      <i class="zmdi zmdi-home">
      </i>
      <span>
-      Dashboard
+      Home
      </span>
     </a>
    </li>

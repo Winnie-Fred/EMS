@@ -30,9 +30,9 @@
             <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
             <h2>
-            Dashboard
+            Home
             <small class="text-muted">
-                Welcome to Compass
+                Welcome to your Dashboard{% if request.user.is_staff %}, Admin {% endif %}
             </small>
             </h2>
             </div>
@@ -46,11 +46,11 @@
                 <a href="index.html">
                 <i class="zmdi zmdi-home">
                 </i>
-                Compass
+                Dashboard
                 </a>
             </li>
             <li class="breadcrumb-item active">
-                Dashboard
+                Home
             </li>
             </ul>
             </div>
