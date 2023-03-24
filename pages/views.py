@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def home(request):
@@ -88,6 +90,7 @@ def blog_grid_right_side_bar(request):
 def blog_details(request):
     return render(request, 'main-site/blog-details.html')
 
+@login_required
 def dashboard(request):
     return render(request, 'main-site/dashboard/dashboard_index.html')
 

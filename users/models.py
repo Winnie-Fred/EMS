@@ -22,25 +22,18 @@ class CustomUser(AbstractUser):
     )
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, blank=False)
 
-    def save(self, *args, **kwargs):
-        self.phone_number = '+234' + self.phone_number
-        super().save(*args, **kwargs)
+    @property
+    def phone_number_formatted(self):
+        return '+234' + self.phone_number
 
 User = get_user_model()
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) # Delete profile when user is deleted
-    image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images', default='static/main-site/assets/images/user/default_avatar.png',
-                                     transformation={
-                                    'width': 62,
-                                    'height': 62,
-                                    'crop': 'fill',
-                                    'radius': 'max',
-                                    'gravity': 'auto'
-                            })
+    image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images', default=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images/default_avatar_sanr5o.png')
     bio = models.TextField(blank=True)
     overview = models.TextField(blank=True)
 
     def __str__(self):
-        return f'{self.user.username} Profile' #show how we want it to be displayed
+        return f'{self.user.username} Profile'
 

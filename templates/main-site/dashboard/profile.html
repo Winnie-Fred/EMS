@@ -1,5 +1,6 @@
 {% load static %}
 {% load custom_filters %}
+{% load cloudinary %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -25,9 +26,9 @@
     <div class="row">
      <div class="col-lg-7 col-md-6 col-sm-12">
       <h2>
-       Agent Profile
+       {{ request.user.user_type }} Profile
        <small class="text-muted">
-        Welcome to Compass
+        Welcome to your Dashboard
        </small>
       </h2>
      </div>
@@ -62,12 +63,12 @@
       <div class="card member-card">
        <div class="header l-cyan">
         <h4 class="m-t-10">
-         Michael Dorsey
+         {{ request.user.get_full_name }}
         </h4>
        </div>
        <div class="member-img">
-        <a class="" href="profile.html">
-         <img alt="profile-image" class="rounded-circle" src="{% static 'estate-manager/assets/images/profile_av.jpg' %}"/>
+        <a class="" href="#">
+         <img alt="profile-image" class="rounded-circle" src="{% cloudinary_url request.user.userprofile.image.public_id width=150 height=150 crop='fill' gravity='faces' %}" />
         </a>
        </div>
        <div class="body">
@@ -132,162 +133,70 @@
           About
          </a>
         </li>
-        <li class="nav-item">
-         <a class="nav-link" data-toggle="tab" href="#friends">
-          Friends
+         <li class="nav-item">
+         <a class="nav-link" data-toggle="tab" href="#bio">
+          Bio
+         </a>
+        </li>
+         <li class="nav-item">
+         <a class="nav-link" data-toggle="tab" href="#overview">
+          Overview
          </a>
         </li>
        </ul>
        <div class="tab-content">
         <div class="tab-pane body active" id="about">
          <small class="text-muted">
-          Position:
+          User Type:
          </small>
          <p>
-          Agent
+          {{ request.user.user_type }}
          </p>
          <hr/>
          <small class="text-muted">
-          Estate:
+          Full name:
          </small>
          <p>
-          Cleveland
+          {{ request.user.get_full_name }}
+         </p>
+         <hr/>         
+         <small class="text-muted">
+          Username:
+         </small>
+         <p>
+          {{ request.user.username }}
          </p>
          <hr/>
          <small class="text-muted">
           Email address:
          </small>
          <p>
-          michael@gmail.com
+          {{ request.user.email }}
          </p>
          <hr/>
          <small class="text-muted">
-          Phone:
+          Phone number:
          </small>
          <p>
-          + 202-555-0191
+          {{ request.user.phone_number_formatted }}
          </p>
          <hr/>
-         <ul class="list-unstyled">
-          <li>
-           <div>
-            Marketing
-           </div>
-           <div class="progress m-b-20">
-            <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="89" class="progress-bar l-blue" role="progressbar" style="width: 89%">
-             <span class="sr-only">
-              62% Complete
-             </span>
-            </div>
-           </div>
-          </li>
-          <li>
-           <div>
-            Maths
-           </div>
-           <div class="progress m-b-20">
-            <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="56" class="progress-bar l-green" role="progressbar" style="width: 56%">
-             <span class="sr-only">
-              87% Complete
-             </span>
-            </div>
-           </div>
-          </li>
-          <li>
-           <div>
-            Communication
-           </div>
-           <div class="progress m-b-20">
-            <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="78" class="progress-bar l-amber" role="progressbar" style="width: 78%">
-             <span class="sr-only">
-              32% Complete
-             </span>
-            </div>
-           </div>
-          </li>
-          <li>
-           <div>
-            English
-           </div>
-           <div class="progress m-b-20">
-            <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" class="progress-bar l-blush" role="progressbar" style="width: 43%">
-             <span class="sr-only">
-              56% Complete
-             </span>
-            </div>
-           </div>
-          </li>
-         </ul>
+         
         </div>
-        <div class="tab-pane body" id="friends">
-         <ul class="new_friend_list list-unstyled row">
-          <li class="col-lg-4 col-md-2 col-sm-6 col-4">
-           <a href="">
-            <img alt="User Image" class="img-thumbnail" src="{% static 'estate-manager/assets/images/sm/avatar1.jpg' %}"/>
-            <h6 class="users_name">
-             Jackson
-            </h6>
-            <small class="join_date">
-             Today
-            </small>
-           </a>
-          </li>
-          <li class="col-lg-4 col-md-2 col-sm-6 col-4">
-           <a href="">
-            <img alt="User Image" class="img-thumbnail" src="{% static 'estate-manager/assets/images/sm/avatar2.jpg' %}"/>
-            <h6 class="users_name">
-             Aubrey
-            </h6>
-            <small class="join_date">
-             Yesterday
-            </small>
-           </a>
-          </li>
-          <li class="col-lg-4 col-md-2 col-sm-6 col-4">
-           <a href="">
-            <img alt="User Image" class="img-thumbnail" src="{% static 'estate-manager/assets/images/sm/avatar3.jpg' %}"/>
-            <h6 class="users_name">
-             Oliver
-            </h6>
-            <small class="join_date">
-             08 Nov
-            </small>
-           </a>
-          </li>
-          <li class="col-lg-4 col-md-2 col-sm-6 col-4">
-           <a href="">
-            <img alt="User Image" class="img-thumbnail" src="{% static 'estate-manager/assets/images/sm/avatar4.jpg' %}"/>
-            <h6 class="users_name">
-             Isabella
-            </h6>
-            <small class="join_date">
-             12 Dec
-            </small>
-           </a>
-          </li>
-          <li class="col-lg-4 col-md-2 col-sm-6 col-4">
-           <a href="">
-            <img alt="User Image" class="img-thumbnail" src="{% static 'estate-manager/assets/images/sm/avatar1.jpg' %}"/>
-            <h6 class="users_name">
-             Jacob
-            </h6>
-            <small class="join_date">
-             12 Dec
-            </small>
-           </a>
-          </li>
-          <li class="col-lg-4 col-md-2 col-sm-6 col-4">
-           <a href="">
-            <img alt="User Image" class="img-thumbnail" src="{% static 'estate-manager/assets/images/sm/avatar5.jpg' %}"/>
-            <h6 class="users_name">
-             Matthew
-            </h6>
-            <small class="join_date">
-             17 Dec
-            </small>
-           </a>
-          </li>
-         </ul>
+        <div class="tab-pane body" id="bio">
+            <p class="text-muted">{% if user_profile.bio %}{{ user_profile.bio }}{% else %}"Uh oh! It looks like you haven't uploaded a bio yet. Your bio is a great way to introduce yourself and let others know more about you. Don't worry, it's easy to add one. Just edit your profile on the right. From there, you can add your bio and share a little about yourself. We can't wait to get to know you better!"{% endif %}</p>
+        </div>
+        <div class="tab-pane body" id="overview">
+            {% if user.user_type %}
+                {% if user.user_type == "Tenant" or user.user_type == "Prospective Tenant" or user.user_type == "Owner" %}
+                    <p class="text-muted">{% if user_profile.overview %}{{ user_profile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to give more detailed information about yourself to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about you. We can't wait to get to know you better!"{% endif %}</p>
+                {% else %}
+                    <p class="text-muted">{% if user_profile.overview %}{{ user_profile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to showcase your skills and experience to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about your professional background. We can't wait to see all that you have to offer!"{% endif %}</p>
+                {% endif %}            
+            {% else %}
+                <p class="text-muted">{% if user_profile.overview %}{{ user_profile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to showcase your skills and experience to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about your professional background. We can't wait to see all that you have to offer!"{% endif %}</p>
+            {% endif %}            
+        
         </div>
        </div>
       </div>
@@ -295,7 +204,7 @@
      <div class="col-lg-8 col-md-12">
       <div class="card">
        <ul class="nav nav-tabs">
-        <li class="nav-item">
+        {% comment %} <li class="nav-item">
          <a class="nav-link active" data-toggle="tab" href="#mypost">
           My Post
          </a>
@@ -304,16 +213,16 @@
          <a class="nav-link" data-toggle="tab" href="#timeline">
           Timeline
          </a>
-        </li>
+        </li> {% endcomment %}
         <li class="nav-item">
-         <a class="nav-link" data-toggle="tab" href="#usersettings">
-          Setting
+         <a class="nav-link active" data-toggle="tab" href="#usersettings">
+          Edit Profile
          </a>
         </li>
        </ul>
       </div>
       <div class="tab-content">
-       <div class="tab-pane blog-page active" id="mypost" role="tabpanel">
+       {% comment %} <div class="tab-pane blog-page active" id="mypost" role="tabpanel">
         <div class="card single_post">
          <div class="body">
           <h3 class="m-t-0 m-b-5">
@@ -837,27 +746,21 @@
           </div>
          </li>
         </ul>
-       </div>
-       <div class="tab-pane" id="usersettings" role="tabpanel">
-        <div class="card">
+       </div> {% endcomment %}
+       <div class="tab-pane active" id="usersettings" role="tabpanel">
+         <div class="card">
          <div class="header">
           <h2>
            <strong>
-            Security
+            Edit
            </strong>
-           Settings
+           Your Profile Picture
           </h2>
          </div>
          <div class="body">
           <div class="form-group">
-           <input class="form-control" placeholder="Username" type="text"/>
-          </div>
-          <div class="form-group">
-           <input class="form-control" placeholder="Current Password" type="password"/>
-          </div>
-          <div class="form-group">
-           <input class="form-control" placeholder="New Password" type="password"/>
-          </div>
+           <input class="form-control" placeholder="Username" type="file" accept="image/*"/>
+          </div>          
           <button class="btn btn-info btn-round">
            Save Changes
           </button>
@@ -867,44 +770,42 @@
          <div class="header">
           <h2>
            <strong>
-            Account
+            Edit
            </strong>
-           Settings
+           Your Profile Here
           </h2>
          </div>
          <div class="body">
           <div class="row clearfix">
            <div class="col-lg-6 col-md-12">
             <div class="form-group">
-             <input class="form-control" placeholder="First Name" type="text"/>
+             <input class="form-control" placeholder="First Name" type="text" name="first_name"/>
             </div>
            </div>
            <div class="col-lg-6 col-md-12">
             <div class="form-group">
-             <input class="form-control" placeholder="Last Name" type="text"/>
+             <input class="form-control" placeholder="Last Name" type="text" name="last_name"/>
             </div>
-           </div>
+           </div>          
            <div class="col-lg-4 col-md-12">
-            <div class="form-group">
-             <input class="form-control" placeholder="City" type="text"/>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text">+234</span>
+                </div>
+                <input class="form-control" placeholder="Phone number" type="text" name="phone_number"/>
             </div>
-           </div>
-           <div class="col-lg-4 col-md-12">
-            <div class="form-group">
-             <input class="form-control" placeholder="E-mail" type="text"/>
             </div>
-           </div>
-           <div class="col-lg-4 col-md-12">
+           <div class="col-md-12">
             <div class="form-group">
-             <input class="form-control" placeholder="Country" type="text"/>
+             <textarea class="form-control no-resize" placeholder="Bio (Short description of yourself)" rows="4" name="bio"></textarea>
             </div>
            </div>
            <div class="col-md-12">
             <div class="form-group">
-             <textarea class="form-control no-resize" placeholder="Address Line 1" rows="4"></textarea>
+             <textarea class="form-control no-resize" placeholder="Overview (Longer description of yourself)" rows="4" name="overview"></textarea>
             </div>
            </div>
-           <div class="col-md-12">
+           {% comment %} <div class="col-md-12">
             <div class="checkbox">
              <input id="procheck1" type="checkbox"/>
              <label for="procheck1">
@@ -923,7 +824,7 @@
               New friend request notifications
              </label>
             </div>
-           </div>
+           </div> {% endcomment %}
            <div class="col-md-12">
             <button class="btn btn-primary btn-round">
              Save Changes

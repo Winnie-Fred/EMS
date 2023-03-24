@@ -1,5 +1,6 @@
 {% load static %}
 {% load custom_filters %}
+{% load cloudinary %}
 
 <nav class="flex flex-wrap items-center nav-with-black-links">
     <ul class="hidden lg:flex flex-wrap items-center font-lora text-[16px] xl:text-[18px] leading-none text-black">
@@ -210,8 +211,13 @@
     </ul>
 
     <ul class="flex flex-wrap items-center">
-        <li class="sm:mr-5 xl:mr-[20px] relative group"><a href="#">
-                <img src="{% static 'main-site/assets/images/user/avater.png' %}" loading="lazy" width="62" height="62" alt="avatar">
+        <li class="sm:mr-5 xl:mr-[20px] relative group"><a href="{% url 'users:profile' %}">
+                {% if request.user.is_authenticated %}
+                    <img style="border-radius: 50%;" src="{% cloudinary_url request.user.userprofile.image.public_id width=62 height=62 crop='fill' gravity='faces' radius='max' %}" loading="lazy" width="62" height="62" alt="avatar">
+                    {% comment %} <img src="{% static 'main-site/assets/images/user/avater.png' %}" loading="lazy" width="62" height="62" alt="avatar"> {% endcomment %}
+                {% else %}
+                    <img style="border-radius: 50%;" src="{% static 'main-site/assets/images/user/default_avatar.png' %}" loading="lazy" width="62" height="62" alt="avatar">
+                {% endif %}
             </a>
 
             <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%] sm:left-1/2 sm:-translate-x-1/2 transition-all

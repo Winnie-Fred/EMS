@@ -1,5 +1,6 @@
 {% load static %}
 {% load custom_filters %}
+{% load cloudinary %}
 
 <aside class="sidebar" id="leftsidebar" style="padding-top: 70px;">
  <div class="menu">
@@ -8,15 +9,16 @@
     <div class="user-info">
      <div class="image">
       <a href="{% url 'users:profile' %}">
-       <img alt="User" src="{% static 'estate-manager/assets/images/profile_av.jpg' %}"/>
+        <img alt="User" src="{% cloudinary_url request.user.userprofile.image.public_id width=180 height=180 crop='fill' gravity='faces' %}" />
+       {% comment %} <img alt="User" src="{% static 'estate-manager/assets/images/profile_av.jpg' %}"/> {% endcomment %}
       </a>
      </div>
      <div class="detail">
       <h4>
-       Michael
+       {{ request.user.username }}
       </h4>
       <small>
-       Agent
+       {{ request.user.user_type }}
       </small>
      </div>
      <a href="events.html" title="Events">
