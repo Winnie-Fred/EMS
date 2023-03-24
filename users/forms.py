@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth import get_user_model
+
 from .models import UserProfile
 
 User = get_user_model()
 
-# Create a UserUpdateForm to update a username and email
+# Create a UserUpdateForm to update phone number, first name and last name
 class UserUpdateForm(forms.ModelForm):
 
     class Meta:

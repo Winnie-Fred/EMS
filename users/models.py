@@ -20,7 +20,7 @@ class NigerianPhoneNumberField(models.CharField):
     default_validators = []
 
     def __init__(self, *args, **kwargs):
-        kwargs.setdefault('max_length', 11)
+        kwargs.setdefault('max_length', 10)
         kwargs.setdefault('blank', False)
         kwargs.setdefault('unique', True)
         super().__init__(*args, **kwargs)
@@ -35,9 +35,6 @@ class NigerianPhoneNumberField(models.CharField):
 
         return value
 
-    def get_prep_value(self, value):
-        # Add leading zero to the phone number
-        return f'0{value}'
 
     def formfield(self, **kwargs):
         defaults = {'min_length': 10, 'max_length': 10}
@@ -54,13 +51,19 @@ class CustomUser(AbstractUser):
         ('Owner', 'Owner'),
         ('Agent', 'Agent'),
         ('Prospective Tenant', 'Prospective Tenant'),
+        ('Estate Manager', 'Estate Manager'),
+        ('Estate Staff Member', 'Estate Staff Member'),
     )
-    user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, blank=False)
+    user_type = models.CharField(max_length=19, choices=USER_TYPE_CHOICES, blank=False)
 
     @property
     def phone_number_formatted(self):
-        return f'{self.phone_number[:4]} {self.phone_number[4:7]} {self.phone_number[7:]}'
+        return f'0{self.phone_number[:3]} {self.phone_number[3:6]} {self.phone_number[6:]}'
 
+    @property
+    def phone_number_raw(self):
+        return f'0{self.phone_number}'
+    
     
 User = get_user_model()
 
@@ -69,6 +72,18 @@ class UserProfile(models.Model):
     image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images', default=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images/default_avatar_sanr5o.png', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
     bio = models.TextField(blank=True)
     overview = models.TextField(blank=True)
+
+    @property
+    def user_role(self):
+        if self.user.user_type:
+            return self.user.user_type
+        else:
+            if self.user.is_superuser:
+                return "Estate Manager"
+            elif self.user.is_staff:
+                return "Estate Staff Member"
+            else:
+                return ""
 
     def __str__(self):
         return f'{self.user.username} Profile'

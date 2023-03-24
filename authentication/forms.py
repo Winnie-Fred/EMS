@@ -10,7 +10,12 @@ class CustomSignupForm(SignupForm):
     phone_number = forms.CharField(max_length=10)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
-    user_type = forms.ChoiceField(choices=User.USER_TYPE_CHOICES, initial="Prospective Tenant")
+    USER_TYPE_CHOICES = (
+        ('Owner', 'Owner'),
+        ('Agent', 'Agent'),
+        ('Prospective Tenant', 'Prospective Tenant'),
+    )
+    user_type = forms.ChoiceField(choices=USER_TYPE_CHOICES, initial="Prospective Tenant")
 
     def signup(self, request, user):
         pass

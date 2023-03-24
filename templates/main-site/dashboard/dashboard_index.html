@@ -32,7 +32,7 @@
             <h2>
             Home
             <small class="text-muted">
-                Welcome to your Dashboard{% if request.user.is_staff %}, Admin {% endif %}
+                Welcome to your Dashboard, {{ request.user.username }}
             </small>
             </h2>
             </div>
