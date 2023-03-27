@@ -100,6 +100,10 @@ class UserProfile(models.Model):
                 return "Estate Staff Member"
             else:
                 return ""
+        
+    @property
+    def user_is_tenant(self):
+        return self.user.user_type in ['Prospective Tenant, Tenant']
 
     def __str__(self):
         return f'{self.user.username} Profile'

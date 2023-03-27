@@ -55,6 +55,14 @@
      </span>
     </a>
    </li>
+   <li {% if profile_class %} class="{{ profile_class }}" {% endif %}>
+    <a href="{% url 'users:profile' %}">
+    <i class="zmdi zmdi-account"></i>
+      <span>
+      Profile
+     </span>
+    </a>
+    </li>
    <li {% if li_2_class %} class="{{ li_2_class }}" {% endif %}>
     <a class="menu-toggle" href="javascript:void(0);">
      <i class="zmdi zmdi-city">
@@ -79,19 +87,21 @@
        4 Column
       </a>
      </li>
+     {% if not request.user.userprofile.user_is_tenant %}
      <li {% if add_property_class %} class="{{ add_property_class }}" {% endif %}>
-      <a href="add-property.html">
+      <a href="{% url 'pages:add_properties' %}">
        Add Property
       </a>
      </li>
-     <li {% if property_detail_class %} class="{{ property_detail_class }}" {% endif %}>
+     {% endif %}
+     {% comment %} <li {% if property_detail_class %} class="{{ property_detail_class }}" {% endif %}>
       <a href="property-detail.html">
        Property Detail
       </a>
-     </li>
+     </li> {% endcomment %}
     </ul>
    </li>
-   <li {% if li_3_class %} class="{{ li_3_class }}" {% endif %}>
+   {% comment %} <li {% if li_3_class %} class="{{ li_3_class }}" {% endif %}>
     <a class="menu-toggle" href="javascript:void(0);">
      <i class="zmdi zmdi-city">
      </i>
@@ -121,8 +131,8 @@
       </a>
      </li>
     </ul>
-   </li>
-   <li {% if li_4_class %} class="{{ li_4_class }}" {% endif %}>
+   </li> {% endcomment %}
+   {% comment %} <li {% if li_4_class %} class="{{ li_4_class }}" {% endif %}>
     <a class="menu-toggle" href="javascript:void(0);">
      <i class="zmdi zmdi-accounts-outline">
      </i>
@@ -141,19 +151,15 @@
        Add Agent
       </a>
      </li>
-     <li {% if profile_class %} class="{{ profile_class }}" {% endif %}>
-      <a href="{% url 'users:profile' %}">
-       Agent Profile
-      </a>
-     </li>
+     
      <li {% if invoices_class %} class="{{ invoices_class }}" {% endif %}>
       <a href="invoices.html">
        Agent Invoice
       </a>
      </li>
     </ul>
-   </li>
-   <li {% if map_class %} class="{{ map_class }}" {% endif %}>
+   </li> {% endcomment %}
+   {% comment %} <li {% if map_class %} class="{{ map_class }}" {% endif %}>
     <a href="map.html">
      <i class="zmdi zmdi-pin">
      </i>
@@ -161,8 +167,8 @@
       Map
      </span>
     </a>
-   </li>
-   <li {% if reports_class %} class="{{ reports_class }}" {% endif %}>
+   </li> {% endcomment %}
+   {% comment %} <li {% if reports_class %} class="{{ reports_class }}" {% endif %}>
     <a href="reports.html">
      <i class="zmdi zmdi-file-text">
      </i>
@@ -170,21 +176,34 @@
       Reports
      </span>
     </a>
-   </li>
+   </li> {% endcomment %}
+   <li {% if li_payment_class %} class="{{ li_payment_class }}" {% endif %}>
+    <a href="javascript:void(0);">
+     <i class="zmdi zmdi-money">
+     </i>
+     <span>
+      Payment
+     </span>
+    </a>    
+    </li>   
+   <li {% if li_complaint_class %} class="{{ li_complaint_class }}" {% endif %}>
+    <a href="javascript:void(0);">
+     <i class="zmdi zmdi-alert-triangle">
+     </i>
+     <span>
+      Complaints
+     </span>
+    </a>    
+    </li>   
    <li {% if li_5_class %} class="{{ li_5_class }}" {% endif %}>
     <a class="menu-toggle" href="javascript:void(0);">
      <i class="zmdi zmdi-apps">
      </i>
      <span>
-      App
+      Apps
      </span>
     </a>
     <ul class="ml-menu">
-     <li>
-      <a href="mail-inbox.html">
-       Inbox
-      </a>
-     </li>
      <li {% if chat_class %} class="{{ chat_class }}" {% endif %}>
       <a href="chat.html">
        Chat
@@ -192,10 +211,10 @@
      </li>
      <li {% if events_class %} class="{{ events_class }}" {% endif %}>
       <a href="events.html">
-       Calendar
+       Notifications
       </a>
      </li>
-     <li>
+     {% comment %} <li>
       <a href="file-dashboard.html">
        File Manager
       </a>
@@ -209,9 +228,10 @@
       <a href="blog-dashboard.html">
        Blog
       </a>
-     </li>
+     </li> {% endcomment %}
     </ul>
    </li>
+   {% comment %}
    <li class="header">
     EXTRA COMPONENTS
    </li>
@@ -357,6 +377,7 @@
      </div>
     </div>
    </li>
+   {% endcomment %}
   </ul>
  </div>
 </aside>

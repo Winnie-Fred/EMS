@@ -143,7 +143,7 @@
           Overview
          </a>
         </li>
-        {% if request.user.userprofile.user_role != 'Tenant' or request.user.userprofile.user_role != 'Prospective Tenant' %}
+        {% if not request.user.userprofile.user_is_tenant %}
         <li class="nav-item">
          <a class="nav-link" data-toggle="tab" href="#bankAcctInfo">
           Bank Account Info
@@ -194,13 +194,13 @@
             <p class="text-muted">{% if request.user.userprofile.bio %}{{ request.user.userprofile.bio }}{% else %}"Uh oh! It looks like you haven't uploaded a bio yet. Your bio is a great way to introduce yourself and let others know more about you. Don't worry, it's easy to add one. Just edit your profile on the right. From there, you can add your bio and share a little about yourself. We can't wait to get to know you better!"{% endif %}</p>
         </div>
         <div class="tab-pane body" id="overview">            
-            {% if not request.user.userprofile.user_role or request.user.userprofile.user_role == "Tenant" or request.user.userprofile.user_role == "Prospective Tenant" or request.user.userprofile.user_role == "Owner" %}
+            {% if not request.user.userprofile.user_role or request.user.userprofile.user_is_tenant or request.user.userprofile.user_role == "Owner" %}
                 <p class="text-muted">{% if request.user.userprofile.overview %}{{ request.user.userprofile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to give more detailed information about yourself to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about you. We can't wait to get to know you better!"{% endif %}</p>
             {% else %}
                 <p class="text-muted">{% if request.user.userprofile.overview %}{{ request.user.userprofile.overview }}{% else %}"Oops! It seems like you haven't created an overview yet. Your overview is a great way to showcase your skills and experience to others. Not to worry, adding an overview is easy. Just edit your profile on the right. From there, you can create your overview and let others know more about your professional background. We can't wait to see all that you have to offer!"{% endif %}</p>
             {% endif %}          
         </div>
-        {% if request.user.userprofile.user_role != 'Tenant' or request.user.userprofile.user_role != 'Prospective Tenant' %}
+        {% if not request.user.userprofile.user_is_tenant %}
         <div class="tab-pane body" id="bankAcctInfo">
             {% if not request.user.userprofile.bank_name and not request.user.userprofile.account_number %}
                 <small class="text-muted">Uh oh! It looks like we don't have your bank account information on file. In order to receive payments, please update your profile by uploading your bank account information on the right-hand side of the screen. Don't worry, your information is secure with us and will only be used for payment purposes. Thank you for your cooperation!</small>

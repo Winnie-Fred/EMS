@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 # Create your views here.
@@ -39,8 +39,9 @@ def properties_v1(request):
 def properties_v2(request):
     return render(request, 'main-site/properties-v2.html')
 
+@user_passes_test(lambda user: not user.userprofile.user_is_tenant)
 def add_properties(request):
-    return render(request, 'main-site/add-properties.html')
+    return render(request, 'main-site/dashboard/add-listing.html')
 
 def properties_left_side_bar(request):
     return render(request, 'main-site/properties-left-side-bar.html')

@@ -68,7 +68,7 @@ def verify_account_number(request):
 def profile(request):
     context = {}
     
-    bank_acct_update_form = not request.user.user_type in ['Prospective Tenant', 'Tenant'] 
+    bank_acct_update_form = not request.user.userprofile.user_is_tenant 
 
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -85,10 +85,7 @@ def profile(request):
                     return redirect('users:profile')
                 else:
                     error_type = verification_data['error_type']
-                    # if error_type == 'error_during_request':
-                    #     messages.error(request, verification['status_msg'])
-                    # elif error_type == 'acct_info_incorrect':
-                    #     messages.error(request, verification['status_msg'])
+                    
                     if error_type == 'form_invalid':
                         form_errors = verification_data['form_errors']
                         for field, errors in form_errors.items():
