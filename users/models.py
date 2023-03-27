@@ -1,20 +1,23 @@
+import re
 import hashlib
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
+from django.db import models
 
 
 from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryResource
 
 from helper import configurations
+from helper.views import fetch_banks
 
 
 # Create your models here.
 
-from django.core.exceptions import ValidationError
-from django.db import models
-import re
 
 class NigerianPhoneNumberField(models.CharField):
     default_validators = []
@@ -51,6 +54,7 @@ class CustomUser(AbstractUser):
         ('Owner', 'Owner'),
         ('Agent', 'Agent'),
         ('Prospective Tenant', 'Prospective Tenant'),
+        ('Tenant', 'Tenant'),
         ('Estate Manager', 'Estate Manager'),
         ('Estate Staff Member', 'Estate Staff Member'),
     )
@@ -64,14 +68,26 @@ class CustomUser(AbstractUser):
     def phone_number_raw(self):
         return f'0{self.phone_number}'
     
+def validate_image(file):
+    try:
+        if not file.content_type.startswith('image'):
+            raise ValidationError('File is not an image')
+    except AttributeError:
+        pass
+
+    if not isinstance(file, CloudinaryResource) and file.resource_type == 'image':
+        raise ValidationError('File is not an image')
     
 User = get_user_model()
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) # Delete profile when user is deleted
-    image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images', default=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images/default_avatar_sanr5o.png', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
+    image = CloudinaryField('image', validators=[validate_image], folder=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images', default=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images/default_avatar_sanr5o.png', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
     bio = models.TextField(blank=True)
     overview = models.TextField(blank=True)
+    bank_name = models.CharField(max_length=50, blank=True)
+    account_number = models.CharField(max_length=25, blank=True, validators=[RegexValidator(r'^\d{1,25}$', 'Enter a valid account number.')])
+
 
     @property
     def user_role(self):

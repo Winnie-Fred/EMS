@@ -2,3 +2,7 @@
 a, .text-primary {
   color: black !important;
 }
+
+.has-error {
+  color: #dc3545 !important;
+}

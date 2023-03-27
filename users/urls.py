@@ -21,4 +21,6 @@ app_name = 'users'
 
 urlpatterns = [
     path('profile/', views.profile, name='profile'),
+    path('verify_account_number/', views.verify_account_number, name='verify_account_number'),
+
 ]
