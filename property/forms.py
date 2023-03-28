@@ -24,7 +24,7 @@ PropertyExteriorImageFormSet = inlineformset_factory(Property, PropertyExteriorI
 PropertyExteriorImageFormSet = inlineformset_factory(Property, PropertyInteriorImage, form=PropertyInteriorImageForm, extra=1)
 
 class PropertyFilterForm(forms.Form):
-    q = forms.CharField(required=False, label='Search')
+    search_term = forms.CharField(required=False, label='Search')
     category = forms.ChoiceField(choices=Property.CATEGORY_CHOICES, required=False)
     property_type = forms.ChoiceField(choices=Property.PROPERTY_TYPES, required=False)
     min_price = forms.DecimalField(decimal_places=2, required=False, label='Minimum Price')

@@ -6,70 +6,68 @@ from .models import Property
 from .forms import PropertyFilterForm
 
 # Create your views here.
+
 def property_search(request):
-    form = PropertyFilterForm(request.GET)
     properties = Property.objects.filter(is_published=True)
-
+    form = PropertyFilterForm(request.GET)
     if form.is_valid():
-        search_term = form.cleaned_data.get('q')
-        category = form.cleaned_data.get('category')
-        property_type = form.cleaned_data.get('property_type')
-        min_price = form.cleaned_data.get('min_price')
-        max_price = form.cleaned_data.get('max_price')
-        min_bedrooms = form.cleaned_data.get('min_bedrooms')
-        min_bathrooms = form.cleaned_data.get('min_bathrooms')
-        min_garage = form.cleaned_data.get('min_garage')
-        min_sqft = form.cleaned_data.get('min_sqft')
-        address = form.cleaned_data.get('address')
-        city = form.cleaned_data.get('city')
-        state = form.cleaned_data.get('state')
-        for_sale_or_rent = form.cleaned_data.get('for_sale_or_rent')
-        is_published = form.cleaned_data.get('is_published')
-
-        properties = Property.objects.filter(Q(title__icontains=search_term) | Q(description__icontains=search_term))
-
+        search_term = form.cleaned_data['search_term']
+        category = form.cleaned_data['category']
+        property_type = form.cleaned_data['property_type']
+        min_price = form.cleaned_data['min_price']
+        max_price = form.cleaned_data['max_price']
+        min_bedrooms = form.cleaned_data['min_bedrooms']
+        max_bedrooms = form.cleaned_data['max_bedrooms']
+        min_bathrooms = form.cleaned_data['min_bathrooms']
+        max_bathrooms = form.cleaned_data['max_bathrooms']
+        min_garage = form.cleaned_data['min_garage']
+        max_garage = form.cleaned_data['max_garage']
+        min_sqft = form.cleaned_data['min_sqft']
+        max_sqft = form.cleaned_data['max_sqft']
+        address = form.cleaned_data['address']
+        city = form.cleaned_data['city']
+        state = form.cleaned_data['state']
+        for_sale_or_rent = form.cleaned_data['for_sale_or_rent']
+        
+        if search_term:
+            properties = properties.filter(Q(title__icontains=search_term) | Q(description__icontains=search_term))
         if category:
             properties = properties.filter(category=category)
-
         if property_type:
-            properties = properties.filter(for_sale_or_rent=property_type)
-
+            properties = properties.filter(type=property_type)
         if min_price:
             properties = properties.filter(price__gte=min_price)
-
         if max_price:
             properties = properties.filter(price__lte=max_price)
-
         if min_bedrooms:
             properties = properties.filter(bedrooms__gte=min_bedrooms)
-
+        if max_bedrooms:
+            properties = properties.filter(bedrooms__lte=max_bedrooms)
         if min_bathrooms:
             properties = properties.filter(bathrooms__gte=min_bathrooms)
-
+        if max_bathrooms:
+            properties = properties.filter(bathrooms__lte=max_bathrooms)
         if min_garage:
             properties = properties.filter(garage__gte=min_garage)
-
+        if max_garage:
+            properties = properties.filter(garage__lte=max_garage)
         if min_sqft:
             properties = properties.filter(sqft__gte=min_sqft)
-
+        if max_sqft:
+            properties = properties.filter(sqft__lte=max_sqft)
         if address:
             properties = properties.filter(Q(address__icontains=address) | Q(city__icontains=address) | Q(state__icontains=address))
-            
         if city:
             properties = properties.filter(city__icontains=city)
-
         if state:
             properties = properties.filter(state__icontains=state)
-
         if for_sale_or_rent:
             properties = properties.filter(for_sale_or_rent=for_sale_or_rent)
-
-        if is_published is not None:
-            properties = properties.filter(is_published=is_published)
-
+        
+        
     context = {
-        'form': form,
         'properties': properties,
+        'form': form,
     }
     
     referrer = request.META.get('HTTP_REFERER')
@@ -81,6 +79,7 @@ def property_search(request):
         return render(request, referrer, context)
     else:
         return render(request, 'main-site/properties-left-side-bar.html', context)
+
 
 def properties_v1(request):
     return render(request, 'main-site/properties-v1.html')

@@ -24,6 +24,7 @@ class Property(models.Model):
     )
     listed_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
+    type = models.CharField(max_length=50, help_text='Type e.g. Apartment, Office')
     date_listed = models.DateTimeField(default=timezone.now)
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES)
     sqft = models.IntegerField(help_text='square footage')
