@@ -703,3 +703,59 @@ var swiper = new Swiper('.property-details-images-swiper-container', {
   watchSlidesProgress: true,
 });
 
+function rangeSlider(rangeId, minId, maxId, initialStart, initialStop, min, max, myWNumb) {
+  if (document.getElementById(minId) && document.getElementById(maxId)) {
+    var priceRange = document.getElementById(rangeId);
+    var minPrice = document.getElementById(minId);
+    var maxPrice = document.getElementById(maxId);
+  
+    noUiSlider.create(priceRange, {
+      start: [initialStart, initialStop], // initial values
+      connect: true,
+      range: {
+        'min': min,
+        'max': max
+      },
+      format: myWNumb
+    });
+    
+    priceRange.noUiSlider.on('update', function(values, handle) {
+    var value = values[handle];
+    
+    if (handle) {
+      maxPrice.value = value;
+    } else {
+      minPrice.value = value;
+    }
+    });
+    
+    minPrice.addEventListener('change', function() {
+      priceRange.noUiSlider.set([this.value, null]);
+    });
+    
+    maxPrice.addEventListener('change', function() {
+      priceRange.noUiSlider.set([null, this.value]);
+    });
+  
+  }
+}
+
+myWNumb = wNumb({
+  decimals: 0, // set the number of decimals to 0 for integer values
+  thousand: ',', // use comma as thousand separator
+  prefix: '₦' // add a naira sign as prefix
+})
+
+// For Sale
+rangeSlider("price_range", "min_price", "max_price", 200000, 50000000, 0, 100000000, myWNumb)
+rangeSlider("sqft_range", "min_sqft", "max_sqft", 100, 2000, 500, 2500, wNumb({decimals: 0, thousand: ',', suffix: 'Sqft'}))
+rangeSlider("bedrooms_range", "min_bedrooms", "max_bedrooms", 2, 6, 0, 10, wNumb({decimals: 0, thousand: ',', suffix: ' bedrooms'}))
+rangeSlider("bathrooms_range", "min_bathrooms", "max_bathrooms", 2, 6, 0, 10, wNumb({decimals: 0, thousand: ',', suffix: ' bathrooms'}))
+rangeSlider("garage_range", "min_garage", "max_garage", 1, 3, 0, 5, wNumb({decimals: 0, thousand: ',', suffix: ' garages'}))
+
+// For Rent
+rangeSlider("price_range2", "min_price2", "max_price2", 200000, 50000000, 0, 100000000, myWNumb)
+rangeSlider("sqft_range2", "min_sqft2", "max_sqft2", 100, 2000, 500, 2500, wNumb({decimals: 0, thousand: ',', suffix: 'Sqft'}))
+rangeSlider("bedrooms_range2", "min_bedrooms2", "max_bedrooms2", 2, 6, 0, 10, wNumb({decimals: 0, thousand: ',', suffix: ' bedrooms'}))
+rangeSlider("bathrooms_range2", "min_bathrooms2", "max_bathrooms2", 2, 6, 0, 10, wNumb({decimals: 0, thousand: ',', suffix: ' bathrooms'}))
+rangeSlider("garage_range2", "min_garage2", "max_garage2", 1, 3, 0, 5, wNumb({decimals: 0, thousand: ',', suffix: ' garages'}))

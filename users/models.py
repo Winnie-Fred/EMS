@@ -10,10 +10,9 @@ from django.db import models
 
 
 from cloudinary.models import CloudinaryField
-from cloudinary.models import CloudinaryResource
 
 from helper import configurations
-from helper.views import fetch_banks
+from helper.views import validate_image
 
 
 # Create your models here.
@@ -68,15 +67,7 @@ class CustomUser(AbstractUser):
     def phone_number_raw(self):
         return f'0{self.phone_number}'
     
-def validate_image(file):
-    try:
-        if not file.content_type.startswith('image'):
-            raise ValidationError('File is not an image')
-    except AttributeError:
-        pass
 
-    if not isinstance(file, CloudinaryResource) and file.resource_type == 'image':
-        raise ValidationError('File is not an image')
     
 User = get_user_model()
 

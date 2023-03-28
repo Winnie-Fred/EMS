@@ -89,7 +89,7 @@
      </li>
      {% if not request.user.userprofile.user_is_tenant %}
      <li {% if add_property_class %} class="{{ add_property_class }}" {% endif %}>
-      <a href="{% url 'pages:add_properties' %}">
+      <a href="{% url 'property:add_property' %}">
        Add Property
       </a>
      </li>

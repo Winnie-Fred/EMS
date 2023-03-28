@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.conf import settings
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -32,31 +32,6 @@ def about(request):
 
 def about_v2(request):
     return render(request, 'main-site/about-v2.html')
-
-def properties_v1(request):
-    return render(request, 'main-site/properties-v1.html')
-
-def properties_v2(request):
-    return render(request, 'main-site/properties-v2.html')
-
-@user_passes_test(lambda user: not user.userprofile.user_is_tenant)
-def add_properties(request):
-    return render(request, 'main-site/dashboard/add-listing.html')
-
-def properties_left_side_bar(request):
-    return render(request, 'main-site/properties-left-side-bar.html')
-
-def properties_right_side_bar(request):
-    return render(request, 'main-site/properties-right-side-bar.html')
-
-def properties_list_left_side_bar(request):
-    return render(request, 'main-site/properties-list-left-side-bar.html')
-
-def properties_list_right_side_bar(request):
-    return render(request, 'main-site/properties-list-right-side-bar.html')
-
-def properties_details(request):
-    return render(request, 'main-site/properties-details.html')
 
 def service(request):
     return render(request, 'main-site/service.html')

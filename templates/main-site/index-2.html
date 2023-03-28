@@ -215,79 +215,79 @@
         <!-- Testimonial carousel Start -->
         <section class="testimonial-section bg-no-repeat bg-white relative z-[5]"">
             <div class=" container testimonial-carousel-two relative">
-            <div class="scene dots-shape absolute left-0">
-                <img data-depth="0.4" class="z-[1]" src="{% static 'main-site/assets/images/testimonial/dots.png' %}" width="106" height="129" loading="lazy" alt="shape">
+                <div class="scene dots-shape absolute left-0">
+                    <img data-depth="0.4" class="z-[1]" src="{% static 'main-site/assets/images/testimonial/dots.png' %}" width="106" height="129" loading="lazy" alt="shape">
+                </div>
+                <div class="grid items-center grid-cols-12 gap-x-[30px]">
+                    <div class="col-span-12 relative">
+                        <div class="swiper rounded-[30px] pb-[40px] md:pb-0">
+                            <div class="swiper-wrapper">
+                                {% with context_248050='[{"image":"2","title":"Oliver Stephen"},{"image":"4","title":"Sun Francisco"},{"image":"2","title":"Oliver Stephen"}]' %}{% for loop_349121 in context_248050|json_loads %}{% include "main-site/partials/testimonial-carousel/style-two.html" with image=loop_349121.image title=loop_349121.title %}{% endfor %}{% endwith %}
+
+                            </div>
+                            <!-- If we need navigation buttons -->
+                            <div class="testimonial-pagination hidden sm:block">
+                                <div class="swiper-button-prev w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[30px]">
+                                </div>
+                                <div class="swiper-button-next w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[85px]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="grid items-center grid-cols-12 gap-x-[30px]">
-                <div class="col-span-12 relative">
-                    <div class="swiper rounded-[30px] pb-[40px] md:pb-0">
-                        <div class="swiper-wrapper">
-                            {% with context_248050='[{"image":"2","title":"Oliver Stephen"},{"image":"4","title":"Sun Francisco"},{"image":"2","title":"Oliver Stephen"}]' %}{% for loop_349121 in context_248050|json_loads %}{% include "main-site/partials/testimonial-carousel/style-two.html" with image=loop_349121.image title=loop_349121.title %}{% endfor %}{% endwith %}
+        </section>
+        <!-- Testimonial carousel End -->
+
+        <!-- Blog Section Start  -->
+        <section class="blog-section relative py-[60px] md:py-[80px] lg:py-[120px]">
+            <div class="container">
+                <div class="">
+                    <div class="">
+                        <div class="mb-[60px] text-center">
+                            <span class="text-secondary text-tiny inline-block mb-2">Our Blog</span>
+                            <h2 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
+                                Check Our Blog Posts<span class="text-secondary">.</span></h2>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-[30px] mb-[-30px]">
+                            {% with context_763805='[{"image":"1","postmeta":"James Alber on 22 December, 21","title":"Tip’s about Real Estate Recent Conditions from Agent."},{"image":"2","postmeta":"Shohel Gyes on 21 December, 21","title":"Importance of Build quality of modern Real Estate."},{"image":"3","postmeta":"Shohel Gyes on 21 December, 21","title":"Importance of Build quality of modern Real Estate."}]' %}{% for loop_515518 in context_763805|json_loads %}{% include "main-site/partials/blog/index.html" with image=loop_515518.image postmeta=loop_515518.postmeta title=loop_515518.title %}{% endfor %}{% endwith %}
 
                         </div>
-                        <!-- If we need navigation buttons -->
-                        <div class="testimonial-pagination hidden sm:block">
-                            <div class="swiper-button-prev w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[30px]">
-                            </div>
-                            <div class="swiper-button-next w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[85px]">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-    </div>
-    </section>
-    <!-- Testimonial carousel End -->
-
-    <!-- Blog Section Start  -->
-    <section class="blog-section relative py-[60px] md:py-[80px] lg:py-[120px]">
-        <div class="container">
-            <div class="">
-                <div class="">
-                    <div class="mb-[60px] text-center">
-                        <span class="text-secondary text-tiny inline-block mb-2">Our Blog</span>
-                        <h2 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
-                            Check Our Blog Posts<span class="text-secondary">.</span></h2>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-[30px] mb-[-30px]">
-                        {% with context_763805='[{"image":"1","postmeta":"James Alber on 22 December, 21","title":"Tip’s about Real Estate Recent Conditions from Agent."},{"image":"2","postmeta":"Shohel Gyes on 21 December, 21","title":"Importance of Build quality of modern Real Estate."},{"image":"3","postmeta":"Shohel Gyes on 21 December, 21","title":"Importance of Build quality of modern Real Estate."}]' %}{% for loop_515518 in context_763805|json_loads %}{% include "main-site/partials/blog/index.html" with image=loop_515518.image postmeta=loop_515518.postmeta title=loop_515518.title %}{% endfor %}{% endwith %}
-
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Blog Section End  -->
+        </section>
+        <!-- Blog Section End  -->
 
-    <!-- News Letter section start -->
-    <section class="py-[80px] lg:p-[90px] bg-primary relative">
-        <div class="container">
-            <div class="grid grid-cols-1">
-                <div class="col-span">
-                    {% include 'main-site/partials/news-letter/index-2.html' %}
+        <!-- News Letter section start -->
+        <section class="py-[80px] lg:p-[90px] bg-primary relative">
+            <div class="container">
+                <div class="grid grid-cols-1">
+                    <div class="col-span">
+                        {% include 'main-site/partials/news-letter/index-2.html' %}
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- News Letter section End -->
+        </section>
+        <!-- News Letter section End -->
 
 
-    <!-- Footer Start -->
-    <footer class="footer bg-[#EEEEEE] pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat" style="background-image: url('{{ STATIC_URL }}main-site/assets/images/footer/pattern.png');">
-        <div class="container">
-            {% include 'main-site/partials/footer/index.html' %}
-        </div>
-    </footer>
-    <!-- Footer End -->
+        <!-- Footer Start -->
+        <footer class="footer bg-[#EEEEEE] pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat" style="background-image: url('{{ STATIC_URL }}main-site/assets/images/footer/pattern.png');">
+            <div class="container">
+                {% include 'main-site/partials/footer/index.html' %}
+            </div>
+        </footer>
+        <!-- Footer End -->
 
-    <a id="scrollUp" class="w-12 h-12 rounded-full bg-primary text-white fixed right-5 bottom-16 flex flex-wrap items-center justify-center transition-all duration-300 z-10" href="#" aria-label="scroll up">
-        <svg width="25" height="25" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M6.101 261.899L25.9 281.698c4.686 4.686 12.284 4.686 16.971 0L198 126.568V468c0 6.627 5.373 12 12 12h28c6.627 0 12-5.373 12-12V126.568l155.13 155.13c4.686 4.686 12.284 4.686 16.971 0l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L232.485 35.515c-4.686-4.686-12.284-4.686-16.971 0L6.101 244.929c-4.687 4.686-4.687 12.284 0 16.97z" />
-        </svg>
-    </a>
+        <a id="scrollUp" class="w-12 h-12 rounded-full bg-primary text-white fixed right-5 bottom-16 flex flex-wrap items-center justify-center transition-all duration-300 z-10" href="#" aria-label="scroll up">
+            <svg width="25" height="25" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M6.101 261.899L25.9 281.698c4.686 4.686 12.284 4.686 16.971 0L198 126.568V468c0 6.627 5.373 12 12 12h28c6.627 0 12-5.373 12-12V126.568l155.13 155.13c4.686 4.686 12.284 4.686 16.971 0l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L232.485 35.515c-4.686-4.686-12.284-4.686-16.971 0L6.101 244.929c-4.687 4.686-4.687 12.284 0 16.97z" />
+            </svg>
+        </a>
     </div>
 
 

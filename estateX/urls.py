@@ -24,5 +24,6 @@ urlpatterns = [
     path('estate_manager/', include('estate_manager.urls')),
     path('', include('pages.urls')),
     path('', include('users.urls')),
+    path('', include('property.urls')),
     
 ]

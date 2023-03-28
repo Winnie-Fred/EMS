@@ -2,6 +2,10 @@ import requests
 import os
 
 from django.shortcuts import render
+from django.core.exceptions import ValidationError
+
+from cloudinary.models import CloudinaryResource
+
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -22,3 +26,13 @@ def fetch_banks():
             bank_choices = [(f"{bank['name']}---{bank['code']}", bank['name']) for bank in banks]
         bank_choices = [("---", "Select Bank")] + bank_choices
     return bank_choices
+
+def validate_image(file):
+    try:
+        if not file.content_type.startswith('image'):
+            raise ValidationError('File is not an image')
+    except AttributeError:
+        pass
+
+    if not isinstance(file, CloudinaryResource) and file.resource_type == 'image':
+        raise ValidationError('File is not an image')
