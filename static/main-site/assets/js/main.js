@@ -692,3 +692,14 @@ cancelBtns.forEach(btn => {
   });
 });
 
+var swiper = new Swiper('.property-details-images-swiper-container', {
+  loop: true, // Set to true to loop through slides continuously
+  navigation: {
+    prevEl: '.property-details-swiper-button-prev',
+    nextEl: '.property-details-swiper-button-next',
+  },
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+  watchSlidesProgress: true,
+});
+

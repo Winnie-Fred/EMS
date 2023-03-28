@@ -49,7 +49,21 @@
             <div class="container">
                 <div class="grid grid-cols-12 mb-[-30px] gap-[30px] xl:gap-[50px]">
                     <div class="col-span-12 md:col-span-6 lg:col-span-8 mb-[30px]">
-                        <img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465">
+                        {% comment %} <img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465"> {% endcomment %}
+                        <div class="property-details-images-swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465"></div>
+                                <div class="swiper-slide"><img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465"></div>
+                                <div class="swiper-slide"><img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465"></div>
+                                <!-- Add more slides as needed -->
+                            </div>
+                            <!-- Add navigation -->
+                            <div class="hidden sm:block">
+                                <div class="property-details-swiper-button-next swiper-button-next w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[30px]"></div>
+                                <div class="property-details-swiper-button-prev swiper-button-prev w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[85px]"></div>
+                            </div>
+                        </div>
+                        
                         <div class="mt-[45px] mb-[35px]">
                             <h2 class="font-lora leading-tight text-[22px] md:text-[28px] lg:text-[36px] text-primary mb-[5px] font-medium">
                                 Ruposibangla de Parlosia.</h2>

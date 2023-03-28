@@ -6275,3 +6275,19 @@ input:focus {
   cursor: pointer;
   margin-left: auto;
 }
+
+.property-details-images-swiper-container {
+  position: relative;
+  max-height: 465px; /* adjust the height as needed */
+  overflow: hidden;
+}
+
+.property-details-swiper-button-next.swiper-button-disabled {
+  opacity: 1;
+  background-color: #B39359;
+}
+.property-details-swiper-button-prev.swiper-button-disabled {
+  opacity: 1;
+  background-color: #B39359;
+}
+
