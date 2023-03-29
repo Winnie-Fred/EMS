@@ -4,25 +4,26 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
+from helper.views import empty_search_form_context
 
 # Create your views here.
 def home(request):
-    return render(request, 'main-site/index-3.html')
+    return home_02(request)
 
-def home_01(request):
-    return render(request, 'main-site/index.html')
+def home_01(request):    
+    return render(request, 'main-site/index.html', empty_search_form_context)
 
 def home_02(request):
-    return render(request, 'main-site/index-2.html')
+    return render(request, 'main-site/index-2.html', empty_search_form_context)
 
-def home_03(request):
-    return render(request, 'main-site/index-3.html')
+def home_03(request):    
+    return render(request, 'main-site/index-3.html', empty_search_form_context)
 
-def home_04(request):
-    return render(request, 'main-site/index-4.html')
+def home_04(request):    
+    return render(request, 'main-site/index-4.html', empty_search_form_context)
 
 def home_05(request):
-    return render(request, 'main-site/index-5.html')
+    return render(request, 'main-site/index-5.html', empty_search_form_context)
 
 def home_06(request):
     return render(request, 'main-site/index-6.html')

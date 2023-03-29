@@ -12,7 +12,6 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 
 from helper import configurations
-from helper.views import validate_image
 
 
 # Create your models here.

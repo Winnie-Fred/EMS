@@ -41,4 +41,18 @@ class PropertyFilterForm(forms.Form):
     city = forms.CharField(required=False, label='City')
     state = forms.CharField(required=False, label='State')
     for_sale_or_rent = forms.ChoiceField(choices=Property.PROPERTY_TYPES, required=False, label='For Sale/Rent')
-    is_published = forms.BooleanField(required=False, label='Published')
+
+
+    def extract_all_values(self, get_request):
+        get_request = get_request.copy()
+        for key, value in get_request.items():
+            if key in ['min_price', 'max_price', 'min_sqft', 'max_sqft']:
+                # remove all non-digit characters from the value
+                get_request[key] = ''.join(filter(str.isdigit, value))
+            elif key in ['min_bedrooms', 'max_bedrooms', 'min_bathrooms', 'max_bathrooms', 'min_garage', 'max_garage']:
+                # get the first digit from the value
+                get_request[key] = ''.join(filter(str.isdigit, value))[0]
+            else:
+                get_request[key] = value
+        return get_request
+        

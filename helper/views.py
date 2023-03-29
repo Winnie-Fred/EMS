@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.core.exceptions import ValidationError
 
 from cloudinary.models import CloudinaryResource
+from property.forms import PropertyFilterForm
 
 
 from dotenv import load_dotenv
@@ -37,3 +38,8 @@ def validate_image(file):
 
     if not isinstance(file, CloudinaryResource) and file.resource_type == 'image':
         raise ValidationError('File is not an image')
+
+def get_empty_search_form_context():
+    return {'form':PropertyFilterForm()}
+
+empty_search_form_context = get_empty_search_form_context()

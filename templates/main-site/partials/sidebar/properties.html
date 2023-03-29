@@ -7,21 +7,32 @@
                 class="text-secondary">.</span></h3>
 
         <form action="{% url 'property:property_search' %}" class="relative">
+            {% for error in form.non_field_errors %}
+                <p style="color: #f71735; padding: 5px; margin-bottom: 15px;"><strong>{{ error }}</strong></p>
+            {% endfor %}
             <div class="relative mb-[25px] bg-white">
-                <input name="search_term" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="Search">                
+                <input name="search_term" value="{{ form.search_term.value|default:'' }}" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="Search">                
                 <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none" width="14" height="14" viewBox="0 0 24 24">
                     <path fill="none" d="M0 0h24v24H0V0z"/>
                     <path d="M22.46 20.04l-4.18-4.18a8.47 8.47 0 1 0-1.4 1.4l4.18 4.18c.38.38 1 .38 1.38 0a.98.98 0 0 0 0-1.4zM4.5 9a4.5 4.5 0 1 1 4.5 4.5A4.5 4.5 0 0 1 4.5 9z"/>
                 </svg>
             </div>
+            {% for error in form.search_term.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+            {% endfor %}
+
             <div class="relative mb-[25px] bg-white">
-                <input name="address" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="Location">
+                <input name="address" value="{{ form.address.value|default:'' }}" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="Location">
                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.39648 6.41666H8.60482" stroke="#016450" stroke-width="1.5" stroke-linecap="round" />
                     <path d="M7 8.02083V4.8125" stroke="#016450" stroke-width="1.5" stroke-linecap="round" />
                     <path d="M2.11231 4.9525C3.26148 -0.0991679 10.7456 -0.0933345 11.889 4.95833C12.5598 7.92167 10.7165 10.43 9.10064 11.9817C7.92814 13.1133 6.07314 13.1133 4.89481 11.9817C3.28481 10.43 1.44148 7.91583 2.11231 4.9525Z" stroke="#0B2C3D" stroke-width="1.5" />
                 </svg>
             </div>
+            {% for error in form.address.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+            {% endfor %}
+
             <div class="relative mb-[25px] bg-white">
                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_928_754)">
@@ -38,11 +49,14 @@
                     </defs>
                 </svg>
                 <select name="category" class="nice-select font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body borderborder-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary border-primary pl-[40px] pr-[20px] py-[8px] focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
-                    <option selected value="RES">Residential</option>
-                    <option value="COM">Commercial</option>
-                    <option value="LUX">Luxury</option>
+                    {% for value,label in form.category.field.choices %}
+                        <option value="{{ value }}" {% if value == form.category.value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}                  
                 </select>
             </div>
+            {% for error in form.category.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+            {% endfor %}
 
             <div class="relative mb-[25px] bg-white">
                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,10 +68,14 @@
                 </svg>
                 
                 <select name="for_sale_or_rent" id="forSaleOrRent" class="nice-select font-light w-full h-[45px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
-                    <option value="Rent" selected>Rent</option>
-                    <option value="Sale">Sale</option>
+                    {% for value,label in form.for_sale_or_rent.field.choices %}
+                        <option value="{{ value }}" {% if value == form.category.value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %} 
                 </select>
             </div>
+            {% for error in form.for_sale_or_rent.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+            {% endfor %}
 
             
             <div class="flex">
@@ -71,10 +89,16 @@
             <div class="relative mb-[25px] bg-white">
                 <div id="price_range" style="margin-top: 8px; margin-bottom: 8px;"></div>
                 <div class="input-range">
-                    <input type="text" id="min_price" name="min_price" placeholder="Min price" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
-                    <input type="text" id="max_price" name="max_price" placeholder="Max price" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.min_price.value|default:'' }}" type="text" id="min_price" name="min_price" placeholder="Min price" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.max_price.value|default:'' }}" type="text" id="max_price" name="max_price" placeholder="Max price" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
                 </div>
             </div>
+            {% for error in form.min_price.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>min price: {{ error }}</strong></p>
+            {% endfor %}
+            {% for error in form.max_price.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>max price: {{ error }}</strong></p>
+            {% endfor %}
 
             <div class="flex">                
                 <svg style="margin-right: 5px;" class="pointer-events-none ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,14 +113,20 @@
             <div class="relative mb-[25px] bg-white">
                 <div id="sqft_range" style="margin-top: 8px; margin-bottom: 8px;"></div>
                 <div class="input-range">
-                    <input type="text" id="min_sqft" name="min_sqft" placeholder="Min sqft" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
-                    <input type="text" id="max_sqft" name="max_sqft" placeholder="Max sqft" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.min_sqft.value|default:'' }}" type="text" id="min_sqft" name="min_sqft" placeholder="Min sqft" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.max_sqft.value|default:'' }}" type="text" id="max_sqft" name="max_sqft" placeholder="Max sqft" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
                 </div>
             </div>
+            {% for error in form.min_sqft.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>min sqft: {{ error }}</strong></p>
+            {% endfor %}
+            {% for error in form.max_sqft.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>max sqft: {{ error }}</strong></p>
+            {% endfor %}
 
 
             <div class="relative mb-[25px] bg-white">
-                <input name="property_type" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="Type e.g. Apartment, Office">
+                <input name="property_type" value="{{ form.property_type.value|default:'' }}" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="Type e.g. Apartment, Office">
                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.16602 12.8333H12.8327" stroke="#0B2C3D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M1.7207 12.8333L1.74987 5.81583C1.74987 5.45999 1.91904 5.12169 2.19904 4.90002L6.28237 1.72085C6.70237 1.39418 7.29154 1.39418 7.71737 1.72085L11.8007 4.89418C12.0865 5.11585 12.2499 5.45416 12.2499 5.81583V12.8333" stroke="#0B2C3D" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round" />
@@ -105,22 +135,31 @@
                     <path d="M6.125 4.375H7.875" stroke="#0B2C3D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </div>
+            {% for error in form.property_type.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+            {% endfor %}
 
             <div class="relative mb-[25px] bg-white">
-                <input name="city" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="City">                
+                <input name="city" value="{{ form.city.value|default:'' }}" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="City">                
                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none" xmlns="http://www.w3.org/2000/svg"  fill="currentColor" width="16" height="16" viewBox="0 0 16 16">
                     <path d="M5.5 12.5v-5h-1v5h-1v-5h-1v5h-1l.5-6h1v2h1v-2h1v2h1l.5 6z"/>
                     <path d="M7.5 0l-.5 1.5h-4l-.5-1.5h-2v15h2v-5h1.5v5h2v-5h1.5v5h2v-5h2v5h1.5v-10.5h-6v-1.5h4v-2.5h-1zm-6.5 12.5v-11h1v11h-1zm2 0v-11h1v11h-1zm2 0v-11h1v11h-1zm4 0v-11h1v11h-1z"/>
                 </svg>
             </div>
+            {% for error in form.city.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+            {% endfor %}
 
             <div class="relative mb-[25px] bg-white">
-                <input name="state" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="State">                
+                <input name="state" value="{{ form.state.value|default:'' }}" class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white" type="text" placeholder="State">                
                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none" xmlns="http://www.w3.org/2000/svg"  fill="currentColor" width="16" height="16" viewBox="0 0 16 16">
                     <path d="M13.6 2.6l-1.2-1.2c-.4-.4-1-.4-1.4 0L8 4.4 6.2 2.6c-.4-.4-1-.4-1.4 0L3.4 3.8c-.4.4-.4 1 0 1.4L5 7.4 3.4 9.2c-.4.4-.4 1 0 1.4l1.2 1.2c.4.4 1 .4 1.4 0L8 9.6l1.8 1.8c.4.4 1 .4 1.4 0l1.2-1.2c.4-.4.4-1 0-1.4L11 7.4l1.6-1.6c.4-.4.4-1 0-1.4z"/>
                     <path d="M8 1.5c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 10c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"/>
-                </svg>                
+                </svg> 
             </div>
+            {% for error in form.state.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>{{ error }}</strong></p>
+            {% endfor %}               
 
             <div class="flex">                
                 <svg style="margin-right: 5px;" class="pointer-events-none ml-2" width="14" height="14" viewBox="0 0 14 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -131,10 +170,16 @@
             <div class="relative mb-[25px] bg-white">
                 <div id="bedrooms_range" style="margin-top: 8px; margin-bottom: 8px;"></div>
                 <div class="input-range">
-                    <input type="text" id="min_bedrooms" name="min_bedrooms" placeholder="Min bedrooms" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
-                    <input type="text" id="max_bedrooms" name="max_bedrooms" placeholder="Max bedrooms" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.min_bedrooms.value|default:'' }}" type="text" id="min_bedrooms" name="min_bedrooms" placeholder="Min bedrooms" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.max_bedrooms.value|default:'' }}" type="text" id="max_bedrooms" name="max_bedrooms" placeholder="Max bedrooms" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
                 </div>
             </div>
+            {% for error in form.min_bedrooms.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>min bedrooms: {{ error }}</strong></p>
+            {% endfor %}
+            {% for error in form.max_bedrooms.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>max bedrooms: {{ error }}</strong></p>
+            {% endfor %}
 
             <div class="flex">                                
                 <svg style="margin-right: 5px;" class="pointer-events-none ml-2" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -145,10 +190,16 @@
             <div class="relative mb-[25px] bg-white">
                 <div id="bathrooms_range" style="margin-top: 8px; margin-bottom: 8px;"></div>
                 <div class="input-range">
-                    <input type="text" id="min_bathrooms" name="min_bathrooms" placeholder="Min bathrooms" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
-                    <input type="text" id="max_bathrooms" name="max_bathrooms" placeholder="Max bathrooms" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.min_bathrooms.value|default:'' }}" type="text" id="min_bathrooms" name="min_bathrooms" placeholder="Min bathrooms" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.max_bathrooms.value|default:'' }}" type="text" id="max_bathrooms" name="max_bathrooms" placeholder="Max bathrooms" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
                 </div>
             </div>
+            {% for error in form.min_bathrooms.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>min bathrooms: {{ error }}</strong></p>
+            {% endfor %}
+            {% for error in form.max_bathrooms.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>max bathrooms: {{ error }}</strong></p>
+            {% endfor %}
 
             <div class="flex">   
                 <svg class="mr-[5px]" style="margin-right: 5px;" class="pointer-events-none ml-2" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -163,10 +214,16 @@
             <div class="relative mb-[25px] bg-white">
                 <div id="garage_range" style="margin-top: 8px; margin-bottom: 8px;"></div>
                 <div class="input-range">
-                    <input type="text" id="min_garage" name="min_garage" placeholder="Min garage" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
-                    <input type="text" id="max_garage" name="max_garage" placeholder="Max garage" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.min_garage.value|default:'' }}" type="text" id="min_garage" name="min_garage" placeholder="Min garage" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
+                    <input value="{{ form.max_garage.value|default:'' }}" type="text" id="max_garage" name="max_garage" placeholder="Max garage" style="font-size: 12px;" class="placeholder:text-body leading-none font-light pr-3 focus:outline-none w-full bg-transparent">
                 </div>
             </div>
+            {% for error in form.min_garage.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>min garage: {{ error }}</strong></p>
+            {% endfor %}
+            {% for error in form.max_garage.errors %}
+                <p style="color: #f71735; padding: 5px;"><strong>max garage: {{ error }}</strong></p>
+            {% endfor %}
 
             <button type="submit" class="block z-[1] before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:z-[-1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[30px] py-[12px] capitalize font-medium text-white text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:z-[-2] after:bg-primary after:rounded-md after:transition-all">Search</button>
 

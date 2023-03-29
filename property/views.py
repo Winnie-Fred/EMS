@@ -1,15 +1,22 @@
-from django.shortcuts import render
-from django.db.models import Q
+from django.shortcuts import render, reverse
+from django.db.models import Q, Sum
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import messages
 
 from .models import Property
 from .forms import PropertyFilterForm
+
+from helper.views import empty_search_form_context
+from helper import configurations
+
 
 # Create your views here.
 
 def property_search(request):
     properties = Property.objects.filter(is_published=True)
-    form = PropertyFilterForm(request.GET)
+    form = PropertyFilterForm()
+    processed_get_request = form.extract_all_values(request.GET)
+    form = PropertyFilterForm(processed_get_request)
     if form.is_valid():
         search_term = form.cleaned_data['search_term']
         category = form.cleaned_data['category']
@@ -36,9 +43,11 @@ def property_search(request):
         if property_type:
             properties = properties.filter(type=property_type)
         if min_price:
-            properties = properties.filter(price__gte=min_price)
+            properties = properties.annotate(total_price=Sum('fee__amount', filter=(Q(fee__type='paymentForProperty') | Q(fee__type='rent'))))
+            properties = properties.filter(total_price__gte=min_price)
         if max_price:
-            properties = properties.filter(price__lte=max_price)
+            properties = properties.annotate(total_price=Sum('fee__amount', filter=(Q(fee__type='paymentForProperty') | Q(fee__type='rent'))))
+            properties = properties.filter(total_price__lte=max_price)
         if min_bedrooms:
             properties = properties.filter(bedrooms__gte=min_bedrooms)
         if max_bedrooms:
@@ -63,22 +72,17 @@ def property_search(request):
             properties = properties.filter(state__icontains=state)
         if for_sale_or_rent:
             properties = properties.filter(for_sale_or_rent=for_sale_or_rent)
-        
-        
+
+        print(f"Search successful: Found {len(properties)}", properties)
+    else:
+        messages.error(request, configurations.ERROR_IN_FORM_MESSAGE)
+        print("An error occured: form errors: ", form.errors)   
     context = {
         'properties': properties,
         'form': form,
     }
-    
-    referrer = request.META.get('HTTP_REFERER')
 
-    if referrer in ['main-site/properties-left-side-bar.html',
-                    'main-site/properties-right-side-bar.html',
-                    'main-site/properties-list-left-side-bar.html',
-                    'main-site/properties-list-right-side-bar.html']:
-        return render(request, referrer, context)
-    else:
-        return render(request, 'main-site/properties-left-side-bar.html', context)
+    return render(request, 'main-site/properties-left-side-bar.html', context)
 
 
 def properties_v1(request):
@@ -92,17 +96,17 @@ def properties_v2(request):
 def add_property(request):
     return render(request, 'main-site/dashboard/add-listing.html')
 
-def properties_left_side_bar(request):
-    return render(request, 'main-site/properties-left-side-bar.html')
+def properties_left_side_bar(request):    
+    return render(request, 'main-site/properties-left-side-bar.html', empty_search_form_context)
 
-def properties_right_side_bar(request):
-    return render(request, 'main-site/properties-right-side-bar.html')
+def properties_right_side_bar(request):    
+    return render(request, 'main-site/properties-right-side-bar.html', empty_search_form_context)
 
-def properties_list_left_side_bar(request):
-    return render(request, 'main-site/properties-list-left-side-bar.html')
+def properties_list_left_side_bar(request):    
+    return render(request, 'main-site/properties-list-left-side-bar.html', empty_search_form_context)
 
-def properties_list_right_side_bar(request):
-    return render(request, 'main-site/properties-list-right-side-bar.html')
+def properties_list_right_side_bar(request):    
+    return render(request, 'main-site/properties-list-right-side-bar.html', empty_search_form_context)
 
-def property_details(request):
-    return render(request, 'main-site/properties-details.html')
+def property_details(request):    
+    return render(request, 'main-site/properties-details.html', empty_search_form_context)

@@ -7,7 +7,6 @@ from django.db.models import Sum, Q
 
 from cloudinary.models import CloudinaryField
 
-from helper.views import validate_image
 from helper import configurations
 
 
@@ -19,8 +18,8 @@ class Property(models.Model):
         verbose_name_plural = "Properties"
 
     PROPERTY_TYPES = (
-        ('Sale', 'For Sale'),
         ('Rent', 'For Rent'),
+        ('Sale', 'For Sale'),
     )
     CATEGORY_CHOICES = (
         ('RES', 'Residential'),

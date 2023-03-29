@@ -28,12 +28,12 @@
             </div>
             <div class="col-span-12 selectricc-border-none">
                 <div id="forSale" class="tab-content bg-white border border-solid border-[#016450] border-opacity-25 rounded-bl-[15px] rounded-br-[15px] rounded-tr-[15px] px-[15px] sm:px-[30px] py-[40px] active">
-                    {% include 'main-site/partials/search-tab/for-sale-form.html' %}
+                    {% include 'main-site/partials/search-tab/for-sale-form.html' with form=form %}
                 </div>
 
 
                 <div id="forRent" class="tab-content bg-white border border-solid border-[#016450] border-opacity-25 rounded-bl-[15px] rounded-br-[15px] rounded-tr-[15px] px-[15px] sm:px-[30px] py-[40px]">
-                   {% include 'main-site/partials/search-tab/for-rent-form.html' %}
+                   {% include 'main-site/partials/search-tab/for-rent-form.html' with form=form %}
                 </div>
                 
             </div>
