@@ -30,6 +30,7 @@ def fetch_banks():
 def validate_image(file):
     try:
         if not file.content_type.startswith('image'):
+            print("It is not an image")
             raise ValidationError('File is not an image')
     except AttributeError:
         pass

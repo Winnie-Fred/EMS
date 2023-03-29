@@ -73,7 +73,7 @@ User = get_user_model()
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) # Delete profile when user is deleted
-    image = CloudinaryField('image', validators=[validate_image], folder=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images', default=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images/default_avatar_sanr5o.png', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
+    image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images', default=f'{configurations.CLOUDINARY_ROOT_DIR}/user_profile_images/default_avatar_sanr5o.png', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
     bio = models.TextField(blank=True)
     overview = models.TextField(blank=True)
     bank_name = models.CharField(max_length=50, blank=True)

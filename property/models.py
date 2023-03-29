@@ -3,11 +3,13 @@ import hashlib
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.db.models import Sum, Q
 
 from cloudinary.models import CloudinaryField
 
 from helper.views import validate_image
 from helper import configurations
+
 
 User = get_user_model()
 # Create your models here.
@@ -38,13 +40,30 @@ class Property(models.Model):
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(help_text='Provide detailed description of the property, ideally, not less than 55 words')
     is_published = models.BooleanField(default=True)
     number_of_views = models.IntegerField(default=0, editable=False)
 
     def __str__(self):
         return self.title
+
+    @property
+    def rental_or_purchase_price(self):
+        # Get the related fees where type is paymentForProperty or rent
+        fees = self.fee_set.filter(type__in=['paymentForProperty', 'rent'])
+        # Sum the amounts of the related fees
+        total_price = fees.aggregate(Sum('amount'))['amount__sum']
+        return total_price if total_price else 0
+
+    @property
+    def initial_payment_fees(self):
+        return self.fee_set.filter(initial_payment_field=True)
+
+    @property
+    def price(self):
+        fees = self.initial_payment_fees
+        total_price = fees.aggregate(Sum('amount'))['amount__sum']
+        return total_price if total_price else 0
 
 
 class FeaturedProperty(models.Model):
@@ -66,12 +85,12 @@ class FeaturedProperty(models.Model):
 
 class PropertyExteriorImage(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    image = CloudinaryField('image', validators=[validate_image], folder=f'{configurations.CLOUDINARY_ROOT_DIR}/property_exterior_images', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
+    image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/property_exterior_images', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
 
 
 class PropertyInteriorImage(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    image = CloudinaryField('image', validators=[validate_image], folder=f'{configurations.CLOUDINARY_ROOT_DIR}/property_interior_images', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
+    image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/property_interior_images', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
 
 
 

@@ -43,6 +43,7 @@ class Tenancy(models.Model):
 
 class Fee(models.Model):
     FEE_TYPES = (
+        ('paymentForProperty', 'Cost to Purchase or Own Property'),
         ('rent', 'Rent'),
         ('other', 'Other'),
     )
@@ -56,14 +57,14 @@ class Fee(models.Model):
 
     listing = models.ForeignKey(Property, on_delete=models.CASCADE, null=True, blank=True)
     tenancy = models.ForeignKey(Tenancy, on_delete=models.CASCADE, null=True, blank=True)
-    type = models.CharField(max_length=10, choices=FEE_TYPES)
-    name = models.CharField(max_length=255)
+    type = models.CharField(max_length=18, choices=FEE_TYPES)
+    name = models.CharField(max_length=255, help_text='e.g. Rent, Property Purchase Cost, Caution Fee, Deposit Fee, Security Fee')
     long_description = models.TextField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    recurring = models.CharField(max_length=10, choices=RECURRENCE_CHOICES, blank=True)
-    due_date = models.DateTimeField(blank=True)
+    recurring = models.CharField(max_length=10, choices=RECURRENCE_CHOICES, blank=True, null=True)
+    due_date = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
-    initial_payment_field = models.BooleanField(help_text="This fee is to be paid on first payment for property e.g. rent, deposit fee, caution fee, etc.", default=False)
+    initial_payment_field = models.BooleanField(help_text="This fee is to be paid on first payment for property e.g. rent, cost to purchase property, deposit fee, caution fee, etc.", default=False)
     is_published = models.BooleanField(default=False)
 
     @property
@@ -75,6 +76,8 @@ class Fee(models.Model):
                 return 'Yearly Rent'
             else:
                 return 'Rent'
+        elif self.type == 'paymentForProperty':
+            return "Property Purchase Cost"
         else:
             return f"{self.recurring.capitalize()} {self.name} fee" if self.recurring else f"One-time {self.name} fee"
 
@@ -85,7 +88,7 @@ class Fee(models.Model):
             raise ValidationError('Only one of property or tenancy can be selected.')
 
     def __str__(self):
-        return f'{self.short_description} for {self.property or self.tenancy}'
+        return f'{self.short_description} for {self.listing.title or self.tenancy.tenant.full_name}'
 
 class FeePayment(models.Model):
     fee = models.ForeignKey(Fee, on_delete=models.CASCADE)

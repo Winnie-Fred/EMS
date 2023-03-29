@@ -7,8 +7,3 @@ class FeeForm(forms.ModelForm):
     class Meta:
         model = Fee
         fields = '__all__'
-        
-
-    def __init__(self, user, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['property'].queryset = Property.objects.filter(listed_by=user)
