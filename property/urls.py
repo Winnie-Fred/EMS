@@ -27,6 +27,7 @@ urlpatterns = [
     path('properties_right_side_bar/', views.properties_right_side_bar, name='properties_right_side_bar'),
     path('properties_list_left_side_bar/', views.properties_list_left_side_bar, name='properties_list_left_side_bar'),
     path('properties_list_right_side_bar/', views.properties_list_right_side_bar, name='properties_list_right_side_bar'),
+    path('property/<int:pk>/', views.property_detail, name='property_detail'),
     path('property_details/', views.property_details, name='property_details'),
     path('property_search/', views.property_search, name='property_search'),
 

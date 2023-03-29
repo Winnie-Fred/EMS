@@ -47,6 +47,10 @@ class Property(models.Model):
         return self.title
 
     @property
+    def full_address(self):
+        return f"{self.address}, {self.city}, {self.state}"
+
+    @property
     def rental_or_purchase_price(self):
         # Get the related fees where type is paymentForProperty or rent
         fees = self.fee_set.filter(type__in=['paymentForProperty', 'rent'])

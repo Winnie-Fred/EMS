@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q, Sum
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
@@ -75,8 +75,7 @@ def property_search(request):
 
         print(f"Search successful: Found {len(properties)}", properties)
     else:
-        messages.error(request, configurations.ERROR_IN_FORM_MESSAGE)
-        print("An error occured: form errors: ", form.errors)   
+        messages.error(request, configurations.ERROR_IN_FORM_MESSAGE)          
     context = {
         'properties': properties,
         'form': form,
@@ -108,5 +107,17 @@ def properties_list_left_side_bar(request):
 def properties_list_right_side_bar(request):    
     return render(request, 'main-site/properties-list-right-side-bar.html', empty_search_form_context)
 
-def property_details(request):    
+def property_detail(request, pk):  
+    property = get_object_or_404(Property, pk=pk) 
+    property.number_of_views += 1 
+    property.save()
+
+    form = PropertyFilterForm()
+    context = {
+        'property':property,
+        'form': form
+    }
+    return render(request, 'main-site/properties-details.html', context)
+
+def property_details(request):  
     return render(request, 'main-site/properties-details.html', empty_search_form_context)
