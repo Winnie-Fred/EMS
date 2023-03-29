@@ -1,12 +1,12 @@
-import datetime
+from datetime import datetime
+
 from django.db import models
 from django.utils import timezone
-
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from dateutil.relativedelta import relativedelta
 from django.utils.timezone import make_aware
 
+from dateutil.relativedelta import relativedelta
 
 from property.models import Property
 
@@ -26,12 +26,12 @@ class Tenancy(models.Model):
     
     @property
     def rent_or_sale_tenancy(self):
-        return self.property.for_sale_or_rent
+        return self.listing.for_sale_or_rent
 
     @property
     def due_date(self):
         if self.rent_or_sale_tenancy == 'Rent':
-            rent_fee = Fee.objects.filter(property=self.property, type='rent').first()
+            rent_fee = Fee.objects.filter(listing=self.listing, type='rent').first()
             if rent_fee:
                 start_date = make_aware(datetime.combine(self.start_date, datetime.min.time()))
                 payment_interval = relativedelta(months=1) if rent_fee.recurring == 'monthly' else relativedelta(years=1)
@@ -42,7 +42,7 @@ class Tenancy(models.Model):
         return None
     
     def __str__(self):
-        return f"{self.tenant.get_full_name()} Tenancy"
+        return f"{self.tenant.get_full_name()} Tenancy for {str(self.listing)}"
 
 class Fee(models.Model):
     FEE_TYPES = (
@@ -86,9 +86,9 @@ class Fee(models.Model):
 
     def clean(self):
         if not self.listing and not self.tenancy:
-            raise ValidationError('Either a property or tenancy must be selected.')
+            raise ValidationError('Either a property or tenancy must be selected for this fee.')
         if self.listing and self.tenancy:
-            raise ValidationError('Only one of property or tenancy can be selected.')
+            raise ValidationError('A fee can only belong to either a property or a listing, not both.')
 
     def __str__(self):
         return f'{self.short_description} for {self.listing.title or self.tenancy.tenant.full_name}'
