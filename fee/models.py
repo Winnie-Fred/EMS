@@ -40,6 +40,9 @@ class Tenancy(models.Model):
                     due_date += payment_interval
                 return due_date.date()
         return None
+    
+    def __str__(self):
+        return f"{self.tenant.get_full_name()} Tenancy"
 
 class Fee(models.Model):
     FEE_TYPES = (
@@ -97,3 +100,9 @@ class FeePayment(models.Model):
 
     class Meta:
         unique_together = ('fee', 'tenancy')
+
+    def __str__(self):
+        if self.fee:
+            return f"{str(self.fee)} Fee Payment"
+        return f"{str(self.tenancy)} Fee Payment"
+        

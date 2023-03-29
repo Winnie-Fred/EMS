@@ -69,7 +69,7 @@
                 
                 <select name="for_sale_or_rent" id="forSaleOrRent" class="nice-select font-light w-full h-[45px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
                     {% for value,label in form.for_sale_or_rent.field.choices %}
-                        <option value="{{ value }}" {% if value == form.category.value %}selected{% endif %}>{{ label }}</option>
+                        <option value="{{ value }}" {% if value == form.for_sale_or_rent.value %}selected{% endif %}>{{ label }}</option>
                     {% endfor %} 
                 </select>
             </div>
