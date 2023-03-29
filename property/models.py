@@ -13,6 +13,9 @@ User = get_user_model()
 # Create your models here.
 
 class Property(models.Model):
+    class Meta:
+        verbose_name_plural = "Properties"
+
     PROPERTY_TYPES = (
         ('Sale', 'For Sale'),
         ('Rent', 'For Rent'),
@@ -24,6 +27,7 @@ class Property(models.Model):
     )
     listed_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
+    for_sale_or_rent = models.CharField(max_length=4, choices=PROPERTY_TYPES)
     type = models.CharField(max_length=50, help_text='Type e.g. Apartment, Office')
     date_listed = models.DateTimeField(default=timezone.now)
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES)
@@ -37,7 +41,6 @@ class Property(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(help_text='Provide detailed description of the property, ideally, not less than 55 words')
     is_published = models.BooleanField(default=True)
-    for_sale_or_rent = models.CharField(max_length=4, choices=PROPERTY_TYPES)
     number_of_views = models.IntegerField(default=0, editable=False)
 
     def __str__(self):
@@ -45,6 +48,8 @@ class Property(models.Model):
 
 
 class FeaturedProperty(models.Model):
+    class Meta:
+        verbose_name_plural = "Featured Properties"
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     is_featured = models.BooleanField(default=False)
     featured_start_date = models.DateTimeField(null=True, blank=True)
