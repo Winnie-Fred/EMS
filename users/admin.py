@@ -22,6 +22,20 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
+    list_display = UserAdmin.list_display + ('user_type', 'bank_name', 'account_number')
+
+    def user_type(self, obj):
+        return obj.userprofile.user_type
+
+    def bank_name(self, obj):
+        return obj.userprofile.bank_name
+    
+    def account_number(self, obj):
+        return obj.userprofile.account_number
+
+    user_type.short_description = 'User Type'
+    bank_name.short_description = 'Bank Name'
+    account_number.short_description = 'Account Number'
 
 
 admin.site.register(CustomUser, CustomUserAdmin)

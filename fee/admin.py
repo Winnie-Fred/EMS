@@ -6,7 +6,7 @@ from .models import Tenancy, Fee, FeePayment
 from .forms import FeeForm
 
 
-class FeeInline(admin.TabularInline):
+class FeeInline(admin.StackedInline):
     model = Fee
     extra = 0
 

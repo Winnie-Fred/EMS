@@ -1,27 +1,24 @@
 from django import forms
-from django.forms import inlineformset_factory
 
 from .models import Property, PropertyExteriorImage, PropertyInteriorImage
+
 
 class PropertyExteriorImageForm(forms.ModelForm):
     class Meta:
         model = PropertyExteriorImage
         fields = ('image',)
         widgets = {
-            'image': forms.ClearableFileInput(attrs={'multiple': True}),
+            'image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
         }
+
 
 class PropertyInteriorImageForm(forms.ModelForm):
     class Meta:
         model = PropertyInteriorImage
         fields = ('image',)
         widgets = {
-            'image': forms.ClearableFileInput(attrs={'multiple': True}),
+            'image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
         }
-
-
-PropertyExteriorImageFormSet = inlineformset_factory(Property, PropertyExteriorImage, form=PropertyExteriorImageForm, extra=1)
-PropertyExteriorImageFormSet = inlineformset_factory(Property, PropertyInteriorImage, form=PropertyInteriorImageForm, extra=1)
 
 class PropertyFilterForm(forms.Form):
     search_term = forms.CharField(required=False, label='Search')

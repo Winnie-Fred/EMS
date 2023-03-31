@@ -11,13 +11,9 @@ from property.models import Property, FeaturedProperty
 from property.forms import PropertyFilterForm
 from helper.views import empty_search_form_context
 
-# Create your views here.
-def home(request):
-    return home_02(request)
-
-def home_01(request):   
+def get_featured_and_popular_properties():
     form = PropertyFilterForm()
-    all_properties = Property.objects.filter(is_published=True)
+    all_properties = Property.published_objects.all()
 
     # If the count is less than 5, fetch all properties
     if len(all_properties) < 5:
@@ -26,16 +22,13 @@ def home_01(request):
         # Otherwise, get the top 5 properties by number of views
         popular_properties = all_properties.annotate(num_views=F('number_of_views')).order_by('-num_views')[:5]    
     
-    all_featured_properties = FeaturedProperty.objects.filter(is_featured=True, featured_start_date__lte=timezone.now(), featured_end_date__gte=timezone.now())
+    all_featured_properties = FeaturedProperty.published_objects.filter(is_featured=True, featured_start_date__lte=timezone.now(), featured_end_date__gte=timezone.now())
     featured_sale_properties = all_featured_properties.filter(property__for_sale_or_rent='Sale')
     featured_rent_properties = all_featured_properties.filter(property__for_sale_or_rent='Rent')
 
     all_featured_properties = [property.property for property in all_featured_properties]
     featured_sale_properties = [property.property for property in featured_sale_properties]
     featured_rent_properties = [property.property for property in featured_rent_properties]
-
-    for property in all_properties:
-        print(property.date_listed)
 
     context = {
         'form':form,
@@ -44,7 +37,14 @@ def home_01(request):
         'featured_rent_properties':featured_rent_properties,
         'all_featured_properties':all_featured_properties,
     }
-    return render(request, 'main-site/index.html', context)
+    return context
+
+# Create your views here.
+def home(request):
+    return home_01(request)
+
+def home_01(request):
+    return render(request, 'main-site/index.html', get_featured_and_popular_properties())
 
 def home_02(request):
     return render(request, 'main-site/index-2.html', empty_search_form_context)

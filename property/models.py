@@ -3,19 +3,32 @@ import hashlib
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from django.db.models import Sum, Q
+from django.db.models import Sum, Exists, OuterRef, Subquery
+from django.db.models import BooleanField, Case, When
 
 from cloudinary.models import CloudinaryField
+from fee.models import Fee
 
 from helper import configurations
 
+class PublishedPropertyManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
+
+class FeaturedPublishedPropertyManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(property__is_published=True)
 
 User = get_user_model()
+
 # Create your models here.
 
 class Property(models.Model):
+    objects = models.Manager()  # default manager
+    published_objects = PublishedPropertyManager()  # custom manager
+
     class Meta:
-        verbose_name_plural = "Properties"
+        verbose_name_plural = "Properties"    
 
     PROPERTY_TYPES = (
         ('Rent', 'For Rent'),
@@ -53,23 +66,39 @@ class Property(models.Model):
     @property
     def rental_or_purchase_price(self):
         # Get the related fees where type is paymentForProperty or rent
-        fees = self.fee_set.filter(type__in=['paymentForProperty', 'rent'])
+        fees = self.fee_set.filter(type__in=['paymentForProperty', 'rent'], is_published=True)
         # Sum the amounts of the related fees
         total_price = fees.aggregate(Sum('amount'))['amount__sum']
         return total_price if total_price else 0
 
     @property
     def initial_payment_fees(self):
-        return self.fee_set.filter(initial_payment_field=True)
+        return self.fee_set.filter(initial_payment_fee=True, is_published=True)
 
     @property
     def price(self):
         fees = self.initial_payment_fees
         total_price = fees.aggregate(Sum('amount'))['amount__sum']
         return total_price if total_price else 0
+    
+    @property
+    def rent_fee_recurring_value(self):
+        try:
+            rent_fee = self.fee_set.get(type='rent')            
+        except Fee.DoesNotExist:
+            return ''
+        else:
+            recurring = rent_fee.recurring
+            if recurring == 'monthly':
+                return 'month'
+            elif recurring == 'yearly':
+                return 'year'
 
 
 class FeaturedProperty(models.Model):
+    objects = models.Manager()  # default manager
+    published_objects = FeaturedPublishedPropertyManager()  # custom manager
+    
     class Meta:
         verbose_name_plural = "Featured Properties"
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
@@ -89,13 +118,11 @@ class FeaturedProperty(models.Model):
 class PropertyExteriorImage(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/property_exterior_images', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
-
+            
 
 class PropertyInteriorImage(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     image = CloudinaryField('image', folder=f'{configurations.CLOUDINARY_ROOT_DIR}/property_interior_images', public_id=lambda instance: hashlib.sha256(instance.image.read()).hexdigest())
-
-
 
 
 

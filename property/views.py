@@ -13,7 +13,7 @@ from helper import configurations
 # Create your views here.
 
 def property_search(request):
-    properties = Property.objects.filter(is_published=True)
+    properties = Property.published_objects.all()
     form = PropertyFilterForm()
     processed_get_request = form.extract_all_values(request.GET)
     form = PropertyFilterForm(processed_get_request)
@@ -43,10 +43,10 @@ def property_search(request):
         if property_type:
             properties = properties.filter(type=property_type)
         if min_price:
-            properties = properties.annotate(total_price=Sum('fee__amount', filter=(Q(fee__type='paymentForProperty') | Q(fee__type='rent'))))
+            properties = properties.annotate(total_price=Sum('fee__amount', filter=(Q(fee__type='paymentForProperty') | Q(fee__type='rent'), Q(fee__is_published=True))))
             properties = properties.filter(total_price__gte=min_price)
         if max_price:
-            properties = properties.annotate(total_price=Sum('fee__amount', filter=(Q(fee__type='paymentForProperty') | Q(fee__type='rent'))))
+            properties = properties.annotate(total_price=Sum('fee__amount', filter=(Q(fee__type='paymentForProperty') | Q(fee__type='rent'), Q(fee__is_published=True))))
             properties = properties.filter(total_price__lte=max_price)
         if min_bedrooms:
             properties = properties.filter(bedrooms__gte=min_bedrooms)
