@@ -47,16 +47,16 @@ def home_01(request):
     return render(request, 'main-site/index.html', get_featured_and_popular_properties())
 
 def home_02(request):
-    return render(request, 'main-site/index-2.html', empty_search_form_context)
+    return render(request, 'main-site/index-2.html', get_featured_and_popular_properties())
 
 def home_03(request):    
-    return render(request, 'main-site/index-3.html', empty_search_form_context)
+    return render(request, 'main-site/index-3.html', get_featured_and_popular_properties())
 
 def home_04(request):    
-    return render(request, 'main-site/index-4.html', empty_search_form_context)
+    return render(request, 'main-site/index-4.html', get_featured_and_popular_properties())
 
 def home_05(request):
-    return render(request, 'main-site/index-5.html', empty_search_form_context)
+    return render(request, 'main-site/index-5.html', get_featured_and_popular_properties())
 
 def home_06(request):
     return render(request, 'main-site/index-6.html')

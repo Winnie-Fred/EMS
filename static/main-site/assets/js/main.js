@@ -747,15 +747,15 @@ myWNumb = wNumb({
 })
 
 // For Sale
-rangeSlider("price_range", "min_price", "max_price", 200000, 50000000, 0, 100000000, myWNumb)
-rangeSlider("sqft_range", "min_sqft", "max_sqft", 100, 2000, 500, 2500, wNumb({decimals: 0, thousand: ',', suffix: 'Sqft'}))
-rangeSlider("bedrooms_range", "min_bedrooms", "max_bedrooms", 2, 6, 0, 10, wNumb({decimals: 0, thousand: ',', suffix: ' bedrooms'}))
-rangeSlider("bathrooms_range", "min_bathrooms", "max_bathrooms", 2, 6, 0, 10, wNumb({decimals: 0, thousand: ',', suffix: ' bathrooms'}))
-rangeSlider("garage_range", "min_garage", "max_garage", 1, 3, 0, 5, wNumb({decimals: 0, thousand: ',', suffix: ' garages'}))
+rangeSlider("price_range", "min_price", "max_price", 200000, 500000000, 0, 1000000000, myWNumb)
+rangeSlider("sqft_range", "min_sqft", "max_sqft", 100, 5000, 0, 10000, wNumb({decimals: 0, thousand: ',', suffix: 'Sqft'}))
+rangeSlider("bedrooms_range", "min_bedrooms", "max_bedrooms", 2, 9, 0, 20, wNumb({decimals: 0, thousand: ',', suffix: ' bedrooms'}))
+rangeSlider("bathrooms_range", "min_bathrooms", "max_bathrooms", 2, 9, 0, 20, wNumb({decimals: 0, thousand: ',', suffix: ' bathrooms'}))
+rangeSlider("garage_range", "min_garage", "max_garage", 2, 9, 0, 20, wNumb({decimals: 0, thousand: ',', suffix: ' garages'}))
 
 // For Rent
-rangeSlider("price_range2", "min_price2", "max_price2", 200000, 50000000, 0, 100000000, myWNumb)
-rangeSlider("sqft_range2", "min_sqft2", "max_sqft2", 100, 2000, 500, 2500, wNumb({decimals: 0, thousand: ',', suffix: 'Sqft'}))
-rangeSlider("bedrooms_range2", "min_bedrooms2", "max_bedrooms2", 2, 6, 0, 10, wNumb({decimals: 0, thousand: ',', suffix: ' bedrooms'}))
-rangeSlider("bathrooms_range2", "min_bathrooms2", "max_bathrooms2", 2, 6, 0, 10, wNumb({decimals: 0, thousand: ',', suffix: ' bathrooms'}))
-rangeSlider("garage_range2", "min_garage2", "max_garage2", 1, 3, 0, 5, wNumb({decimals: 0, thousand: ',', suffix: ' garages'}))
+rangeSlider("price_range2", "min_price2", "max_price2", 200000, 500000000, 0, 1000000000, myWNumb)
+rangeSlider("sqft_range2", "min_sqft2", "max_sqft2", 100, 5000, 0, 10000, wNumb({decimals: 0, thousand: ',', suffix: 'Sqft'}))
+rangeSlider("bedrooms_range2", "min_bedrooms2", "max_bedrooms2", 2, 9, 0, 20, wNumb({decimals: 0, thousand: ',', suffix: ' bedrooms'}))
+rangeSlider("bathrooms_range2", "min_bathrooms2", "max_bathrooms2", 2, 9, 0, 20, wNumb({decimals: 0, thousand: ',', suffix: ' bathrooms'}))
+rangeSlider("garage_range2", "min_garage2", "max_garage2", 2, 9, 0, 20, wNumb({decimals: 0, thousand: ',', suffix: ' garages'}))
