@@ -71,7 +71,7 @@ def service(request):
     return render(request, 'main-site/service.html')
 
 def single_service(request):
-    return render(request, 'main-site/single-service.html')
+    return render(request, 'main-site/single-service.html', get_featured_and_popular_properties())
 
 def agency(request):
     return render(request, 'main-site/agency.html')
@@ -83,7 +83,7 @@ def agent(request):
     return render(request, 'main-site/agent.html')
 
 def agency_details(request):
-    return render(request, 'main-site/agency-details.html')
+    return render(request, 'main-site/agency-details.html', get_featured_and_popular_properties())
 
 def agent_details(request):
     return render(request, 'main-site/agent-details.html')
@@ -99,6 +99,12 @@ def blog_grid_right_side_bar(request):
 
 def blog_details(request):
     return render(request, 'main-site/blog-details.html')
+
+def blog_detail(request, pk):
+    return render(request, 'main-site/blog-details.html')
+
+def contact_us(request):
+    return render(request, 'main-site/contact-us.html')
 
 @login_required
 def dashboard(request):

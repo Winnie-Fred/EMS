@@ -40,6 +40,8 @@ urlpatterns = [
     path('blog_grid/', views.blog_grid, name='blog_grid'),
     path('blog_grid_left_side_bar/', views.blog_grid_left_side_bar, name='blog_grid_left_side_bar'),
     path('blog_grid_right_side_bar/', views.blog_grid_right_side_bar, name='blog_grid_right_side_bar'),
+    path('blog_detail/<int:pk>/', views.blog_detail, name='blog_detail'),
     path('blog_details/', views.blog_details, name='blog_details'),
+    path('contact_us/', views.contact_us, name="contact_us"),
     path('dashboard/', views.dashboard, name='dashboard'),
 ]

@@ -94,7 +94,7 @@
                                 service</a>
                         </li>
                         <li>
-                            <a href="contact-us.html" class="text-sm pt-3 px-10 pb-1 text-black font-light block transition-all hover:text-secondary">contact
+                            <a href="{% url 'pages:contact_us' %}" class="text-sm pt-3 px-10 pb-1 text-black font-light block transition-all hover:text-secondary">contact
                                 us</a>
                         </li>
                         <li>
@@ -153,11 +153,7 @@
                         <li>
                             <a href="{% url 'pages:blog_grid_right_side_bar' %}" class="text-sm py-2 px-[30px] text-black font-light block transition-all hover:text-secondary">blog
                                 grid right side bar</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'pages:blog_details' %}" class="text-sm py-2 px-[30px] text-black font-light block transition-all hover:text-secondary">blog
-                                details</a>
-                        </li>
+                        </li>                        
 
                     </ul>
                 </li>
