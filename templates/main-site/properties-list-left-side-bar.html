@@ -47,6 +47,7 @@
 
         <!-- Hero section end -->
 
+        {% if all_properties %}
         <!-- Popular Properties start -->
         <section class="popular-properties py-[80px] lg:py-[120px]">
             <div class="container">
@@ -106,8 +107,12 @@
                         <div id="grid" class="grid grid-tab-content">
                             <div class="col-span-12">
                                 <div class="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-[30px]">
-
-                                    {% with context_210165='[{"image":"4","type":"Sale","title":"Elite Garden Resedence.","address":"253 Montril Street, South Town, Miami","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"5","type":"Co-living","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":" ₦1553/m","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage","date":"Added: 25 November, 2021 "},{"image":"6","type":"Sale","title":"Duplex de Villa","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"4356 Riverside Drive, Augusta, Georgia","date":"Added: 25 November, 2021 "},{"image":"7","type":"Sale","title":"Orchid Casel de Paradise.","address":"2846 West Side Avenue, New Jersey","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"3","type":"Rent","title":"Ruposibangla de parlosia.","address":"2381 Richards Avenue, Stockton, California","price":"₦1553/m","date":"Added: 25 November, 2021 "},{"image":"3","type":"Sale","title":"Sinomen Studio Palace.","address":"4658 Oakwood Avenue, New York","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"7","type":"Sale","title":"Elite Garden Resedence.","address":"253 Montril Street, South Town, Miami","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"8","type":"Sale","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage","date":"Added: 25 November, 2021 "}]' %}{% for loop_930160 in context_210165|json_loads %}{% include "main-site/partials/properties/index-2.html" with image=loop_930160.image type=loop_930160.type title=loop_930160.title address=loop_930160.address price=loop_930160.price date=loop_930160.date %}{% endfor %}{% endwith %}
+                                    {% for property in all_properties %}
+                                        {% with property_exterior_image=property.propertyexteriorimage_set.first %}
+                                            {% include "main-site/partials/properties/index-2.html" with pk=property.pk image=property_exterior_image.image type=property.for_sale_or_rent title=property.title address=property.full_address price=property.rental_or_purchase_price|naira:property.for_sale_or_rent sqft=property.sqft bedrooms=property.bedrooms bathrooms=property.bathrooms garages=property.garage added_on=property.date_listed recurring=property.rent_fee_recurring_value rental_or_purchase_price=property.rental_or_purchase_price %}
+                                        {% endwith %}
+                                    {% endfor %}
+                                    {% comment %} {% with context_210165='[{"image":"4","type":"Sale","title":"Elite Garden Resedence.","address":"253 Montril Street, South Town, Miami","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"5","type":"Co-living","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":" ₦1553/m","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage","date":"Added: 25 November, 2021 "},{"image":"6","type":"Sale","title":"Duplex de Villa","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"4356 Riverside Drive, Augusta, Georgia","date":"Added: 25 November, 2021 "},{"image":"7","type":"Sale","title":"Orchid Casel de Paradise.","address":"2846 West Side Avenue, New Jersey","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"3","type":"Rent","title":"Ruposibangla de parlosia.","address":"2381 Richards Avenue, Stockton, California","price":"₦1553/m","date":"Added: 25 November, 2021 "},{"image":"3","type":"Sale","title":"Sinomen Studio Palace.","address":"4658 Oakwood Avenue, New York","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"7","type":"Sale","title":"Elite Garden Resedence.","address":"253 Montril Street, South Town, Miami","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"8","type":"Sale","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage","date":"Added: 25 November, 2021 "}]' %}{% for loop_930160 in context_210165|json_loads %}{% include "main-site/partials/properties/index-2.html" with image=loop_930160.image type=loop_930160.type title=loop_930160.title address=loop_930160.address price=loop_930160.price date=loop_930160.date %}{% endfor %}{% endwith %} {% endcomment %}
                                 </div>
                             </div>
                         </div>
@@ -115,8 +120,12 @@
                         <div id="list" class="list grid-tab-content active">
                             <div class="col-span-12">
                                 <div class="grid grid-cols-1 gap-[30px]">
-
-                                    {% with context_123100='[{"image":"4","type":"Sale","title":"Elite Garden Resedence.","address":"253 Montril Street, South Town, Miami","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"5","type":"Co-living","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":" ₦1553/m","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage","date":"Added: 25 November, 2021"},{"image":"6","type":"Sale","title":"Duplex de Villa","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"4356 Riverside Drive, Augusta, Georgia","date":"Added: 25 November, 2021 "},{"image":"7","type":"Sale","title":"Orchid Casel de Paradise.","address":"2846 West Side Avenue, New Jersey","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"3","type":"Rent","title":"Ruposibangla de parlosia.","address":"2381 Richards Avenue, Stockton, California","price":"₦1553/m","date":"Added: 25 November, 2021 "},{"image":"3","type":"Sale","title":"Sinomen Studio Palace.","address":"4658 Oakwood Avenue, New York","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"7","type":"Sale","title":"Elite Garden Resedence.","address":"253 Montril Street, South Town, Miami","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"8","type":"Sale","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage","date":"Added: 25 November, 2021"}]' %}{% for loop_22601 in context_123100|json_loads %}{% include "main-site/partials/properties/list.html" with image=loop_22601.image type=loop_22601.type title=loop_22601.title address=loop_22601.address price=loop_22601.price date=loop_22601.date %}{% endfor %}{% endwith %}
+                                    {% for property in all_properties %}
+                                            {% with property_exterior_image=property.propertyexteriorimage_set.first %}
+                                                {% include "main-site/partials/properties/list.html" with pk=property.pk image=property_exterior_image.image type=property.for_sale_or_rent title=property.title address=property.full_address price=property.rental_or_purchase_price|naira:property.for_sale_or_rent sqft=property.sqft bedrooms=property.bedrooms bathrooms=property.bathrooms garages=property.garage added_on=property.date_listed recurring=property.rent_fee_recurring_value rental_or_purchase_price=property.rental_or_purchase_price %}
+                                            {% endwith %}
+                                        {% endfor %}
+                                    {% comment %} {% with context_123100='[{"image":"4","type":"Sale","title":"Elite Garden Resedence.","address":"253 Montril Street, South Town, Miami","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"5","type":"Co-living","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":" ₦1553/m","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage","date":"Added: 25 November, 2021"},{"image":"6","type":"Sale","title":"Duplex de Villa","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"4356 Riverside Drive, Augusta, Georgia","date":"Added: 25 November, 2021 "},{"image":"7","type":"Sale","title":"Orchid Casel de Paradise.","address":"2846 West Side Avenue, New Jersey","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"3","type":"Rent","title":"Ruposibangla de parlosia.","address":"2381 Richards Avenue, Stockton, California","price":"₦1553/m","date":"Added: 25 November, 2021 "},{"image":"3","type":"Sale","title":"Sinomen Studio Palace.","address":"4658 Oakwood Avenue, New York","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"7","type":"Sale","title":"Elite Garden Resedence.","address":"253 Montril Street, South Town, Miami","price":"₦25530000","date":"Added: 25 November, 2021 "},{"image":"8","type":"Sale","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage","date":"Added: 25 November, 2021"}]' %}{% for loop_22601 in context_123100|json_loads %}{% include "main-site/partials/properties/list.html" with image=loop_22601.image type=loop_22601.type title=loop_22601.title address=loop_22601.address price=loop_22601.price date=loop_22601.date %}{% endfor %}{% endwith %} {% endcomment %}
                                 </div>
                             </div>
 
@@ -137,6 +146,26 @@
             </div>
         </section>
         <!-- Popular Properties end -->
+        {% else %}
+            <section style="height: 70vh;" class="py-[80px] lg:p-[90px] relative">
+                <div class="container">
+                    <div class="grid grid-cols-12">
+                        <div class="col-span-12">
+                            <div class="max-w-[600px]  mx-auto text-center text-base relative z-[1]">
+                                <div class="mb-5"><h3 class="text-base block">Oops!</h3></div>
+                                <h1 class="font-lora text-[36px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl font-medium">
+                                    Sorry about that
+                                </h1>
+
+                                <p class="text-base mt-5 max-w-[500px] mx-auto text-center">
+                                    No properties listed yet. Check back later.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
 
         <!-- News Letter section start -->
         <section class="py-[80px] lg:p-[90px] bg-primary relative">

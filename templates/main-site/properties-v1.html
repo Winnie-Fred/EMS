@@ -45,21 +45,47 @@
         </section>
         <!-- Hero section end -->
 
-        <!-- Popular Properties start -->
-        <section class="popular-properties py-[80px] lg:py-[120px]">
-            <div class="container">
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-
-                    {% with context_38062='[{"image":"1","type":"Sale","title":"Orchid Casel de Paradise.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"2","type":"Rent","title":"Ruposibangla de parlosia.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage"},{"image":"3","type":"Sale","title":"Sinomen Studio Palace.","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"4","type":"Sale","title":"Elite Garden Resedence.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"5","type":"Rent","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage"},{"image":"6","type":"Sale","title":"Duplex de Villa.","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"7","type":"Sale","title":"Orchid Casel de Paradise.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"8","type":"Rent","title":"Ruposibangla de parlosia.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage"},{"image":"9","type":"Sale","title":"Sinomen Studio Palace.","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"}]' %}{% for loop_949201 in context_38062|json_loads %}{% include "main-site/partials/properties/index-2.html" with image=loop_949201.image type=loop_949201.type title=loop_949201.title address=loop_949201.address price=loop_949201.price info=loop_949201.info %}{% endfor %}{% endwith %}
-                </div>
-                <div class="grid grid-cols-12 mt-[50px] gap-[30px]">
-                    <div class="col-span-12">
-                        {% include 'main-site/partials/pagination/index.html' %}
+        {% if all_properties %}
+            <!-- Popular Properties start -->
+            <section class="popular-properties py-[80px] lg:py-[120px]">
+                <div class="container">
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+                        {% for property in all_properties %}
+                            {% with property_exterior_image=property.propertyexteriorimage_set.first %}
+                                {% include "main-site/partials/properties/index-2.html" with pk=property.pk image=property_exterior_image.image type=property.for_sale_or_rent title=property.title address=property.full_address price=property.rental_or_purchase_price|naira:property.for_sale_or_rent sqft=property.sqft bedrooms=property.bedrooms bathrooms=property.bathrooms garages=property.garage added_on=property.date_listed recurring=property.rent_fee_recurring_value rental_or_purchase_price=property.rental_or_purchase_price %}
+                            {% endwith %}
+                        {% endfor %}
+                        {% comment %} {% with context_38062='[{"image":"1","type":"Sale","title":"Orchid Casel de Paradise.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"2","type":"Rent","title":"Ruposibangla de parlosia.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage"},{"image":"3","type":"Sale","title":"Sinomen Studio Palace.","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"4","type":"Sale","title":"Elite Garden Resedence.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"5","type":"Rent","title":"De Parasiya Appartment.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage"},{"image":"6","type":"Sale","title":"Duplex de Villa.","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"7","type":"Sale","title":"Orchid Casel de Paradise.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"},{"image":"8","type":"Rent","title":"Ruposibangla de parlosia.","address":"18B Central Street, San Francisco","price":"₦25530000","info":"1800 Sq.fit - 5 Bed - 3 Bath - 2 Garage"},{"image":"9","type":"Sale","title":"Sinomen Studio Palace.","address":"194 Mercer Street, 627 Broadway, New York","price":"₦25530000","info":"1230 Sq.fit - 4 Bed - 3 Bath - 2 Garage"}]' %}{% for loop_949201 in context_38062|json_loads %}{% include "main-site/partials/properties/index-2.html" with image=loop_949201.image type=loop_949201.type title=loop_949201.title address=loop_949201.address price=loop_949201.price info=loop_949201.info %}{% endfor %}{% endwith %} {% endcomment %}
+                    </div>
+                    <div class="grid grid-cols-12 mt-[50px] gap-[30px]">
+                        <div class="col-span-12">
+                            {% include 'main-site/partials/pagination/index.html' %}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- Popular Properties end -->
+            </section>
+            <!-- Popular Properties end -->
+        {% else %}
+            <section style="height: 70vh;" class="py-[80px] lg:p-[90px] relative">
+                <div class="container">
+                    <div class="grid grid-cols-12">
+                        <div class="col-span-12">
+                            <div class="max-w-[600px]  mx-auto text-center text-base relative z-[1]">
+                                <div class="mb-5"><h3 class="text-base block">Oops!</h3></div>
+                                <h1 class="font-lora text-[36px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl font-medium">
+                                    Sorry about that
+                                </h1>
+
+                                <p class="text-base mt-5 max-w-[500px] mx-auto text-center">
+                                    No properties listed yet. Check back later.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
 
         <!-- News Letter section start -->
         <section class="py-[80px] lg:p-[90px] bg-primary relative">

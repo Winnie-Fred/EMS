@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from property.models import Property, FeaturedProperty
 from property.forms import PropertyFilterForm
-from helper.views import empty_search_form_context
+
 
 def get_featured_and_popular_properties():
     form = PropertyFilterForm()
