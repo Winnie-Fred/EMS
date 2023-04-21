@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 from django.db import models
@@ -5,8 +6,10 @@ from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils.timezone import make_aware
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from dateutil.relativedelta import relativedelta
+
 
 class FeeOnPublishedPropertyAndPublishedFeeManager(models.Manager):
     def get_queryset(self):
@@ -144,10 +147,17 @@ class Fee(models.Model):
     def __str__(self):
         return f'{self.short_description} for {self.listing.title or self.tenancy.tenant.full_name}'
 
+
 class FeePayment(models.Model):
-    fee = models.ForeignKey(Fee, on_delete=models.DO_NOTHING)
     tenancy = models.ForeignKey(Tenancy, on_delete=models.CASCADE)
     payment_date = models.DateField()
+    fee = models.ForeignKey(Fee, on_delete=models.DO_NOTHING)
+    fee_snapshot = models.TextField()
+    paid_to = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    percentage_charge = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(100)])
+
+    def amount_paid_to_fee_lister(self):
+        return (self.get_fee_snapshot['amount'] - (self.percentage_charge/100)*self.get_fee_snapshot['amount']) if self.get_fee_snapshot else None
 
     class Meta:
         unique_together = ('fee', 'tenancy')
@@ -156,4 +166,35 @@ class FeePayment(models.Model):
         if self.fee:
             return f"{str(self.fee)} Fee Payment"
         return f"{str(self.tenancy)} Fee Payment"
+
+    def clean(self):
+        super().clean()
+
+        if self.paid_to:
+            user_profile = self.paid_to.userprofile
+            if user_profile.user_role not in ["Owner", "Agent", "Estate Manager"]:
+                raise ValidationError("The paid_to user must have be an Owner, Agent, or Estate Manager.")
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            fee_data = {
+                'id': self.fee.id,
+                'listing_id': self.fee.listing.id if self.fee.listing else None,
+                'tenancy_id': self.fee.tenancy.id if self.fee.tenancy else None,
+                'type': self.fee.type,
+                'name': self.fee.name,
+                'long_description': self.fee.long_description,
+                'amount': self.fee.amount,
+                'recurring': self.fee.recurring,
+                'due_date': self.fee.due_date.isoformat() if self.fee.due_date else None,
+                'created_at': self.fee.created_at.isoformat(),
+                'initial_payment_fee': self.fee.initial_payment_fee,
+                'is_published': self.fee.is_published,
+            }
+            self.fee_snapshot = json.dumps(fee_data)
+        super().save(*args, **kwargs)
+
+    def get_fee_snapshot(self):
+        return json.loads(self.fee_snapshot) if self.fee_snapshot else None
+
         
