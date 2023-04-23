@@ -1,5 +1,6 @@
 {% load static %}
 {% load custom_filters %}
+{% load cloudinary %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -52,53 +53,53 @@
                         {% comment %} <img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465"> {% endcomment %}
                         <div class="property-details-images-swiper-container">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465"></div>
-                                <div class="swiper-slide"><img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465"></div>
-                                <div class="swiper-slide"><img src="{% static 'main-site/assets/images/properties-details/post1.png' %}" class="w-auto h-auto" loading="lazy" alt="Elite Garden Resedence." width="770" height="465"></div>
+                                {% for property_image in property.propertyexteriorimage_set.all %}
+                                    <div class="swiper-slide"><a href="{% cloudinary_url property_image.image.public_id width=770 height=465 %}" class="gallery-image"><img src="{% cloudinary_url property_image.image.public_id width=770 height=465 %}" class="w-auto h-auto" alt="{{ property.title }}" width="770" height="465"></a></div>
+                                {% endfor %}                                                   
                                 <!-- Add more slides as needed -->
                             </div>
                             <!-- Add navigation -->
                             <div class="hidden sm:block">
-                                <div class="property-details-swiper-button-next swiper-button-next w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[30px]"></div>
-                                <div class="property-details-swiper-button-prev swiper-button-prev w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[85px]"></div>
+                                <div class="property-details-swiper-button-prev swiper-button-prev w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[30px]"></div>
+                                <div class="property-details-swiper-button-next swiper-button-next w-[36px] h-[36px] rounded-full bg-secondary xl:bg-primary  text-white hover:bg-secondary top-auto bottom-[85px] left-[85px]"></div>
                             </div>
                         </div>
                         
                         <div class="mt-[45px] mb-[35px]">
                             <h2 class="font-lora leading-tight text-[22px] md:text-[28px] lg:text-[36px] text-primary mb-[5px] font-medium">
-                                Ruposibangla de Parlosia.</h2>
-                            <h3 class="font-light text-[18px] text-secondary underline mb-[20px]">2265 Paul Wayne
-                                Haggerty Road, New Orleans</h3>
-                            <p>2265 Paul Wayne Haggerty Road is truly a remarkable property, offering a perfect blend of style, comfort, and convenience. With its spacious and elegantly appointed living spaces, beautiful outdoor areas, and unbeatable location in the vibrant city of New Orleans, this property truly has it all. Whether you're looking for a peaceful retreat or a sophisticated place to entertain guests, this home is sure to exceed your expectations.</p>
+                                {{ property.title }}.</h2>
+                            <h3 class="font-light text-[18px] text-secondary underline mb-[20px]">{{ property.full_address }}</h3>
+                            <p style="text-align: justify;">{{ first_paragraph }}</p>
                         </div>
 
                         <div class="xl:flex xl:flex-nowrap xl:justify-between gap-y-[30px] gap-x-[15px] xl:gap-x-[0px] mb-[30px] items-center">
                             <div class="grid grid-cols-12 gap-y-[30px] gap-x-[15px] xl:gap-x-[20px] xl:mr-[30px]">
-                                <div class="col-span-7">
-                                    <a href="{% static 'main-site/assets/images/properties-details/gallery/01.png' %}" class="gallery-image">
-                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% static 'main-site/assets/images/properties-details/01.png' %}" alt="gallery image" loading="lazy" width="270" height="187">
-                                    </a>
-                                </div>
-                                <div class="col-span-5">
-                                    <a href="{% static 'main-site/assets/images/properties-details/gallery/03.png' %}" class="gallery-image">
-                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% static 'main-site/assets/images/properties-details/03.png' %}" alt="gallery image" loading="lazy" width="170" height="187">
-                                    </a>
-                                </div>
-                                <div class="col-span-5">
-                                    <a href="{% static 'main-site/assets/images/properties-details/gallery/07.png' %}" class="gallery-image">
-                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% static 'main-site/assets/images/properties-details/07.png' %}" alt="gallery image" loading="lazy" width="170" height="187">
-                                    </a>
-                                </div>
-                                <div class="col-span-7">
-                                    <a href="{% static 'main-site/assets/images/properties-details/gallery/05.png' %}" class="gallery-image">
-                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% static 'main-site/assets/images/properties-details/05.png' %}" alt="gallery image" loading="lazy" width="270" height="187">
-                                    </a>
-                                </div>
+                                    {% for image in property.propertyinteriorimage_set.all|slice:":4" %}
+                                        {% if forloop.counter == 1 or forloop.counter == 4 %}
+                                            <div class="col-span-7">
+                                                <a href="{% cloudinary_url image.image.public_id %}" class="gallery-image">
+                                                    {% with width=270 %}
+                                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% cloudinary_url image.image.public_id width=width height=187 crop='pad' %}" alt="interior image {{ forloop.counter }}" loading="lazy" width="{{ width }}" height="187">
+                                                    {% endwith %}
+                                                </a>
+                                            </div>
+                                        {% else %}
+                                            <div class="col-span-5">
+                                                <a href="{% cloudinary_url image.image.public_id %}" class="gallery-image">
+                                                    {% with width=170 %}
+                                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% cloudinary_url image.image.public_id width=width height=187 crop='pad' %}" alt="interior image {{ forloop.counter }}" loading="lazy" width="{{ width }}" height="187">
+                                                    {% endwith %}
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+
+
                             </div>
-                            <p class="xl:max-w-[270px] mt-7 xl:mt-0 text-[16px] leading-[2] font-normal">Nestled in a tranquil neighborhood, this stunning property boasts an impressive array of features. From the spacious and thoughtfully designed living areas to the beautifully landscaped gardens and outdoor spaces, every detail has been carefully considered to create a luxurious and comfortable living experience. The location is also unbeatable, with easy access to top-rated schools, trendy restaurants, and boutique shops. With its perfect combination of comfort and location, this property is sure to impress and delight even the most discerning buyer.</p>
+                            <p class="xl:max-w-[270px] mt-7 xl:mt-0 text-[16px] leading-[2] font-normal" style="text-align: justify;">{{ second_paragraph }}</p>
                         </div>
 
-                        <p>The property is meticulously maintained, with no detail overlooked. The high-end finishes, top-of-the-line appliances, and custom cabinetry are just a few of the features that set this home apart from the rest. The master suite is a true retreat, with a spa-like bathroom and walk-in closet that provide the ultimate in luxury and comfort. Outside, the beautifully landscaped gardens and outdoor living spaces are perfect for enjoying the beautiful weather and entertaining guests. Whether you're looking for a quiet sanctuary or a place to host lavish parties, this property is the perfect place to call home.</p>
+                        <p>{{ third_paragraph }}</p>
                         <h4 class="font-lora text-primary text-[24px] leading-[1.277] sm:text-[28px] capitalize mt-[50px] mb-[40px] font-medium">Property Amenities<span class="text-secondary">.</span>
                         </h4>
 

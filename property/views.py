@@ -124,14 +124,51 @@ def properties_list_left_side_bar(request):
 def properties_list_right_side_bar(request):         
     return render(request, 'main-site/properties-list-right-side-bar.html', fetch_properties())
 
+def truncate_description(description):
+    if len(description) <= 515:
+        return description, "", ""
+    
+    first_paragraph = description[:515]
+    index = first_paragraph.rfind('.')
+    if index != -1:
+        first_paragraph = first_paragraph[:index+1]
+    else:
+        first_paragraph = first_paragraph.rsplit(' ', 1)[0]
+    if len(description) <= 930:
+        second_paragraph = description[len(first_paragraph):].strip()
+        return first_paragraph, second_paragraph, ""
+    
+    second_paragraph = description[len(first_paragraph):len(first_paragraph)+415]
+    if len(second_paragraph) >= 175:
+        second_paragraph = second_paragraph[:second_paragraph.rfind('.')] + "."
+    else:
+        second_paragraph = second_paragraph.rsplit(' ', 1)[0]
+
+    if len(description) <= len(first_paragraph) + len(second_paragraph) + 20:
+        third_paragraph = description[len(first_paragraph) + len(second_paragraph):].strip()
+        return first_paragraph, second_paragraph, third_paragraph
+    
+    third_paragraph = description[len(first_paragraph) + len(second_paragraph):]
+    if len(second_paragraph) >= 175:
+        return first_paragraph, second_paragraph, third_paragraph
+    
+    second_paragraph += " " + third_paragraph[:175 - len(second_paragraph)]
+    third_paragraph = third_paragraph[175 - len(second_paragraph):].strip()
+    return first_paragraph, second_paragraph, third_paragraph
+
+
 def property_detail(request, pk):  
     property = get_object_or_404(Property, pk=pk) 
+    first_paragraph, second_paragraph, third_paragraph = truncate_description(property.description)
     property.number_of_views += 1 
     property.save()
 
     form = PropertyFilterForm()
     context = {
         'property':property,
+        'first_paragraph': first_paragraph,
+        'second_paragraph': second_paragraph,
+        'third_paragraph': third_paragraph,
         'form': form
     }
     return render(request, 'main-site/properties-details.html', context)

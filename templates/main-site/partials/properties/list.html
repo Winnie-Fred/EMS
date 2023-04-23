@@ -6,7 +6,7 @@
     <div class="relative mb-[15px] lg:mb-[0px] block w-full lg:w-[300px]">
 
         <a href="{% url 'property:property_detail' pk=pk %}" class="block h-[250px]">
-            <img src="{% cloudinary_url property_exterior_image.image.public_id width=300 height=250 crop='fill' gravity='auto' %}" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ property.title }}">
+            <img src="{% cloudinary_url image.public_id width=300 height=250 crop='fill' gravity='auto' %}" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ property.title }}">
         </a>
 
         <div class="flex flex-wrap flex-col absolute top-5 right-5">

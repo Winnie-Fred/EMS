@@ -698,9 +698,16 @@ var swiper = new Swiper('.property-details-images-swiper-container', {
     prevEl: '.property-details-swiper-button-prev',
     nextEl: '.property-details-swiper-button-next',
   },
+  autoplay: {
+    delay: 5000,
+  },
   slidesPerView: 1,
   slidesPerGroup: 1,
   watchSlidesProgress: true,
+  lazy: true,
+  fadeEffect: {
+    crossFade: true,
+  },
 });
 
 function rangeSlider(rangeId, minId, maxId, initialStart, initialStop, min, max, myWNumb) {
