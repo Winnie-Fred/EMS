@@ -68,7 +68,29 @@
                         <div class="mt-[45px] mb-[35px]">
                             <h2 class="font-lora leading-tight text-[22px] md:text-[28px] lg:text-[36px] text-primary mb-[5px] font-medium">
                                 {{ property.title }}.</h2>
-                            <h3 class="font-light text-[18px] text-secondary underline mb-[20px]">{{ property.full_address }}</h3>
+                            <h3 class="font-light text-[18px] text-secondary underline">{{ property.full_address }}</h3>
+                            <h4 class="font-light text-[18px] text-secondary">{{ property.get_category_display }} {{ property.type }} listed by {{ property.listed_by.get_full_name }} on {{ property.date_listed|date:"d F, Y" }}</h4>
+                            <h4 class="font-light text-[18px] text-secondary mb-[20px]">Property Status: {% if property.is_occupied %}Occupied{% else %}{{ property.get_for_sale_or_rent_display }}{% endif %}</h4>
+
+
+                            {% with other_fees=property.initial_payment_fees_excluding_rent_or_purchase_price %}
+                                {% if other_fees %}
+                                    <span class="font-lora text-base text-primary leading-none font-light">{% if property.for_sale_or_rent == 'Rent' %}Rent: {% else %}Purchase price: {% endif %}{{ property.rental_or_purchase_price|naira:property.for_sale_or_rent }}{% if property.rental_or_purchase_price and property.rent_fee_recurring_value %}<span class="font-light text-sm">/{{ property.rent_fee_recurring_value }}</span>{% endif %}</span>
+                                    <div>Other fees:</div>
+                                    {% for fee in other_fees %}
+                                        <hr>
+                                        <div>Fee: {{ fee.short_description }}</div>
+                                        <div>Details: {{ fee.long_description }}</div>
+                                        <div>Amount: {{ fee.amount|format_naira_amount }}</div>
+                                        <hr>
+                                    {% endfor %}
+                                    <span class="font-lora text-base text-primary leading-none font-medium">Total price: {{ property.price|format_naira_amount }}</span>
+                                {% else %}
+                                    <span class="font-lora text-base text-primary leading-none font-medium">{% if property.for_sale_or_rent == 'Rent' %}Rent: {% else %}Purchase price: {% endif %}{{ property.price|naira:property.for_sale_or_rent }}{% if property.rental_or_purchase_price and property.rent_fee_recurring_value %}<span class="font-light text-sm">/{{ property.rent_fee_recurring_value }}</span>{% endif %}</span>
+                                {% endif %}
+                            {% endwith %}
+
+                            <hr style="margin: 10px 20px;">
                             <p style="text-align: justify;">{{ first_paragraph }}</p>
                         </div>
 
@@ -100,13 +122,36 @@
                         </div>
 
                         <p>{{ third_paragraph }}</p>
+
+                        <div class="button-container">
+                            <button class="pay-button before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all"> Pay for property</button>
+                            <button class="call-button bg-transparent text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded-md block leading-none px-[20px] py-[15px] capitalize font-medium hidden sm:block text-[14px] xl:text-[16px] relative">Call {{ property.listed_by.user_type }}</button>
+                            <button class="chat-button bg-transparent text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded-md block leading-none px-[20px] py-[15px] capitalize font-medium hidden sm:block text-[14px] xl:text-[16px] relative">Chat with {{ property.listed_by.user_type }}</button>
+                        </div>
+
+
+
+
+                        
                         <h4 class="font-lora text-primary text-[24px] leading-[1.277] sm:text-[28px] capitalize mt-[50px] mb-[40px] font-medium">Property Amenities<span class="text-secondary">.</span>
                         </h4>
 
                         <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 px-[15px] mx-[-15px] mt-[40px]">
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
-                                <span>7 Beedrooms</span>
+                                <span>{{ property.bedrooms }} Bedrooms</span>
+                            </li>
+                            <li class="flex flex-wrap items-center mb-[25px]">
+                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
+                                <span>{{ property.bathrooms }} bathrooms</span>
+                            </li>
+                            <li class="flex flex-wrap items-center mb-[25px]">
+                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
+                                <span>{{ property.garage }} Garages</span>
+                            </li>
+                            <li class="flex flex-wrap items-center mb-[25px]">
+                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
+                                <span>{{ property.sqft }} sqft</span>
                             </li>
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
@@ -120,17 +165,11 @@
                                 <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
                                 <span>CC Camera</span>
                             </li>
+                            
+                
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
-                                <span>3 Garaze</span>
-                            </li>
-                            <li class="flex flex-wrap items-center mb-[25px]">
-                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
-                                <span>Cable TV</span>
-                            </li>
-                            <li class="flex flex-wrap items-center mb-[25px]">
-                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
-                                <span>10 Nearby Restaurant</span>
+                                <span>10 Nearby Restaurants</span>
                             </li>
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
@@ -142,28 +181,25 @@
                             </li>
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
-                                <span>10 Nearby Restaurant</span>
+                                <span>2 Nearby Churches</span>
                             </li>
 
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
                                 <span>6 Nearby Schools</span>
                             </li>
-                            <li class="flex flex-wrap items-center mb-[25px]">
-                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
-                                <span>Gym for all</span>
-                            </li>
-                            <li class="flex flex-wrap items-center mb-[25px]">
-                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
-                                <span>Dishwasher</span>
-                            </li>
-                            <li class="flex flex-wrap items-center mb-[25px]">
-                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
-                                <span>5 Balcony</span>
-                            </li>
+                            
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
                                 <span>Swimming Pool</span>
+                            </li>
+                            <li class="flex flex-wrap items-center mb-[25px]">
+                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
+                                <span>Balcony</span>
+                            </li>
+                            <li class="flex flex-wrap items-center mb-[25px]">
+                                <img class="mr-[15px]" src="{% static 'main-site/assets/images/about/check.png' %}" loading="lazy" alt="icon" width="20" height="20">
+                                <span>2 mosquees</span>
                             </li>
                         </ul>
                         <h5 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg:mt-[25px] mb-[40px] font-medium">

@@ -32,3 +32,9 @@ def naira(value, property_type):
     formatted_value = intcomma(formatted_value)
     return "₦{0}".format(formatted_value)
 
+@register.filter(name='format_naira_amount')
+def format_naira_amount(value):
+    formatted_value = formats.number_format(value, decimal_pos=2, use_l10n=True)
+    formatted_value = intcomma(formatted_value)
+    return "₦{0}".format(formatted_value)
+

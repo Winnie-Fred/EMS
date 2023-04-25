@@ -3,11 +3,10 @@ import hashlib
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from django.db.models import Sum, Exists, OuterRef, Subquery
-from django.db.models import BooleanField, Case, When
+from django.db.models import Sum, Q
 
 from cloudinary.models import CloudinaryField
-from fee.models import Fee
+from fee.models import Fee, Tenancy
 
 from helper import configurations
 
@@ -76,8 +75,18 @@ class Property(models.Model):
         return self.fee_set.filter(initial_payment_fee=True, is_published=True)
 
     @property
+    def initial_payment_fees_excluding_rent_or_purchase_price(self):
+        # Get the related fees where type is not paymentForProperty or rent, and initial_payment_fee is True
+        fees = self.fee_set.filter(
+            Q(type__isnull=True) | ~Q(type__in=['paymentForProperty', 'rent']),  # exclude paymentForProperty and rent
+            initial_payment_fee=True,
+            is_published=True
+        )
+        return fees
+
+    @property
     def price(self):
-        fees = self.initial_payment_fees
+        fees = self.initial_payment_fees        
         total_price = fees.aggregate(Sum('amount'))['amount__sum']
         return total_price if total_price else 0
     
@@ -93,6 +102,21 @@ class Property(models.Model):
                 return 'month'
             elif recurring == 'yearly':
                 return 'year'
+
+    @property
+    def is_occupied(self):
+        return Tenancy.objects.filter(Q(listing=self) & Q(activated=True)).exists()
+    
+    @property
+    def is_occupied_by(self):
+        """
+        Returns the user object of the tenant who is currently occupying the property.
+        """
+        try:
+            tenancy = Tenancy.objects.get(listing=self, activated=True)
+            return tenancy.tenant
+        except Tenancy.DoesNotExist:
+            return None
 
 
 class FeaturedProperty(models.Model):
