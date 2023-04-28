@@ -18,8 +18,8 @@
         </div>
 
         <div class="py-[20px] px-[20px] text-left">
-            <h3><a href="{% url 'property:property_details' %}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">{{ title }}</a></h3>
-            <h4><a href="{% url 'property:property_details' %}" class="font-light text-[14px] leading-[1.75] underline">{{ address }}</a></h4>
+            <h3><a href="{% url 'property:property_detail' pk=pk %}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">{{ title }}</a></h3>
+            <h4><a href="{% url 'property:property_detail' pk=pk %}" class="font-light text-[14px] leading-[1.75] underline">{{ address }}</a></h4>
             <span class="font-light text-sm">Added: {{ added_on|date:"d F, Y" }}</span>
             <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                 <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">

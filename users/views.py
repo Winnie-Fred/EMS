@@ -10,7 +10,7 @@ from django.http import JsonResponse
 
 from dotenv import load_dotenv
 
-from .forms import UserUpdateForm, UserProfileUpdateForm, UserProfileBankAcctInfoUpdateForm
+from .forms import UserUpdateForm, TenantUserProfileUpdateForm, UserProfileUpdateForm, UserProfileBankAcctInfoUpdateForm
 from helper.configurations import ERROR_IN_FORM_MESSAGE
 
 User = get_user_model()
@@ -72,7 +72,10 @@ def profile(request):
 
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = UserProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if bank_acct_update_form:
+            p_form = UserProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
+        else:
+            p_form = TenantUserProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
 
         if u_form.is_valid() and p_form.is_valid():            
             if bank_acct_update_form:

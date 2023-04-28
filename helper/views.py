@@ -1,7 +1,6 @@
 import requests
 import os
 
-from django.shortcuts import render
 from django.core.exceptions import ValidationError
 
 from cloudinary.models import CloudinaryResource
@@ -43,3 +42,5 @@ def get_empty_search_form_context():
     return {'form':PropertyFilterForm()}
 
 empty_search_form_context = get_empty_search_form_context()
+
+

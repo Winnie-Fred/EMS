@@ -3,7 +3,7 @@
 
 <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
     <div class="relative">
-        <a href="{% url 'property:property_details' %}" class="block">
+        <a href="{% url 'property:property_detail' pk=pk %}" class="block">
             <img src="{% static 'main-site/assets/images/properties/properties' %}{{ image }}.png" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ title }}">
         </a>
         <div class="flex flex-wrap flex-col absolute top-5 right-5">

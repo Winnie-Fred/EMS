@@ -101,19 +101,19 @@ class Property(models.Model):
             if recurring == 'monthly':
                 return 'month'
             elif recurring == 'yearly':
-                return 'year'
-
-    @property
-    def is_occupied(self):
-        return Tenancy.objects.filter(Q(listing=self) & Q(activated=True)).exists()
+                return 'year'    
     
+    @property
+    def tenancy_awaiting_activation(self):
+        return Tenancy.objects.filter(Q(listing=self) & Q(activated=False) & Q(cancelled=False)).exists()
+
     @property
     def is_occupied_by(self):
         """
         Returns the user object of the tenant who is currently occupying the property.
         """
         try:
-            tenancy = Tenancy.objects.get(listing=self, activated=True)
+            tenancy = Tenancy.objects.get(listing=self, activated=True, cancelled=False)
             return tenancy.tenant
         except Tenancy.DoesNotExist:
             return None

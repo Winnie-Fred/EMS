@@ -35,7 +35,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'secret_key')
 DEBUG = not LIVE
 
 
-ALLOWED_HOSTS = ['estateX.local', '.estateX.local']
+ALLOWED_HOSTS = ['estateX.local', '.estateX.local', '.ngrok.io', '.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.ngrok.io', 'https://*.ngrok-free.app']
 
 
 TENANT_MODEL = "customers.Client"

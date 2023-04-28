@@ -27,6 +27,7 @@ class UserUpdateForm(forms.ModelForm):
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
 
+
 class UserProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = UserProfile
@@ -50,6 +51,11 @@ class UserProfileUpdateForm(forms.ModelForm):
         if bank_name_value == '---':
             raise ValidationError("Please select an option.")
         return bank_name_value
+
+class TenantUserProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['image', 'bio', 'overview']
     
 class UserProfileBankAcctInfoUpdateForm(UserProfileUpdateForm):
     class Meta:

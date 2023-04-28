@@ -70,7 +70,7 @@
                                 {{ property.title }}.</h2>
                             <h3 class="font-light text-[18px] text-secondary underline">{{ property.full_address }}</h3>
                             <h4 class="font-light text-[18px] text-secondary">{{ property.get_category_display }} {{ property.type }} listed by {{ property.listed_by.get_full_name }} on {{ property.date_listed|date:"d F, Y" }}</h4>
-                            <h4 class="font-light text-[18px] text-secondary mb-[20px]">Property Status: {% if property.is_occupied %}Occupied{% else %}{{ property.get_for_sale_or_rent_display }}{% endif %}</h4>
+                            <h4 class="font-light text-[18px] text-secondary mb-[20px]">Property Status: {% if property.is_occupied_by is not None or property.tenancy_awaiting_activation %}Is occupied or has been paid for{% else %}{{ property.get_for_sale_or_rent_display }}{% endif %}</h4>
 
 
                             {% with other_fees=property.initial_payment_fees_excluding_rent_or_purchase_price %}
@@ -101,7 +101,7 @@
                                             <div class="col-span-7">
                                                 <a href="{% cloudinary_url image.image.public_id %}" class="gallery-image">
                                                     {% with width=270 %}
-                                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% cloudinary_url image.image.public_id width=width height=187 crop='pad' %}" alt="interior image {{ forloop.counter }}" loading="lazy" width="{{ width }}" height="187">
+                                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% cloudinary_url image.image.public_id width=width height=187 crop='fill' gravity='auto' %}" alt="interior image {{ forloop.counter }}" loading="lazy" width="{{ width }}" height="187">
                                                     {% endwith %}
                                                 </a>
                                             </div>
@@ -109,7 +109,7 @@
                                             <div class="col-span-5">
                                                 <a href="{% cloudinary_url image.image.public_id %}" class="gallery-image">
                                                     {% with width=170 %}
-                                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% cloudinary_url image.image.public_id width=width height=187 crop='pad' %}" alt="interior image {{ forloop.counter }}" loading="lazy" width="{{ width }}" height="187">
+                                                        <img class="object-cover rounded-[8px] w-full h-full" src="{% cloudinary_url image.image.public_id width=width height=187 crop='fill' gravity='auto' %}" alt="interior image {{ forloop.counter }}" loading="lazy" width="{{ width }}" height="187">
                                                     {% endwith %}
                                                 </a>
                                             </div>
@@ -123,11 +123,24 @@
 
                         <p>{{ third_paragraph }}</p>
 
-                        <div class="button-container">
-                            <button class="pay-button before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all"> Pay for property</button>
-                            <button class="call-button bg-transparent text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded-md block leading-none px-[20px] py-[15px] capitalize font-medium hidden sm:block text-[14px] xl:text-[16px] relative">Call {{ property.listed_by.user_type }}</button>
-                            <button class="chat-button bg-transparent text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded-md block leading-none px-[20px] py-[15px] capitalize font-medium hidden sm:block text-[14px] xl:text-[16px] relative">Chat with {{ property.listed_by.user_type }}</button>
-                        </div>
+                        
+                        {% if property.is_occupied_by is not None or property.tenancy_awaiting_activation %}
+                            <h3 class="font-light text-[18px] text-secondary" style="margin: 20px 20px;">This property is currently off the market because it is occupied or has been paid for</h3>
+                            <div class="button-container">
+                                <button class="call-button bg-transparent text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded-md block leading-none px-[20px] py-[15px] capitalize font-medium hidden sm:block text-[14px] xl:text-[16px] relative">Call {{ property.listed_by.user_type }}</button>
+                                <button class="chat-button bg-transparent text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded-md block leading-none px-[20px] py-[15px] capitalize font-medium hidden sm:block text-[14px] xl:text-[16px] relative">Chat with {{ property.listed_by.user_type }}</button>
+                            </div>
+                        {% else %}
+                            <div class="button-container">
+                                <form action="{% url 'fee:property_payment_init' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="property_id" value="{{ property.pk }}">
+                                    <button type="submit" class="pay-button before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[20px] py-[15px] capitalize font-medium text-white hidden sm:block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all"> Pay for property</button>
+                                </form>
+                                <button class="call-button bg-transparent text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded-md block leading-none px-[20px] py-[15px] capitalize font-medium hidden sm:block text-[14px] xl:text-[16px] relative">Call {{ property.listed_by.user_type }}</button>
+                                <button class="chat-button bg-transparent text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded-md block leading-none px-[20px] py-[15px] capitalize font-medium hidden sm:block text-[14px] xl:text-[16px] relative">Chat with {{ property.listed_by.user_type }}</button>
+                            </div>
+                        {% endif %}
 
 
 

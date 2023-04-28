@@ -47,7 +47,8 @@ class CustomUser(AbstractUser):
     class Meta:
         db_table = 'auth_user'
 
-    phone_number = NigerianPhoneNumberField()
+    # phone_number = NigerianPhoneNumberField()
+    phone_number = models.CharField(max_length=10, blank=False, unique=True)
     USER_TYPE_CHOICES = (
         ('Owner', 'Owner'),
         ('Agent', 'Agent'),
@@ -93,7 +94,7 @@ class UserProfile(models.Model):
         
     @property
     def user_is_tenant(self):
-        return self.user.user_type in ['Prospective Tenant, Tenant']
+        return self.user.user_type in ['Prospective Tenant', 'Tenant']
 
     def __str__(self):
         return f'{self.user.username} Profile'

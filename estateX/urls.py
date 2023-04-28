@@ -25,5 +25,6 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('', include('users.urls')),
     path('', include('property.urls')),
+    path('', include('fee.urls')),
     
 ]

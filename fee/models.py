@@ -1,10 +1,12 @@
 import json
+from decimal import Decimal
 from datetime import datetime
 
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import make_aware
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -25,6 +27,7 @@ class Tenancy(models.Model):
     listing = models.ForeignKey('property.Property', on_delete=models.CASCADE)
     activated = models.BooleanField(help_text="Activate Tenancy")
     start_date = models.DateField(default=timezone.now)
+    cancelled = models.BooleanField(help_text="Cancel Tenancy", default=False)
 
     class Meta:
         verbose_name_plural = "Tenancies"
@@ -49,9 +52,18 @@ class Tenancy(models.Model):
     @property
     def other_fees_due_date(self):
         fees = Fee.published_objects.filter(tenancy=self.tenancy)
+
+    def delete(self, using=None, keep_parents=False):
+        self.cancelled = True
+        self.save()
+
+    def undelete(self):
+        self.cancelled = False
+        self.save()
     
     def __str__(self):
         return f"{self.tenant.get_full_name()} Tenancy for {str(self.listing)}"
+
 
 class Fee(models.Model):
     objects = models.Manager()  # default manager
@@ -148,24 +160,27 @@ class Fee(models.Model):
         return f'{self.short_description} for {self.listing.title or self.tenancy.tenant.full_name}'
 
 
+class PaymentStatus(models.TextChoices):
+    UNPROCESSED = 'UP', _('Unprocessed')
+    COMPLETED = 'CM', _('Completed')
+
 class FeePayment(models.Model):
-    tenancy = models.ForeignKey(Tenancy, on_delete=models.CASCADE)
-    payment_date = models.DateField()
-    fee = models.ForeignKey(Fee, on_delete=models.DO_NOTHING)
-    fee_snapshot = models.TextField()
-    paid_to = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    percentage_charge = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    paid_to = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True, related_name='payments_received')
+    paid_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True, related_name='payments_made')
+    created_on = models.DateField(default=timezone.now)
+    fees = models.ManyToManyField(Fee)
+    fees_snapshot = models.TextField()
+    reference = models.CharField(max_length=64, unique=True, blank=True)
+    saas_percentage_charge = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(
+        max_length=2, choices=PaymentStatus.choices, default=PaymentStatus.UNPROCESSED)
 
-    def amount_paid_to_fee_lister(self):
-        return (self.get_fee_snapshot['amount'] - (self.percentage_charge/100)*self.get_fee_snapshot['amount']) if self.get_fee_snapshot else None
+    def amount_paid_to_fee_lister(self):        
+        return self.amount - ((self.sass_percentage_charge)*self.amount)
 
-    class Meta:
-        unique_together = ('fee', 'tenancy')
-
-    def __str__(self):
-        if self.fee:
-            return f"{str(self.fee)} Fee Payment"
-        return f"{str(self.tenancy)} Fee Payment"
+    def __str__(self):        
+        return f"Fee Payment for {', '.join([str(fee) for fee in self.fees.all()])} by {self.paid_by.get_full_name()} to {self.paid_to.get_full_name()}"
 
     def clean(self):
         super().clean()
@@ -175,26 +190,6 @@ class FeePayment(models.Model):
             if user_profile.user_role not in ["Owner", "Agent", "Estate Manager"]:
                 raise ValidationError("The paid_to user must have be an Owner, Agent, or Estate Manager.")
 
-    def save(self, *args, **kwargs):
-        if not self.id:
-            fee_data = {
-                'id': self.fee.id,
-                'listing_id': self.fee.listing.id if self.fee.listing else None,
-                'tenancy_id': self.fee.tenancy.id if self.fee.tenancy else None,
-                'type': self.fee.type,
-                'name': self.fee.name,
-                'long_description': self.fee.long_description,
-                'amount': self.fee.amount,
-                'recurring': self.fee.recurring,
-                'due_date': self.fee.due_date.isoformat() if self.fee.due_date else None,
-                'created_at': self.fee.created_at.isoformat(),
-                'initial_payment_fee': self.fee.initial_payment_fee,
-                'is_published': self.fee.is_published,
-            }
-            self.fee_snapshot = json.dumps(fee_data)
-        super().save(*args, **kwargs)
-
-    def get_fee_snapshot(self):
-        return json.loads(self.fee_snapshot) if self.fee_snapshot else None
-
-        
+    def get_fees_snapshot(self):
+        return json.loads(self.fees_snapshot) if self.fees_snapshot else None
+    
