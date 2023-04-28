@@ -22,9 +22,15 @@ def property_payment_init(request):
         property_id = request.POST.get('property_id')
         property = get_object_or_404(Property, id=property_id)
 
+        if not request.user.userprofile.user_is_tenant:
+            messages.error(request, "Only tenants or prospective tenants can make payments for property.")
+            return redirect('property:property_detail', property_id)
+        
+
         if property.is_occupied_by is not None or property.tenancy_awaiting_activation:
             messages.error(request, "This property is currently off the market because it is occupied or has been paid for")
             return redirect('property:property_detail', property_id)
+        
 
         amount = property.price
 

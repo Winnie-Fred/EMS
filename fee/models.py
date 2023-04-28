@@ -23,7 +23,7 @@ User = get_user_model()
 
 
 class Tenancy(models.Model):
-    tenant = models.ForeignKey(User, on_delete=models.CASCADE)
+    tenant = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tenant_user')
     listing = models.ForeignKey('property.Property', on_delete=models.CASCADE)
     activated = models.BooleanField(help_text="Activate Tenancy")
     start_date = models.DateField(default=timezone.now)
@@ -55,12 +55,22 @@ class Tenancy(models.Model):
 
     def delete(self, using=None, keep_parents=False):
         self.cancelled = True
+        self.activated = False
         self.save()
 
     def undelete(self):
         self.cancelled = False
+        self.activated = True
         self.save()
     
+    def save(self, *args, **kwargs):
+        if self.activated and self.pk:  # check if Tenancy is being activated and not new
+            user = self.tenant
+            if user.user_type == "Prospective Tenant":
+                user.user_type = "Tenant"
+                user.save()
+        super(Tenancy, self).save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.tenant.get_full_name()} Tenancy for {str(self.listing)}"
 

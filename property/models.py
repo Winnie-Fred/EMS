@@ -1,5 +1,6 @@
 import hashlib
 
+from django.apps import apps
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
@@ -12,7 +13,9 @@ from helper import configurations
 
 class PublishedPropertyManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_published=True)
+        property_model = apps.get_model('property', 'Property')
+        occupied_properties = property_model.objects.filter(tenancy__activated=True, tenancy__cancelled=False).values_list('id', flat=True)
+        return super().get_queryset().filter(is_published=True).exclude(id__in=occupied_properties)
 
 class FeaturedPublishedPropertyManager(models.Manager):
     def get_queryset(self):
