@@ -42,7 +42,7 @@ def initialize_payment(email, amount, reference, metadata="", callback_url="http
     '''
     function for initializing payments.
 
-    params are (email, amount and callback_url)
+    params are (email, amount, reference, metadata and callback_url)
 
     returns an Authorization URL.
     '''
@@ -93,7 +93,7 @@ def verify_payment(reference):
     except RequestException as e:
         print(e)
 
-    return False
+    return {}
 
 def _get_recipient_code(recipient):
     recipient_data = {

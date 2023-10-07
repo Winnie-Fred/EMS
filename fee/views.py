@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 
 from .utils import generate_unique_reference, initialize_payment, verify_payment, _post_payment_action, SAAS_PERCENTAGE_CHARGE_PROPERTY
 from property.models import Property
@@ -16,6 +17,7 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
+@login_required
 def property_payment_init(request):
 
     if request.method == 'POST':                    
@@ -57,6 +59,7 @@ def property_payment_init(request):
                 'type': fee.type,
                 'name': fee.name,
                 'long_description': fee.long_description,
+                'short_description':fee.short_description,
                 'amount': str(fee.amount),
                 'recurring': fee.recurring,
                 'due_date': fee.due_date.isoformat() if fee.due_date else None,
@@ -98,6 +101,7 @@ def property_payment_failed(request):
     }
     return render(request, 'main-site/payment-failed.html', context)
 
+@login_required
 def payment_callback(request):
     '''
     Callback from the paystack payment page.

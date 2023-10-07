@@ -58,6 +58,7 @@ class Property(models.Model):
     is_published = models.BooleanField(default=True)
     number_of_views = models.IntegerField(default=0, editable=False)
 
+
     def __str__(self):
         return self.title
 
