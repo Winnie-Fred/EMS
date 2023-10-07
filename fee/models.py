@@ -15,14 +15,39 @@ from dateutil.relativedelta import relativedelta
 
 class FeeOnPublishedPropertyAndPublishedFeeManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(listing__is_published=True, is_published=True)
+        # return super().get_queryset().filter(listing__is_published=True, is_published=True) #  apart from fetching published fees, filter on fees of published listings too
+        return super().get_queryset().filter(is_published=True)
     
+class PendingTenancyManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            activated=False,
+            cancelled=False,
+            start_date__lte=timezone.now(),
+            listing__is_published=True,
+        )
+    
+class ActivatedTenancyManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            activated=True,
+            cancelled=False,
+            start_date__lte=timezone.now(),
+            listing__is_published=True,
+        )
 # Create your models here.
 
 User = get_user_model()
 
 
+
+
 class Tenancy(models.Model):
+
+    objects = models.Manager()  # default manager
+    pending_tenancies = PendingTenancyManager()  # custom manager
+    activated_tenancies = ActivatedTenancyManager()  # custom manager
+
     tenant = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tenant_user')
     listing = models.ForeignKey('property.Property', on_delete=models.CASCADE)
     activated = models.BooleanField(help_text="Activate Tenancy")
@@ -48,6 +73,7 @@ class Tenancy(models.Model):
                     due_date += payment_interval
                 return due_date.date()
         return None
+    
     
     @property
     def other_fees_due_date(self):
@@ -96,6 +122,7 @@ class Fee(models.Model):
         ('yearly', 'Yearly'),
         ('one-time', 'One-time'),
     )
+
 
     listing = models.ForeignKey('property.Property', on_delete=models.CASCADE, null=True, blank=True)
     tenancy = models.ForeignKey(Tenancy, on_delete=models.CASCADE, null=True, blank=True)
@@ -167,7 +194,10 @@ class Fee(models.Model):
 
 
     def __str__(self):
-        return f'{self.short_description} for {self.listing.title or self.tenancy.tenant.full_name}'
+        if self.listing:
+            return f'{self.short_description} for {self.listing.title}'
+        else:
+            return f'{self.short_description} to be paid by {self.tenancy.tenant.get_full_name()}'
 
 
 class PaymentStatus(models.TextChoices):
@@ -186,11 +216,15 @@ class FeePayment(models.Model):
     status = models.CharField(
         max_length=2, choices=PaymentStatus.choices, default=PaymentStatus.UNPROCESSED)
 
-    def amount_paid_to_fee_lister(self):        
-        return self.amount - ((self.sass_percentage_charge)*self.amount)
+    @property
+    def amount_paid_to_property_lister(self):                
+        amount_paid = self.amount - ((self.saas_percentage_charge)*self.amount)
+        return amount_paid.quantize(Decimal('.01'))
 
     def __str__(self):        
         return f"Fee Payment for {', '.join([str(fee) for fee in self.fees.all()])} by {self.paid_by.get_full_name()} to {self.paid_to.get_full_name()}"
+    
+    
 
     def clean(self):
         super().clean()

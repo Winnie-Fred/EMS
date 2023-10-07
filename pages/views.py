@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.db.models import F, Count
 from django.template.loader import render_to_string
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
 
 from property.models import Property, FeaturedProperty
 from property.forms import PropertyFilterForm
@@ -106,9 +105,7 @@ def blog_detail(request, pk):
 def contact_us(request):
     return render(request, 'main-site/contact-us.html')
 
-@login_required
-def dashboard(request):
-    return render(request, 'main-site/dashboard/dashboard_index.html')
+
 
 def map_place_js_view(request):
     context = {'STATIC_URL': settings.STATIC_URL}

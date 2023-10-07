@@ -1,0 +1,201 @@
+{% load static %}
+{% load custom_filters %}
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+{% include 'main-site/dashboard/partials/head.html' with page="home" plugins="swiper-bundle.min,magnific-popup,nice-select"|split dashboard_plugins="jvectormap/jquery-jvectormap-2.0.3.min,morrisjs/morris.min"|split custom_css="main,color_skins"|split %}
+ <body class="theme-blue font-karla text-body text-tiny">
+ <!-- Page Loader -->
+  {% comment %} {% include "estate-manager/partials/page_loader_wrapper02.html" %} {% endcomment %}
+  <div class="overflow-hidden">
+    {% include "main-site/dashboard/partials/dashboard_header.html" %}
+
+    <!-- Overlay For Sidebars -->
+    <div class="overlay">
+    </div>
+    <!-- Top Bar -->
+    {% comment %} {% include "estate-manager/partials/navbar02.html" %} {% endcomment %}
+    <!-- Left Sidebar -->
+    {% include "main-site/dashboard/partials/agent_sidebar.html" with index_class="" li_payment_class="active open" li_2_class="" property_list_class="" property_list3_class="" property_list4_class="" add_property_class="" property_detail_class="" li_3_class="" apartment_class="" office_class="" shop_class="" villa_class="" li_4_class="" agent_class="" add_agent_class="" profile_class="" invoices_class="" map_class="" reports_class="" li_5_class="" chat_class="" events_class="" contact_class="" li_6_class="" widgets_app_class="" widgets_data_class="" li_7_class="" blank_class="" image_gallery_class="" timeline_class="" pricing_class="" search_results_class="" %}
+    <!-- Right Sidebar -->
+    {% include "main-site/dashboard/partials/right_sidebar.html" with purple_theme_active=False blush_theme_active=False %}
+    <!-- Chat-launcher -->
+    <div class="chat-launcher">
+    </div>
+    {% include "main-site/dashboard/partials/chat_wrapper.html" with hash_or_void="#" %}
+    <!-- Main Content -->
+    <section class="content home">
+        <div class="block-header">
+            <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+            <h2>
+            Payments
+            <small class="text-muted">
+                Welcome to your Dashboard, {{ request.user.username }}
+            </small>
+            </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+            <button class="btn btn-primary btn-icon btn-round hidden-sm-down float-right m-l-10" type="button">
+            <i class="zmdi zmdi-plus">
+            </i>
+            </button>
+            <ul class="breadcrumb float-md-right">
+            <li class="breadcrumb-item">
+                <a href="index.html">
+                <i class="zmdi zmdi-home">
+                </i>
+                Dashboard
+                </a>
+            </li>
+            <li class="breadcrumb-item active">
+                Payments
+            </li>
+            </ul>
+            </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+                <div class="row clearfix">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="body">
+                                <h3 class="number count-to" data-fresh-interval="700" data-from="0" data-speed="2000" data-to="{{ total_income }}">
+                                    {{ total_income|format_naira_amount }}
+                                </h3>
+                                <p class="text-muted">
+                                Total income
+                                </p>                                                           
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="body">
+                                <h3 class="number count-to" data-fresh-interval="700" data-from="0" data-speed="2000" data-to="{{ number_of_properties_listed }}">
+                                    {{ number_of_properties_listed }}
+                                </h3>
+                                <p class="text-muted">
+                                Properties listed
+                                </p>                                                           
+                            </div>
+                        </div>
+                    </div>                
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="body">
+                                <h3 class="number count-to" data-fresh-interval="700" data-from="0" data-speed="2000" data-to="{{ occupied_properties_count }}">
+                                    {{ occupied_properties_count }}
+                                </h3>
+                                <p class="text-muted">
+                                Listed occupied properties
+                                </p>                                                           
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+
+            
+
+
+            <p>Income</p>
+            {% if fees_received %}
+                <div class="row clearfix">
+                    {% for payment in fees_received %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="body">
+                                    <h3 class="number count-to" data-fresh-interval="700" data-from="0" data-speed="2000" data-to="{{ total_income }}">
+                                        {{ payment.amount_paid_to_property_lister|format_naira_amount }}
+                                    </h3>
+                                    <p class="text-muted">
+                                    {{ payment }}
+                                    </p>                                                           
+                                    <p class="text-muted">
+                                    Received on: {{ payment.created_on|date:"d F, Y" }}
+                                    </p>                                                           
+                                </div>
+                            </div>
+                        </div> 
+                    {% endfor %}                                  
+                </div>
+            {% else %}
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <p style="margin: 40px; text-align: center"><strong>You have not sold any properties yet, you can start by listing one<a href="{% url 'property:add_property' %}" class="font-light text-[18px] text-secondary underline"> here</a></strong></p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            
+            
+            <p>Properties you manage</p>
+            {% if properties_managed %}
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="body">
+                                {% for property in properties_managed %}
+                                    <div class="header">
+                                        <h2>
+                                            <a class="font-light text-[18px] text-secondary underline" href="{% url 'property:property_detail' property.pk %}"><strong>{{ property.title }}</strong></a>
+                                        </h2>
+                                    </div>
+                                    <p class="text-muted">
+                                        {{ property.full_address }}
+                                    </p>                                
+                                    <div>
+                                        {{ property.get_for_sale_or_rent_display }}
+                                    </div>
+                                {% endfor %}
+                                                                                                                                                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row clearfix">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <p style="margin: 40px; text-align: center"><strong>You do not currently manage any property</strong></p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </section>
+</div>
+{% include 'main-site/partials/scripts.html' with page="home" plugins="swiper-bundle.min,popper.min,jquery.magnific-popup.min,jquery.ajaxchimp.min,parallax.min,jquery.nice-select.min"|split %}
+
+<!-- Jquery Core Js -->
+<script src="{% static 'estate-manager/assets/bundles/libscripts.bundle.js' %}">
+</script>
+<!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
+<script src="{% static 'estate-manager/assets/bundles/vendorscripts.bundle.js' %}">
+</script>
+<!-- slimscroll, waves Scripts Plugin Js -->
+<script src="{% static 'estate-manager/assets/bundles/morrisscripts.bundle.js' %}">
+</script>
+<!-- Morris Plugin Js -->
+<script src="{% static 'estate-manager/assets/bundles/jvectormap.bundle.js' %}">
+</script>
+<!-- JVectorMap Plugin Js -->
+<script src="{% static 'estate-manager/assets/bundles/knob.bundle.js' %}">
+</script>
+<!-- Jquery Knob Plugin Js -->
+<script src="{% static 'estate-manager/assets/bundles/countTo.bundle.js' %}">
+</script>
+<!-- Jquery CountTo Plugin Js -->
+<script src="{% static 'estate-manager/assets/bundles/sparkline.bundle.js' %}">
+</script>
+<!-- Sparkline Plugin Js -->
+<script src="{% static 'estate-manager/assets/bundles/mainscripts.bundle.js' %}">
+</script>
+<script src="{% static 'estate-manager/assets/js/pages/index.js' %}">
+</script>
+ </body>
+</html>

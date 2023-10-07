@@ -47,7 +47,7 @@
     MAIN
    </li>
    <li {% if index_class %} class="{{ index_class }}" {% endif %}>
-    <a href="{% url 'pages:dashboard' %}">
+    <a href="{% url 'dashboard:index' %}">
      <i class="zmdi zmdi-home">
      </i>
      <span>
@@ -177,15 +177,21 @@
      </span>
     </a>
    </li> {% endcomment %}
-   <li {% if li_payment_class %} class="{{ li_payment_class }}" {% endif %}>
-    <a href="javascript:void(0);">
-     <i class="zmdi zmdi-money">
-     </i>
-     <span>
-      Payment
-     </span>
-    </a>    
-    </li>   
+   {% if request.user.userprofile.user_is_tenant or request.user.userprofile.user_role == "Agent" or request.user.userprofile.user_role == "Owner" %}
+    <li {% if li_payment_class %} class="{{ li_payment_class }}" {% endif %}>
+    {% if request.user.userprofile.user_is_tenant %}
+      <a href="{% url 'dashboard:payments_tenant' %}">
+    {% elif request.user.userprofile.user_role == "Agent" or request.user.userprofile.user_role == "Owner" %}
+      <a href="{% url 'dashboard:payments_agent_or_owner' %}">  
+      {% endif %}
+      <i class="zmdi zmdi-money">
+      </i>
+      <span>
+        Payment
+      </span>
+      </a>    
+      </li>   
+    {% endif %}
    <li {% if li_complaint_class %} class="{{ li_complaint_class }}" {% endif %}>
     <a href="javascript:void(0);">
      <i class="zmdi zmdi-alert-triangle">

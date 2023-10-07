@@ -43,5 +43,4 @@ urlpatterns = [
     path('blog_detail/<int:pk>/', views.blog_detail, name='blog_detail'),
     path('blog_details/', views.blog_details, name='blog_details'),
     path('contact_us/', views.contact_us, name="contact_us"),
-    path('dashboard/', views.dashboard, name='dashboard'),
 ]
